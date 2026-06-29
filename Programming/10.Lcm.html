@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find LCM of two numbers</title>
+</head>
+<body>
+    <script>
+        /* Find LCM of two numbers */
+
+        let num1 = Number(prompt("Enter first Positive Number:"));
+        let num2 = Number(prompt("Enter second Positive Number:"));
+
+        let max = (num1>num2) ? num1 : num2;
+        let lcm = max;
+        while(true){
+            if(lcm % num1 == 0 && lcm % num2 == 0){
+                break;
+            }
+            lcm++;
+        }
+       document.write(lcm);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>James Wilson - Frontend Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#6B4BFF", secondary: "#00F0FF" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+
+      :root {
+          --space-black: #0A0A0A;
+          --cosmic-purple: #6B4BFF;
+          --stellar-blue: #00F0FF;
+      }
+
+      body {
+          font-family: 'Space Grotesk', sans-serif;
+          background-color: var(--space-black);
+          color: #fff;
+          overflow-x: hidden;
+      }
+
+      .star {
+          position: absolute;
+          background-color: #fff;
+          border-radius: 50%;
+          opacity: 0.8;
+          animation: twinkle 4s infinite;
+      }
+
+      @keyframes twinkle {
+          0%, 100% { opacity: 0.2; }
+          50% { opacity: 0.8; }
+      }
+
+      .glow {
+          box-shadow: 0 0 15px rgba(107, 75, 255, 0.5), 0 0 30px rgba(0, 240, 255, 0.3);
+      }
+
+      .glow-text {
+          text-shadow: 0 0 10px rgba(107, 75, 255, 0.7), 0 0 20px rgba(0, 240, 255, 0.5);
+      }
+
+      .glow-border {
+          border: 2px solid transparent;
+          background: linear-gradient(var(--space-black), var(--space-black)) padding-box,
+                      linear-gradient(to right, var(--cosmic-purple), var(--stellar-blue)) border-box;
+      }
+
+      .cursor-trail {
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background: linear-gradient(to right, var(--cosmic-purple), var(--stellar-blue));
+          pointer-events: none;
+          transform: translate(-50%, -50%);
+          z-index: 9999;
+          opacity: 0;
+          transition: opacity 0.2s ease;
+      }
+
+      .gradient-text {
+          background: linear-gradient(to right, var(--cosmic-purple), var(--stellar-blue));
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+      }
+
+      .timeline-line {
+          position: absolute;
+          left: 50%;
+          top: 0;
+          bottom: 0;
+          width: 2px;
+          background: linear-gradient(to bottom, var(--cosmic-purple), var(--stellar-blue));
+          transform: translateX(-50%);
+      }
+
+      .timeline-dot {
+          position: absolute;
+          left: 50%;
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          background: linear-gradient(to right, var(--cosmic-purple), var(--stellar-blue));
+          transform: translateX(-50%);
+          z-index: 1;
+      }
+
+      .skill-bar {
+          height: 8px;
+          border-radius: 4px;
+          background: rgba(255, 255, 255, 0.1);
+          overflow: hidden;
+          position: relative;
+      }
+
+      .skill-progress {
+          height: 100%;
+          border-radius: 4px;
+          background: linear-gradient(to right, var(--cosmic-purple), var(--stellar-blue));
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 0;
+          transition: width 1.5s ease-in-out;
+      }
+
+      .project-card {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .project-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 10px 30px rgba(107, 75, 255, 0.3), 0 5px 15px rgba(0, 240, 255, 0.2);
+      }
+
+      .social-icon {
+          transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+
+      .social-icon:hover {
+          transform: translateY(-5px);
+          opacity: 0.8;
+      }
+
+      input, textarea {
+          background-color: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          color: white;
+          transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      input:focus, textarea:focus {
+          border-color: var(--cosmic-purple);
+          box-shadow: 0 0 0 2px rgba(107, 75, 255, 0.2);
+          outline: none;
+      }
+
+      .nav-link {
+          position: relative;
+          transition: color 0.3s ease;
+      }
+
+      .nav-link::after {
+          content: '';
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background: linear-gradient(to right, var(--cosmic-purple), var(--stellar-blue));
+          transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::after, .nav-link.active::after {
+          width: 100%;
+      }
+
+      .custom-switch {
+          position: relative;
+          display: inline-block;
+          width: 50px;
+          height: 24px;
+      }
+
+      .custom-switch input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+      }
+
+      .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(255, 255, 255, 0.1);
+          transition: .4s;
+          border-radius: 34px;
+      }
+
+      .slider:before {
+          position: absolute;
+          content: "";
+          height: 16px;
+          width: 16px;
+          left: 4px;
+          bottom: 4px;
+          background-color: white;
+          transition: .4s;
+          border-radius: 50%;
+      }
+
+      input:checked + .slider {
+          background: linear-gradient(to right, var(--cosmic-purple), var(--stellar-blue));
+      }
+
+      input:checked + .slider:before {
+          transform: translateX(26px);
+      }
+
+      @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
+      }
+
+      .float-animation {
+          animation: float 4s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+          0%, 100% { opacity: 0.7; }
+          50% { opacity: 1; }
+      }
+
+      .pulse-animation {
+          animation: pulse 2s ease-in-out infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="stars-container"></div>
+
+    <!-- Navigation -->
+    <nav
+      class="fixed top-0 left-0 w-full z-50 bg-opacity-10 bg-black backdrop-blur-md"
+    >
+      <div
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <a href="#" class="text-2xl font-bold gradient-text">JW</a>
+
+        <div class="hidden md:flex space-x-8">
+          <a href="#home" class="nav-link text-white hover:text-primary"
+            >Home</a
+          >
+          <a href="#experience" class="nav-link text-white hover:text-primary"
+            >Experience</a
+          >
+          <a href="#projects" class="nav-link text-white hover:text-primary"
+            >Projects</a
+          >
+          <a href="#content" class="nav-link text-white hover:text-primary"
+            >Content</a
+          >
+          <a href="#contact" class="nav-link text-white hover:text-primary"
+            >Contact</a
+          >
+        </div>
+
+        <button
+          class="md:hidden flex items-center justify-center w-10 h-10 !rounded-button"
+        >
+          <i class="ri-menu-line text-xl"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu (Hidden by default) -->
+    <div
+      class="fixed inset-0 bg-black bg-opacity-90 z-40 hidden flex-col items-center justify-center"
+    >
+      <div class="flex flex-col space-y-6 text-center">
+        <a href="#home" class="text-xl text-white hover:text-primary">Home</a>
+        <a href="#experience" class="text-xl text-white hover:text-primary"
+          >Experience</a
+        >
+        <a href="#projects" class="text-xl text-white hover:text-primary"
+          >Projects</a
+        >
+        <a href="#content" class="text-xl text-white hover:text-primary"
+          >Content</a
+        >
+        <a href="#contact" class="text-xl text-white hover:text-primary"
+          >Contact</a
+        >
+      </div>
+      <button class="absolute top-6 right-6 text-white">
+        <i class="ri-close-line text-2xl"></i>
+      </button>
+    </div>
+
+    <!-- Hero Section -->
+    <section
+      id="home"
+      class="min-h-screen flex items-center relative overflow-hidden pt-20"
+    >
+      <div class="absolute inset-0 z-0">
+        <div
+          style="background-image: url('https://readdy.ai/api/search-image?query=futuristic%2520space%2520background%2520with%2520stars%2520and%2520nebula%252C%2520deep%2520space%2520with%2520subtle%2520purple%2520and%2520blue%2520cosmic%2520clouds%252C%2520high%2520quality%2520digital%2520art%252C%2520dark%2520theme%252C%2520perfect%2520for%2520website%2520background&width=1920&height=1080&seq=1&orientation=landscape'); background-size: cover; background-position: center;"
+          class="absolute inset-0 opacity-40"
+        ></div>
+      </div>
+
+      <div
+        class="container mx-auto px-6 z-10 flex flex-col md:flex-row items-center"
+      >
+        <div class="md:w-1/2 mb-10 md:mb-0">
+          <h1 class="text-4xl md:text-6xl font-bold mb-4">
+            <span class="block">Hello, I'm</span>
+            <span class="gradient-text block">James Wilson</span>
+          </h1>
+
+          <div class="h-8 mb-6">
+            <span id="typing-text" class="text-xl"></span>
+            <span class="typing-cursor">|</span>
+          </div>
+
+          <p class="text-gray-300 mb-8 text-lg">
+            With over 4 years of experience crafting exceptional web
+            experiences, I transform complex problems into elegant, intuitive
+            interfaces. Passionate about clean code, performance optimization,
+            and staying at the cutting edge of frontend development.
+          </p>
+
+          <div class="flex space-x-4 mb-8">
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              class="social-icon w-12 h-12 flex items-center justify-center bg-opacity-20 bg-white !rounded-button"
+            >
+              <i class="ri-linkedin-fill text-xl text-primary"></i>
+            </a>
+            <a
+              href="https://youtube.com"
+              target="_blank"
+              class="social-icon w-12 h-12 flex items-center justify-center bg-opacity-20 bg-white !rounded-button"
+            >
+              <i class="ri-youtube-fill text-xl text-primary"></i>
+            </a>
+            <a
+              href="https://github.com"
+              target="_blank"
+              class="social-icon w-12 h-12 flex items-center justify-center bg-opacity-20 bg-white !rounded-button"
+            >
+              <i class="ri-github-fill text-xl text-primary"></i>
+            </a>
+          </div>
+
+          <div class="flex space-x-4">
+            <a
+              href="#projects"
+              class="px-6 py-3 bg-primary hover:bg-opacity-80 text-white font-medium !rounded-button whitespace-nowrap"
+              >View Projects</a
+            >
+            <a
+              href="#contact"
+              class="px-6 py-3 bg-transparent border border-primary text-primary hover:bg-primary hover:bg-opacity-10 font-medium !rounded-button whitespace-nowrap"
+              >Contact Me</a
+            >
+          </div>
+        </div>
+
+        <div class="md:w-1/2 flex justify-center float-animation">
+          <div class="relative">
+            <div
+              class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden glow"
+            >
+              <img
+                src="https://readdy.ai/api/search-image?query=professional%2520portrait%2520of%2520a%2520male%2520frontend%2520developer%2520in%2520his%2520early%252030s%252C%2520wearing%2520modern%2520glasses%2520and%2520a%2520dark%2520shirt%252C%2520with%2520a%2520subtle%2520smile%252C%2520high%2520quality%2520professional%2520headshot%2520with%2520dark%2520background%2520and%2520subtle%2520lighting&width=800&height=800&seq=2&orientation=squarish"
+                alt="James Wilson"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div
+              class="absolute -bottom-4 -right-4 bg-black bg-opacity-70 px-4 py-2 !rounded-button glow-border"
+            >
+              <span class="text-sm font-medium">4+ Years Experience</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="absolute bottom-10 left-1/2 transform -translate-x-1/2 pulse-animation"
+      >
+        <a
+          href="#experience"
+          class="flex flex-col items-center text-white opacity-70 hover:opacity-100"
+        >
+          <span class="text-sm mb-2">Scroll Down</span>
+          <i class="ri-arrow-down-line text-xl"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 relative">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">
+          <span class="gradient-text">Professional</span> Experience
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-20">
+          <div class="bg-black bg-opacity-50 p-8 !rounded-lg glow-border">
+            <div class="flex items-start mb-6">
+              <div
+                class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 !rounded-button mr-4"
+              >
+                <i class="ri-briefcase-line text-xl text-primary"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold">Senior Frontend Developer</h3>
+                <p class="text-gray-400">Singleinterface • 2021 - Present</p>
+              </div>
+            </div>
+            <p class="text-gray-300 mb-6">
+              Leading frontend development for enterprise SaaS platforms,
+              focusing on performance optimization and component architecture.
+              Implemented modern React patterns that reduced bundle size by 35%
+              and improved load times by 40%.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 py-1 bg-primary bg-opacity-10 text-primary text-sm !rounded-button"
+                >React</span
+              >
+              <span
+                class="px-3 py-1 bg-primary bg-opacity-10 text-primary text-sm !rounded-button"
+                >Redux</span
+              >
+              <span
+                class="px-3 py-1 bg-primary bg-opacity-10 text-primary text-sm !rounded-button"
+                >TypeScript</span
+              >
+              <span
+                class="px-3 py-1 bg-primary bg-opacity-10 text-primary text-sm !rounded-button"
+                >Next.js</span
+              >
+            </div>
+          </div>
+
+          <div class="bg-black bg-opacity-50 p-8 !rounded-lg glow-border">
+            <div class="flex items-start mb-6">
+              <div
+                class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 !rounded-button mr-4"
+              >
+                <i class="ri-briefcase-line text-xl text-primary"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold">Frontend Developer</h3>
+                <p class="text-gray-400">TechNova Solutions • 2019 - 2021</p>
+              </div>
+            </div>
+            <p class="text-gray-300 mb-6">
+              Developed responsive web applications for clients across fintech
+              and e-commerce sectors. Collaborated with UX/UI designers to
+              implement pixel-perfect interfaces and interactive features that
+              increased user engagement by 28%.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 py-1 bg-primary bg-opacity-10 text-primary text-sm !rounded-button"
+                >JavaScript</span
+              >
+              <span
+                class="px-3 py-1 bg-primary bg-opacity-10 text-primary text-sm !rounded-button"
+                >React</span
+              >
+              <span
+                class="px-3 py-1 bg-primary bg-opacity-10 text-primary text-sm !rounded-button"
+                >SCSS</span
+              >
+              <span
+                class="px-3 py-1 bg-primary bg-opacity-10 text-primary text-sm !rounded-button"
+                >Webpack</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <h3 class="text-2xl font-bold mb-10 text-center">Technical Skills</h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div class="space-y-6">
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">HTML5 & CSS3</span>
+                <span>95%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="95%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">JavaScript</span>
+                <span>90%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="90%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">React.js</span>
+                <span>92%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="92%"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">TypeScript</span>
+                <span>85%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="85%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">Next.js</span>
+                <span>80%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="80%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between mb-2">
+                <span class="font-medium">UI/UX Design</span>
+                <span>75%</span>
+              </div>
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="75%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-20">
+          <h3 class="text-2xl font-bold mb-10 text-center">Education</h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div class="bg-black bg-opacity-50 p-8 !rounded-lg glow-border">
+              <div class="flex items-start mb-6">
+                <div
+                  class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 !rounded-button mr-4"
+                >
+                  <i class="ri-graduation-cap-line text-xl text-primary"></i>
+                </div>
+                <div>
+                  <h4 class="text-xl font-bold">
+                    Master of Computer Applications
+                  </h4>
+                  <p class="text-gray-400">
+                    University of Technology • 2017 - 2019
+                  </p>
+                </div>
+              </div>
+              <p class="text-gray-300">
+                Specialized in Advanced Web Technologies and UI/UX Design.
+                Graduated with distinction and received the Outstanding Student
+                Award for innovative thesis project on real-time collaborative
+                web applications.
+              </p>
+            </div>
+
+            <div class="bg-black bg-opacity-50 p-8 !rounded-lg glow-border">
+              <div class="flex items-start mb-6">
+                <div
+                  class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 !rounded-button mr-4"
+                >
+                  <i class="ri-graduation-cap-line text-xl text-primary"></i>
+                </div>
+                <div>
+                  <h4 class="text-xl font-bold">
+                    Bachelor of Computer Applications
+                  </h4>
+                  <p class="text-gray-400">
+                    Digital Arts College • 2014 - 2017
+                  </p>
+                </div>
+              </div>
+              <p class="text-gray-300">
+                Foundation in Computer Science with focus on Web Development and
+                Programming. Completed with honors and led the college web
+                development club, organizing workshops and hackathons.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 relative">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">
+          <span class="gradient-text">Featured</span> Projects
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Project 1 -->
+          <div
+            class="project-card bg-black bg-opacity-50 overflow-hidden !rounded-lg glow-border"
+          >
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=modern%2520e-commerce%2520dashboard%2520interface%2520with%2520dark%2520theme%252C%2520showing%2520analytics%2520and%2520sales%2520data%252C%2520with%2520purple%2520and%2520blue%2520accents%252C%2520professional%2520UI%2520design%252C%2520high%2520quality%2520digital%2520mockup&width=600&height=400&seq=3&orientation=landscape"
+                alt="E-commerce Dashboard"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">
+                NexShop E-commerce Platform
+              </h3>
+              <p class="text-gray-300 mb-4">
+                A comprehensive e-commerce solution with real-time inventory
+                management, payment processing, and analytics dashboard.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span
+                  class="px-2 py-1 bg-primary bg-opacity-10 text-primary text-xs !rounded-button"
+                  >React</span
+                >
+                <span
+                  class="px-2 py-1 bg-primary bg-opacity-10 text-primary text-xs !rounded-button"
+                  >Node.js</span
+                >
+                <span
+                  class="px-2 py-1 bg-primary bg-opacity-10 text-primary text-xs !rounded-button"
+                  >MongoDB</span
+                >
+                <span
+                  class="px-2 py-1 bg-primary bg-opacity-10 text-primary text-xs !rounded-button"
+                  >Stripe API</span
+                >
+              </div>
+              <div class="flex space-x-3">
+                <a
+                  href="#"
+                  class="text-sm text-primary hover:text-secondary flex items-center"
+                >
+                  <i class="ri-eye-line mr-1"></i> Live Demo
+                </a>
+                <a
+                  href="#"
+                  class="text-sm text-primary hover:text-secondary flex items-center"
+                >
+                  <i class="ri-github-line mr-1"></i> Source Code
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div
+            class="project-card bg-black bg-opacity-50 overflow-hidden !rounded-lg glow-border"
+          >
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=futuristic%2520finance%2520tracking%2520app%2520interface%2520with%2520dark%2520theme%252C%2520showing%2520budget%2520charts%2520and%2520expense%2520tracking%252C%2520with%2520purple%2520and%2520blue%2520accents%252C%2520professional%2520UI%2520design%252C%2520high%2520quality%2520digital%2520mockup&width=600&height=400&seq=4&orientation=landscape"
+                alt="Finance Tracker"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">
+                FinTrack Budget Application
+              </h3>
+              <p class="text-gray-300 mb-4">
+                Personal finance management tool with expense categorization,
+                budget planning, and visual reports for financial insights.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span
+                  class="px-2 py-1 bg-primary bg-opacity-10 text-primary text-xs !rounded-button"
+                  >React</span
+                >
+                <span
+                  class="px-2 py-1 bg-primary bg-opacity-10 text-primary text-xs !rounded-button"
+                  >Redux</span
+                >
+                <span
+                  class="px-2 py-1 bg-primary bg-opacity-10 text-primary text-xs !rounded-button"
+                  >Firebase</span
+                >
+                <span
+                  class="px-2 py-1 bg-primary bg-opacity-10 text-primary text-xs !rounded-button"
+                  >Chart.js</span
+                >
+              </div>
+              <div class="flex space-x-3">
+                <a
+                  href="#"
+                  class="text-sm text-primary hover:text-secondary flex items-center"
+                >
+                  <i class="ri-eye-line mr-1"></i> Live Demo
+                </a>
+                <a
+                  href="#"
+                  class="text-sm text-primary hover:text-secondary flex items-center"
+                >
+                  <i class="ri-github-line mr-1"></i> Source Code
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div
+            class="project-card bg-black bg-opacity-50 overflow-hidden !rounded-lg glow-border"
+          >
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=modern%2520task%2520management%2520application%2520interface%2520with%2520dark%2520theme%252C%2520showing%2520kanban%2520board%2520with%2520tasks%2520and%2520progress%2520tracking%252C%2520with%2520purple%2520and%2520blue%2520accents%252C%2520professional%2520UI%2520design%252C%2520high%2520quality%2520digital%2520mockup&width=600&height=400&seq=5&orientation=landscape"
+                alt="Task Manager"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">
+                TaskFlow Project Management
+              </h3>
+              <p class="text-gray-300 mb-4">
+                Collaborative project management tool with Kanban boards, task
+                assignments, and progress tracking for teams.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span
+                  class="px-2 py-1 bg-primary bg-opacity-10 text-primary text-xs !rounded-button"
+                  >React</span
+                >
+                <span
+                  class="px-2 py-1 bg-primary bg-opacity-10 text-primary text-xs !rounded-button"
+                  >TypeScript</span
+                >
+                <span
+                  class="px-2 py-1 bg-primary bg-opacity-10 text-primary text-xs !rounded-button"
+                  >Node.js</span
+                >
+                <span
+                  class="px-2 py-1 bg-primary bg-opacity-10 text-primary text-xs !rounded-button"
+                  >Socket.io</span
+                >
+              </div>
+              <div class="flex space-x-3">
+                <a
+                  href="#"
+                  class="text-sm text-primary hover:text-secondary flex items-center"
+                >
+                  <i class="ri-eye-line mr-1"></i> Live Demo
+                </a>
+                <a
+                  href="#"
+                  class="text-sm text-primary hover:text-secondary flex items-center"
+                >
+                  <i class="ri-github-line mr-1"></i> Source Code
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div
+            class="project-card bg-black bg-opacity-50 overflow-hidden !rounded-lg glow-border"
+          >
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=modern%2520weather%2520application%2520interface%2520with%2520dark%2520theme%252C%2520showing%2520weather%2520forecast%2520with%2520temperature%2520charts%2520and%2520location%2520data%252C%2520with%2520purple%2520and%2520blue%2520accents%252C%2520professional%2520UI%2520design%252C%2520high%2520quality%2520digital%2520mockup&width=600&height=400&seq=6&orientation=landscape"
+                alt="Weather App"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">
+                SkyView Weather Application
+              </h3>
+              <p class="text-gray-300 mb-4">
+                Real-time weather forecasting app with location-based
+                predictions, interactive maps, and severe weather alerts.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span
+                  class="px-2 py-1 bg-primary bg-opacity-10 text-primary text-xs !rounded-button"
+                  >React</span
+                >
+                <span
+                  class="px-2 py-1 bg-primary bg-opacity-10 text-primary text-xs !rounded-button"
+                  >Weather API</span
+                >
+                <span
+                  class="px-2 py-1 bg-primary bg-opacity-10 text-primary text-xs !rounded-button"
+                  >Geolocation</span
+                >
+                <span
+                  class="px-2 py-1 bg-primary bg-opacity-10 text-primary text-xs !rounded-button"
+                  >PWA</span
+                >
+              </div>
+              <div class="flex space-x-3">
+                <a
+                  href="#"
+                  class="text-sm text-primary hover:text-secondary flex items-center"
+                >
+                  <i class="ri-eye-line mr-1"></i> Live Demo
+                </a>
+                <a
+                  href="#"
+                  class="text-sm text-primary hover:text-secondary flex items-center"
+                >
+                  <i class="ri-github-line mr-1"></i> Source Code
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 5 -->
+          <div
+            class="project-card bg-black bg-opacity-50 overflow-hidden !rounded-lg glow-border"
+          >
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=modern%2520music%2520streaming%2520application%2520interface%2520with%2520dark%2520theme%252C%2520showing%2520player%2520controls%2520and%2520playlist%2520management%252C%2520with%2520purple%2520and%2520blue%2520accents%252C%2520professional%2520UI%2520design%252C%2520high%2520quality%2520digital%2520mockup&width=600&height=400&seq=7&orientation=landscape"
+                alt="Music Player"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">WavePlay Music Streaming</h3>
+              <p class="text-gray-300 mb-4">
+                Music streaming platform with playlist creation, artist
+                discovery, and personalized recommendations.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span
+                  class="px-2 py-1 bg-primary bg-opacity-10 text-primary text-xs !rounded-button"
+                  >React</span
+                >
+                <span
+                  class="px-2 py-1 bg-primary bg-opacity-10 text-primary text-xs !rounded-button"
+                  >Redux</span
+                >
+                <span
+                  class="px-2 py-1 bg-primary bg-opacity-10 text-primary text-xs !rounded-button"
+                  >Web Audio API</span
+                >
+                <span
+                  class="px-2 py-1 bg-primary bg-opacity-10 text-primary text-xs !rounded-button"
+                  >Spotify API</span
+                >
+              </div>
+              <div class="flex space-x-3">
+                <a
+                  href="#"
+                  class="text-sm text-primary hover:text-secondary flex items-center"
+                >
+                  <i class="ri-eye-line mr-1"></i> Live Demo
+                </a>
+                <a
+                  href="#"
+                  class="text-sm text-primary hover:text-secondary flex items-center"
+                >
+                  <i class="ri-github-line mr-1"></i> Source Code
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 6 -->
+          <div
+            class="project-card bg-black bg-opacity-50 overflow-hidden !rounded-lg glow-border"
+          >
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=modern%2520fitness%2520tracking%2520application%2520interface%2520with%2520dark%2520theme%252C%2520showing%2520workout%2520plans%2520and%2520progress%2520charts%252C%2520with%2520purple%2520and%2520blue%2520accents%252C%2520professional%2520UI%2520design%252C%2520high%2520quality%2520digital%2520mockup&width=600&height=400&seq=8&orientation=landscape"
+                alt="Fitness Tracker"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2">FitTrack Wellness App</h3>
+              <p class="text-gray-300 mb-4">
+                Fitness tracking application with workout plans, nutrition
+                logging, and progress visualization for health goals.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span
+                  class="px-2 py-1 bg-primary bg-opacity-10 text-primary text-xs !rounded-button"
+                  >React Native</span
+                >
+                <span
+                  class="px-2 py-1 bg-primary bg-opacity-10 text-primary text-xs !rounded-button"
+                  >Firebase</span
+                >
+                <span
+                  class="px-2 py-1 bg-primary bg-opacity-10 text-primary text-xs !rounded-button"
+                  >HealthKit</span
+                >
+                <span
+                  class="px-2 py-1 bg-primary bg-opacity-10 text-primary text-xs !rounded-button"
+                  >Google Fit</span
+                >
+              </div>
+              <div class="flex space-x-3">
+                <a
+                  href="#"
+                  class="text-sm text-primary hover:text-secondary flex items-center"
+                >
+                  <i class="ri-eye-line mr-1"></i> Live Demo
+                </a>
+                <a
+                  href="#"
+                  class="text-sm text-primary hover:text-secondary flex items-center"
+                >
+                  <i class="ri-github-line mr-1"></i> Source Code
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 text-center">
+          <a
+            href="#"
+            class="inline-block px-6 py-3 bg-primary hover:bg-opacity-80 text-white font-medium !rounded-button whitespace-nowrap"
+          >
+            View All Projects <i class="ri-arrow-right-line ml-1"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content Creator Section -->
+    <section id="content" class="py-20 relative">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">
+          <span class="gradient-text">Content</span> Creator
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <!-- YouTube Section -->
+          <div class="bg-black bg-opacity-50 p-8 !rounded-lg glow-border">
+            <div class="flex items-center mb-8">
+              <div
+                class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 !rounded-button mr-4"
+              >
+                <i class="ri-youtube-fill text-xl text-primary"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold">YouTube Channel</h3>
+                <p class="text-gray-400">25K+ Subscribers</p>
+              </div>
+            </div>
+
+            <p class="text-gray-300 mb-6">
+              Sharing frontend development tutorials, code reviews, and tech
+              career advice. New videos every Tuesday and Friday covering the
+              latest web technologies and best practices.
+            </p>
+
+            <div class="aspect-video mb-6 bg-black !rounded-lg overflow-hidden">
+              <img
+                src="https://readdy.ai/api/search-image?query=youtube%2520video%2520thumbnail%2520for%2520frontend%2520development%2520tutorial%2520with%2520code%2520editor%2520showing%2520React%2520components%252C%2520professional%2520looking%2520with%2520text%2520overlay%2520saying%2520%2522Building%2520Modern%2520React%2520Apps%2522%252C%2520high%2520quality%2520digital%2520mockup&width=640&height=360&seq=9&orientation=landscape"
+                alt="YouTube Video Thumbnail"
+                class="w-full h-full object-cover object-top"
+              />
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mb-6">
+              <div class="bg-black bg-opacity-50 p-4 !rounded-lg">
+                <p class="text-2xl font-bold text-primary">128+</p>
+                <p class="text-gray-400 text-sm">Videos</p>
+              </div>
+              <div class="bg-black bg-opacity-50 p-4 !rounded-lg">
+                <p class="text-2xl font-bold text-primary">1.2M+</p>
+                <p class="text-gray-400 text-sm">Total Views</p>
+              </div>
+            </div>
+
+            <a
+              href="https://youtube.com"
+              target="_blank"
+              class="inline-block px-6 py-3 bg-primary hover:bg-opacity-80 text-white font-medium !rounded-button whitespace-nowrap"
+            >
+              Visit Channel <i class="ri-external-link-line ml-1"></i>
+            </a>
+          </div>
+
+          <!-- LinkedIn Section -->
+          <div class="bg-black bg-opacity-50 p-8 !rounded-lg glow-border">
+            <div class="flex items-center mb-8">
+              <div
+                class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 !rounded-button mr-4"
+              >
+                <i class="ri-linkedin-fill text-xl text-primary"></i>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold">LinkedIn Influence</h3>
+                <p class="text-gray-400">15K+ Followers</p>
+              </div>
+            </div>
+
+            <p class="text-gray-300 mb-6">
+              Publishing insights on frontend development trends, career growth
+              strategies, and industry analysis. Recognized as a LinkedIn Top
+              Voice in Web Development.
+            </p>
+
+            <div class="space-y-4 mb-6">
+              <div class="bg-black bg-opacity-50 p-4 !rounded-lg">
+                <div class="flex justify-between items-start mb-2">
+                  <h4 class="font-medium">
+                    The Future of Frontend Development in 2025
+                  </h4>
+                  <span class="text-xs text-gray-400">2 days ago</span>
+                </div>
+                <p class="text-sm text-gray-300 mb-2">
+                  Exploring how AI, WebAssembly, and Edge Computing are
+                  reshaping the frontend landscape...
+                </p>
+                <div class="flex items-center text-xs text-gray-400">
+                  <span class="flex items-center mr-3"
+                    ><i class="ri-thumb-up-line mr-1"></i> 842</span
+                  >
+                  <span class="flex items-center mr-3"
+                    ><i class="ri-chat-1-line mr-1"></i> 156</span
+                  >
+                  <span class="flex items-center"
+                    ><i class="ri-share-line mr-1"></i> 78</span
+                  >
+                </div>
+              </div>
+
+              <div class="bg-black bg-opacity-50 p-4 !rounded-lg">
+                <div class="flex justify-between items-start mb-2">
+                  <h4 class="font-medium">
+                    5 React Performance Optimization Techniques
+                  </h4>
+                  <span class="text-xs text-gray-400">1 week ago</span>
+                </div>
+                <p class="text-sm text-gray-300 mb-2">
+                  Practical strategies to improve your React application's
+                  performance and user experience...
+                </p>
+                <div class="flex items-center text-xs text-gray-400">
+                  <span class="flex items-center mr-3"
+                    ><i class="ri-thumb-up-line mr-1"></i> 1.2K</span
+                  >
+                  <span class="flex items-center mr-3"
+                    ><i class="ri-chat-1-line mr-1"></i> 243</span
+                  >
+                  <span class="flex items-center"
+                    ><i class="ri-share-line mr-1"></i> 192</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <a
+              href="https://linkedin.com"
+              target="_blank"
+              class="inline-block px-6 py-3 bg-primary hover:bg-opacity-80 text-white font-medium !rounded-button whitespace-nowrap"
+            >
+              Connect on LinkedIn <i class="ri-external-link-line ml-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 relative">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">
+          <span class="gradient-text">Get In</span> Touch
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div>
+            <h3 class="text-2xl font-bold mb-6">Let's Connect</h3>
+            <p class="text-gray-300 mb-8">
+              I'm always open to discussing new projects, creative ideas, or
+              opportunities to be part of your vision. Feel free to reach out
+              using the form or through my social platforms.
+            </p>
+
+            <div class="space-y-6 mb-8">
+              <div class="flex items-center">
+                <div
+                  class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 !rounded-button mr-4"
+                >
+                  <i class="ri-mail-line text-xl text-primary"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium">Email</h4>
+                  <p class="text-gray-300">james.wilson@example.com</p>
+                </div>
+              </div>
+
+              <div class="flex items-center">
+                <div
+                  class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 !rounded-button mr-4"
+                >
+                  <i class="ri-map-pin-line text-xl text-primary"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium">Location</h4>
+                  <p class="text-gray-300">San Francisco, California</p>
+                </div>
+              </div>
+
+              <div class="flex items-center">
+                <div
+                  class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-20 !rounded-button mr-4"
+                >
+                  <i class="ri-time-line text-xl text-primary"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium">Availability</h4>
+                  <p class="text-gray-300">Monday - Friday, 9AM - 6PM PST</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex space-x-4">
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                class="social-icon w-12 h-12 flex items-center justify-center bg-opacity-20 bg-white !rounded-button"
+              >
+                <i class="ri-linkedin-fill text-xl text-primary"></i>
+              </a>
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                class="social-icon w-12 h-12 flex items-center justify-center bg-opacity-20 bg-white !rounded-button"
+              >
+                <i class="ri-youtube-fill text-xl text-primary"></i>
+              </a>
+              <a
+                href="https://github.com"
+                target="_blank"
+                class="social-icon w-12 h-12 flex items-center justify-center bg-opacity-20 bg-white !rounded-button"
+              >
+                <i class="ri-github-fill text-xl text-primary"></i>
+              </a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                class="social-icon w-12 h-12 flex items-center justify-center bg-opacity-20 bg-white !rounded-button"
+              >
+                <i class="ri-twitter-x-fill text-xl text-primary"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="bg-black bg-opacity-50 p-8 !rounded-lg glow-border">
+            <form id="contact-form">
+              <div class="mb-6">
+                <label for="name" class="block mb-2 text-sm font-medium"
+                  >Your Name</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  class="w-full px-4 py-3 bg-black bg-opacity-50 border border-gray-700 !rounded-button text-white focus:border-primary"
+                  placeholder="John Doe"
+                  required
+                />
+              </div>
+
+              <div class="mb-6">
+                <label for="email" class="block mb-2 text-sm font-medium"
+                  >Your Email</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  class="w-full px-4 py-3 bg-black bg-opacity-50 border border-gray-700 !rounded-button text-white focus:border-primary"
+                  placeholder="john@example.com"
+                  required
+                />
+              </div>
+
+              <div class="mb-6">
+                <label for="subject" class="block mb-2 text-sm font-medium"
+                  >Subject</label
+                >
+                <input
+                  type="text"
+                  id="subject"
+                  class="w-full px-4 py-3 bg-black bg-opacity-50 border border-gray-700 !rounded-button text-white focus:border-primary"
+                  placeholder="Project Inquiry"
+                  required
+                />
+              </div>
+
+              <div class="mb-6">
+                <label for="message" class="block mb-2 text-sm font-medium"
+                  >Message</label
+                >
+                <textarea
+                  id="message"
+                  rows="5"
+                  class="w-full px-4 py-3 bg-black bg-opacity-50 border border-gray-700 !rounded-button text-white focus:border-primary"
+                  placeholder="I'd like to discuss a project..."
+                  required
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="w-full px-6 py-3 bg-primary hover:bg-opacity-80 text-white font-medium !rounded-button whitespace-nowrap"
+              >
+                Send Message <i class="ri-send-plane-line ml-1"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 border-t border-gray-800">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-6 md:mb-0">
+            <a href="#" class="text-2xl font-bold gradient-text">JW</a>
+            <p class="text-gray-400 mt-2">
+              Frontend Developer & Content Creator
+            </p>
+          </div>
+
+          <div class="flex flex-col items-center md:items-end">
+            <p class="text-gray-400 mb-2">
+              © 2025 James Wilson. All rights reserved.
+            </p>
+            <p class="text-gray-500 text-sm">
+              Built with passion and a lot of coffee ☕
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Create stars background
+        const starsContainer = document.getElementById("stars-container");
+        const numberOfStars = 200;
+
+        for (let i = 0; i < numberOfStars; i++) {
+          const star = document.createElement("div");
+          star.classList.add("star");
+
+          // Random size between 1px and 3px
+          const size = Math.random() * 2 + 1;
+          star.style.width = `${size}px`;
+          star.style.height = `${size}px`;
+
+          // Random position
+          star.style.left = `${Math.random() * 100}%`;
+          star.style.top = `${Math.random() * 100}%`;
+
+          // Random animation delay
+          star.style.animationDelay = `${Math.random() * 4}s`;
+
+          starsContainer.appendChild(star);
+        }
+
+        // Typing animation
+        const typingText = document.getElementById("typing-text");
+        const phrases = [
+          "Frontend Developer",
+          "React Specialist",
+          "Tech Influencer",
+          "YouTube Content Creator",
+        ];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
+
+        function typeText() {
+          const currentPhrase = phrases[phraseIndex];
+
+          if (isDeleting) {
+            typingText.textContent = currentPhrase.substring(0, charIndex - 1);
+            charIndex--;
+            typingSpeed = 50;
+          } else {
+            typingText.textContent = currentPhrase.substring(0, charIndex + 1);
+            charIndex++;
+            typingSpeed = 100;
+          }
+
+          if (!isDeleting && charIndex === currentPhrase.length) {
+            isDeleting = true;
+            typingSpeed = 1000; // Pause at the end
+          } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            typingSpeed = 500; // Pause before typing next phrase
+          }
+
+          setTimeout(typeText, typingSpeed);
+        }
+
+        typeText();
+
+        // Animate skill bars
+        const skillBars = document.querySelectorAll(".skill-progress");
+
+        const observerOptions = {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0.1,
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const bar = entry.target;
+              const width = bar.getAttribute("data-width");
+              bar.style.width = width;
+              observer.unobserve(bar);
+            }
+          });
+        }, observerOptions);
+
+        skillBars.forEach((bar) => {
+          observer.observe(bar);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute("href");
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+
+        // Mobile menu toggle
+        const menuButton = document.querySelector("button.md\\:hidden");
+        const mobileMenu = document.querySelector(".fixed.inset-0.bg-black");
+        const closeButton = mobileMenu.querySelector("button.absolute");
+
+        menuButton.addEventListener("click", () => {
+          mobileMenu.classList.remove("hidden");
+          mobileMenu.classList.add("flex");
+        });
+
+        closeButton.addEventListener("click", () => {
+          mobileMenu.classList.remove("flex");
+          mobileMenu.classList.add("hidden");
+        });
+
+        // Contact form submission
+        const contactForm = document.getElementById("contact-form");
+
+        contactForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Get form values
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const subject = document.getElementById("subject").value;
+          const message = document.getElementById("message").value;
+
+          // Here you would typically send the form data to a server
+          console.log("Form submitted:", { name, email, subject, message });
+
+          // Reset form
+          contactForm.reset();
+
+          // Show success message (in a real implementation)
+          alert("Thank you for your message! I will get back to you soon.");
+        });
+
+        // Cursor trail effect
+        const body = document.querySelector("body");
+        let trailElements = [];
+        const maxTrails = 10;
+
+        document.addEventListener("mousemove", (e) => {
+          const trail = document.createElement("div");
+          trail.classList.add("cursor-trail");
+          trail.style.left = `${e.clientX}px`;
+          trail.style.top = `${e.clientY}px`;
+          trail.style.opacity = "0.7";
+          body.appendChild(trail);
+
+          trailElements.push(trail);
+
+          if (trailElements.length > maxTrails) {
+            const oldestTrail = trailElements.shift();
+            oldestTrail.remove();
+          }
+
+          setTimeout(() => {
+            trail.style.opacity = "0";
+            setTimeout(() => {
+              trail.remove();
+              trailElements = trailElements.filter((el) => el !== trail);
+            }, 200);
+          }, 100);
+        });
+
+        // Active navigation link highlighting
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        window.addEventListener("scroll", () => {
+          let current = "";
+
+          sections.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+
+            if (window.scrollY >= sectionTop - 200) {
+              current = section.getAttribute("id");
+            }
+          });
+
+          navLinks.forEach((link) => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === `#${current}`) {
+              link.classList.add("active");
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

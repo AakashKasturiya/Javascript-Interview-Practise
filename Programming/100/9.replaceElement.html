@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css"> 
+</head>
+
+<body>
+    <h1>How can you replace an existing element in an object?</h1>
+    <h3>1. Using Dot Notation</h3>
+    <p>You can use dot notation to directly replace the value of an existing property.</p>
+    <pre>
+        <code>
+            let obj1 = { name: "John", age: 30 };
+            obj1.age = 35;  // Replacing the value of the 'age' property
+            console.log(obj1);  // { name: "John", age: 35 }                  
+        </code>
+    </pre>
+
+    <hr>
+    <h3>2. Using Bracket Notation</h3>
+    <p>You can also use bracket notation to replace the value of an existing property, especially useful when the property name is stored in a variable or is not a valid identifier.</p>
+    <pre>
+        <code>
+            let obj2 = { name: "John", age: 30 };
+            obj2["age"] = 35;  // Replacing the value of the 'age' property
+            console.log(obj2);  // { name: "John", age: 35 }                       
+        </code>
+    </pre>
+
+    <hr>
+
+    <h3>3. Using Object.assign()</h3>
+    <p>If you're merging objects and want to replace an existing property with a new value, you can use Object.assign().</p>
+    <pre>
+        <code>
+            let obj3 = { name: "John", age: 30  };
+            Object.assign(obj3, { age: 35 });  // Replacing the value of the 'age' property
+            console.log(obj3);  // { name: "John", age: 35 }    
+        </code>
+    </pre>
+
+    <hr>
+
+    <h3>4. Using the Spread Operator (...)</h3>
+    <p>You can use the spread operator to create a new object and replace specific properties.</p>
+    <pre>
+        <code>
+            let obj4 = { name: "John", age: 30  };
+            obj4 = { ...obj4, age: 35 }; // Replacing the value of the 'age' property
+            console.log(obj4);  // { name: "John", age: 30 }  
+        </code>
+    </pre>
+
+    <hr>
+    <h3>5. Using Object.defineProperty()</h3>
+    <p>If you need to have more control over the property’s attributes (like whether it’s writable, enumerable, or configurable), you can use Object.defineProperty().</p>
+    <pre>
+        <code>
+            let obj5 = { name: "John", age: 30 };
+            Object.defineProperty(obj5, 'age', { value: 35, writable: true });
+            console.log(obj5);  // { name: "John", age: 35 }
+            
+        </code>
+    </pre>
+
+    <script>
+        /*1. Using Dot Notation*/
+        let obj1 = { name: "John", age: 30 };
+            obj1.age = 35;  // Replacing the value of the 'age' property
+            console.log(obj1);  // { name: "John", age: 35 }     
+
+        /*2. Using Bracket Notation*/
+        let obj2 = { name: "John", age: 30 };
+            obj2["age"] = 35;  // Replacing the value of the 'age' property
+            console.log(obj2);  // { name: "John", age: 35 }   
+
+        /*3. Using Object.assign()*/
+        let obj3 = { name: "John", age: 30  };
+            Object.assign(obj3, { age: 35 });  // Replacing the value of the 'age' property
+            console.log(obj3);  // { name: "John", age: 35 }    
+
+        /*4. Using the Spread Operator (...)*/
+        let obj4 = { name: "John", age: 30  };
+            obj4 = { ...obj4, age: 35 }; // Replacing the value of the 'age' property
+            console.log(obj4);  // { name: "John", age: 30 }  
+       
+        /* 5. Using Object.defineProperty() */
+        let obj5 = { name: "John", age: 30 };
+            Object.defineProperty(obj5, 'age', { value: 35, writable: true });
+            console.log(obj5);  // { name: "John", age: 35 }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css"> 
+</head>
+
+<body>
+    <h1>How can you add an element to an object?</h1>
+    <h3>1. Using Dot Notation</h3>
+    <p>You can directly assign a new key-value pair to the object using dot notation.</p>
+    <pre>
+        <code>
+            let obj = { name: "John" };
+            obj.age = 30;  // Adding a new property 'age' to the object
+            console.log(obj);  // { name: "John", age: 30 }            
+        </code>
+    </pre>
+
+    <hr>
+    <h3>2. Using Bracket Notation</h3>
+    <p>Bracket notation allows you to add properties with keys that might be dynamic or not valid as identifiers (such
+        as names with spaces or special characters).</p>
+    <pre>
+        <code>
+            let obj = { name: "John" };
+            obj[age] = 30;  // Adding a new property 'age' to the object
+            console.log(obj);  // { name: "John", age: 30 }            
+        </code>
+    </pre>
+
+    <hr>
+
+    <h3>3. Using Object.assign()</h3>
+    <p>Object.assign() can be used to add new properties to an existing object by merging another object into it.</p>
+    <pre>
+        <code>
+            let obj2 = { name: "John" };
+            Object.assign(obj2, { age: 30 });  // Adding a new property 'age'
+            console.log(obj2);  // { name: "John", age: 30 }    
+        </code>
+    </pre>
+
+    <hr>
+
+    <h3>4. Using the Spread Operator (...)</h3>
+    <p>You can also use the spread operator to create a new object with additional properties.</p>
+    <pre>
+        <code>
+            let obj3 = { name: "John" };
+            obj3 = { ...obj, age: 30 };  // Adding a new property 'age' using the spread operator
+            console.log(obj3);  // { name: "John", age: 30 }  
+        </code>
+    </pre>
+
+    <hr>
+    <h3>5. Using Object.defineProperty()</h3>
+    <p>Object.defineProperty() allows for more control over the properties you add, such as defining whether the property is writable, enumerable, or configurable.</p>
+    <pre>
+        <code>
+            let obj4 = { name: "John" };
+            Object.defineProperty(obj4, 'age', { value: 30, writable: true });
+            console.log(obj4);  // { name: "John", age: 30 }   
+        </code>
+    </pre>
+
+    <script>
+        /*1. Using Dot Notation*/
+        let obj = { name: "John" };
+        obj.age = 30;  // Adding a new property 'age' to the object
+        console.log(obj);  // { name: "John", age: 30 }
+
+        /*2. Using Bracket Notation*/
+        let obj1 = { name: "John" };
+        obj1.age = 30;  // Adding a new property 'age' to the object
+        console.log(obj1);  // { name: "John", age: 30 }
+
+        /*3. Using Object.assign()*/
+        let obj2 = { name: "John" };
+        Object.assign(obj2, { age: 30 });  // Adding a new property 'age'
+        console.log(obj2);  // { name: "John", age: 30 }
+
+        /*4. Using the Spread Operator (...)*/
+        let obj3 = { name: "John" };
+            obj3 = { ...obj, age: 30 };  // Adding a new property 'age' using the spread operator
+            console.log(obj3);  // { name: "John", age: 30 }  
+       
+        /* 5. Using Object.defineProperty() */
+        let obj4 = { name: "John" };
+        Object.defineProperty(obj4, 'age', { value: 30, writable: true });
+        console.log(obj4);  // { name: "John", age: 30 }    
+
+    </script>
+</body>
+
+</html>

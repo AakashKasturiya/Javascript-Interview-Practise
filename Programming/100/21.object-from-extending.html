@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>How do you prevent an object from extending?</h1>
+
+    <h3>✅ Use Object.preventExtensions(obj)</h3>
+    <p>This prevents new properties from being added to the object.</p>
+
+    <pre>
+        <code>
+            const user = { name: "Alice" };
+
+            Object.preventExtensions(user);
+            
+            user.age = 30; // ❌ This won't be added
+            console.log(user.age); // undefined
+            
+        </code>
+    </pre>
+
+    <p>It returns:</p>
+    <ul>
+        <li>true → you can add new properties</li>
+        <li>false → the object is not extensible</li>
+    </ul>
+    <h4>🧪 Example:</h4>
+    <pre>
+        <code>
+            onst obj = { name: "Alice" };
+
+            console.log(Object.isExtensible(obj)); // true
+            
+            obj.age = 30; // ✅ Allowed
+
+        </code>
+    </pre>
+    <hr>
+    <h3>❌ Preventing extensibility:</h3>
+    <pre>
+        <code>
+            Object.preventExtensions(obj);
+            console.log(Object.isExtensible(obj)); // false
+            
+            obj.city = "NY"; // ❌ Won’t be added
+            console.log(obj.city); // undefined
+        </code>
+    </pre>
+    <hr>
+
+    <script>
+
+        /*1. Example: an object can be extended */
+        
+        const obj = { name: "Alice" };
+
+        console.log(Object.isExtensible(obj)); // true
+        
+        obj.age = 30; // ✅ Allowed
+
+        /* 2.❌ Preventing extensibility:*/
+        Object.preventExtensions(obj);
+        console.log(Object.isExtensible(obj)); // false
+        
+        obj.city = "NY"; // ❌ Won’t be added
+        console.log(obj.city); // undefined
+
+    </script>
+</body>
+
+</html>

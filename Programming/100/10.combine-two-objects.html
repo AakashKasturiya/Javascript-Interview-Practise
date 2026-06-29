@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>How can you combine two objects?</h1>
+    <p>In JavaScript, you can combine (or merge) two objects using a few different methods. Below are the most common
+        approaches:</p>
+
+    <h3>1. Using Object.assign()</h3>
+    <p>The Object.assign() method copies all properties from one or more source objects into a target object. This
+        method mutates the target object by adding or updating properties.</p>
+    <pre>
+        <code>
+            let obj1 = { name: "John", age: 30 };
+            let obj2 = { occupation: "Engineer", city: "New York" };
+            
+            let combined = Object.assign({}, obj1, obj2); // Creates a new object
+            console.log(combined); // { name: "John", age: 30, occupation: "Engineer", city: "New York" }   
+        </code>
+    </pre>
+
+    <p><strong>Note:</strong> You can also mutate an object directly by passing the target object as the first argument
+        to Object.assign().</p>
+    <pre>
+      <code>
+        Object.assign(obj1, obj2); // obj1 is now mutated
+        console.log(obj1); // { name: "John", age: 30, occupation: "Engineer", city: "New York" }
+
+      </code>
+   </pre>
+    <hr>
+    <h3>2. Using the Spread Operator (...)</h3>
+    <p>The spread operator (...) creates a shallow copy of the objects and merges them. This is one of the most modern
+        and commonly used methods.</p>
+    <pre>
+        <code>
+            let obj1 = { name: "John", age: 30 };
+            let obj2 = { occupation: "Engineer", city: "New York" };
+            
+            let combined = { ...obj1, ...obj2 }; // Creates a new object
+            console.log(combined); // { name: "John", age: 30, occupation: "Engineer", city: "New York" }
+                    
+        </code>
+    </pre>
+
+    <hr>
+
+    <h3>3. Using concat() with Arrays of Objects</h3>
+    <p>If you have an array of objects and want to merge them into a single object, you can use concat() and then reduce
+        them into a single object. This is less common for simple object merging, but can be useful in some scenarios.
+    </p>
+    <pre>
+        <code>
+            let obj1 = { name: "John" };
+            let obj2 = { age: 30 };
+            let obj3 = { city: "New York" };
+            
+            let combined = [obj1, obj2, obj3].reduce((acc, obj) => ({ ...acc, ...obj }), {});
+            console.log(combined); // { name: "John", age: 30, city: "New York" }
+        </code>
+    </pre>
+
+    <hr>
+
+    <h3>4. Using Object.defineProperties() (For Adding Specific Properties)</h3>
+    <p>You can use Object.defineProperties() if you need to combine objects in a more controlled way (e.g., adding
+        getters, setters, or specific property descriptors).</p>
+    <pre>
+        <code>
+            let obj1 = { name: "John" };
+            let obj2 = { age: 30 };
+            
+            Object.defineProperties(obj1, Object.getOwnPropertyDescriptors(obj2));
+            console.log(obj1); // { name: "John", age: 30 }
+            
+        </code>
+    </pre>
+
+    <hr>
+    <h3>5. Using for...in Loop (Custom Approach) </h3>
+    <p>You can also merge objects manually using a for...in loop if you need custom logic for combining the objects
+        (though this is rarely needed due to the above methods).</p>
+    <pre>
+        <code>
+            let obj1 = { name: "John" };
+            let obj2 = { age: 30 };
+            
+            for (let key in obj2) {
+              obj1[key] = obj2[key];
+            }
+            
+            console.log(obj1); // { name: "John", age: 30 }
+             
+        </code>
+    </pre>
+
+    <script>
+        /*1. Using Object.assign()*/
+        let obj1 = { name: "John", age: 30 };
+        let obj2 = { occupation: "Engineer", city: "New York" };
+
+        let combined = Object.assign({}, obj1, obj2); // Creates a new object
+        console.log(combined); // { name: "John", age: 30, occupation: "Engineer", city: "New York" }
+
+
+        /*2. Using the Spread Operator (...)*/
+        let obj11 = { name: "John", age: 30 };
+        let obj22 = { occupation: "Engineer", city: "New York" };
+
+        let combined1 = { ...obj11, ...obj22 }; // Creates a new object
+        console.log(combined1); // { name: "John", age: 30, occupation: "Engineer", city: "New York" }
+
+
+        /*3. Using concat() with Arrays of Objects*/
+        let obj12 = { name: "John" };
+        let obj222 = { age: 30 };
+        let obj322 = { city: "New York" };
+
+        let combined2 = [obj12, obj222, obj322].reduce((acc, obj) => ({ ...acc, ...obj }), {});
+        console.log(combined2); // { name: "John", age: 30, city: "New York" }
+
+
+        /*4. Using Object.defineProperties() (For Adding Specific Properties)*/
+        let obj13 = { name: "John" };
+        let obj23 = { age: 30 };
+
+        Object.defineProperties(obj13, Object.getOwnPropertyDescriptors(obj23));
+        console.log(obj13); // { name: "John", age: 30 }
+
+
+        /* 5. Using for...in Loop (Custom Approach) */
+        let obj14 = { name: "John" };
+        let obj24 = { age: 30 };
+
+        for (let key in obj24) {
+            obj14[key] = obj24[key];
+        }
+
+        console.log(obj14); // { name: "John", age: 30 }
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insertion Sort</title>
+</head>
+
+<body>
+    <h1>Insertion Sort</h1>
+    <script>
+        function insertionSort(arr) {
+            let n = arr.length;
+
+            // Start from the second element (index 1)
+            for (let i = 1; i < n; i++) {
+                let current = arr[i]; // Store the current element to be inserted
+                let j = i - 1; // Start comparing with the element before it
+
+                // Shift elements of arr[0..i-1], that are greater than current, to one position ahead
+                while (j >= 0 && arr[j] > current) {
+                    arr[j + 1] = arr[j]; // Shift the element to the right
+                    j--; // Move left to the next element
+                }
+
+                // Insert the current element into its correct position
+                arr[j + 1] = current;
+            }
+
+            return arr; // Return the sorted array
+        }
+
+        // Test the insertion sort function
+        let numbers = [5, 2, 8, 3, 1];
+        console.log("Sorted array:", insertionSort(numbers));
+        // Output: [1, 2, 3, 5, 8]
+
+    </script>
+</body>
+
+</html>

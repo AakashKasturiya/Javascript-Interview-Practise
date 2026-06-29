@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>what is difference between Filter and Find method</h1>
+
+    <p>
+        find() returns only the first matching element that satisfies the condition.
+
+        filter() returns an array of all matching element
+    </p>
+    <script>
+        const empArr = [
+            { name: "Aakash", age: 43 },
+            { name: "Rohan", age: 35 },
+            { name: "Sanya", age: 28 },
+            { name: "Vikram", age: 50 },
+            { name: "Priya", age: 32 },
+            { name: "Neha", age: 41 },
+            { name: "Rajesh", age: 45 },
+            { name: "Anjali", age: 29 },
+            { name: "Suresh", age: 39 },
+            { name: "Meera", age: 26 },
+            { name: "Amit", age: 48 },
+            { name: "Divya", age: 30 },
+            { name: "Karan", age: 34 },
+            { name: "Pooja", age: 36 },
+            { name: "Manoj", age: 52 },
+            { name: "Sneha", age: 27 },
+            { name: "Deepak", age: 42 },
+            { name: "Kavita", age: 31 },
+            { name: "Harish", age: 38 },
+            { name: "Swati", age: 33 }
+        ];
+
+        let getDataWithFilter = empArr.filter((ele, index, array) => { return ele.age >= 25 })
+        console.log(getDataWithFilter);
+
+        let getDataWithFind = empArr.find((ele) => ele.age >= 25);
+        console.log(getDataWithFind);
+//         let getDataWithFind = empArr.find((ele) => ele.age >= 25);
+// console.log(getDataWithFind);
+    </script>
+</body>
+
+</html>

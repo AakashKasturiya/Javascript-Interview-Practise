@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navbar</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+      }
+
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        background: #3498db;
+      }
+
+      nav {
+        padding: 10px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #004274;
+        position: relative;
+        height: 70px;
+      }
+
+      .logo {
+        color: #fff;
+      }
+
+      nav ul {
+        display: flex;
+        gap: 30px;
+        align-items: center;
+        padding: 0;
+      }
+
+      nav ul li {
+        list-style-type: none;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: #fff;
+      }
+
+      .menu-icon {
+        display: none;
+        cursor: pointer;
+      }
+
+      .menu-icon i {
+        color: #fff;
+        font-size: 30px;
+      }
+
+      @media (max-width: 600px) {
+        nav ul {
+          position: absolute;
+          top: 70px;
+          left: 0;
+          right: 0;
+          flex-direction: column;
+          text-align: center;
+          background: #004274;
+          gap: 25px;
+          overflow: hidden;
+          max-height: 0;
+          height: 100vh;
+          transition: max-height 0.5s ease-out;
+        }
+        nav ul li {
+          padding: 20px;
+          padding-top: 0;
+        }
+        .menu-icon {
+          display: block;
+          font-size: 30px;
+          color: white;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <h1>Logo</h1>
+      </div>
+      <ul id="menuList">
+        <li><a href="">Home</a></li>
+        <li><a href="">About</a></li>
+        <li><a href="">Services</a></li>
+        <li><a href="">Product</a></li>
+        <li><a href="">Contact</a></li>
+      </ul>
+      <div class="menu-icon" onclick="toggleMenu()">
+        <span class="material-symbols-outlined">menu</span>
+      </div>
+    </nav>
+
+    <script>
+      function toggleMenu() {
+        let menuList = document.getElementById("menuList");
+
+        // Check if the menu is currently closed (maxHeight is 0)
+        if (menuList.style.maxHeight === "0px") {
+          // Set it to 100vh (full screen height) to open it
+          menuList.style.maxHeight = "100vh";
+          menuList.style.paddingTop = "15%";
+        } else {
+          // Otherwise, close the menu by setting maxHeight back to 0
+          menuList.style.maxHeight = "0px";
+          menuList.style.paddingTop = "0";
+        }
+      }
+      toggleMenu();
+
+const array = [1, 2, 2, 3, 4, 4, 5];
+const uniqueArray = [];
+const seen = {};
+
+for (let i = 0; i < array.length; i++) {
+  if (!seen[array[i]]) {
+    uniqueArray.push(array[i]);
+    seen[array[i]] = true;
+  }
+}
+
+console.log(uniqueArray);  // [1, 2, 3, 4, 5]
+
+
+
+    </script>
+  </body>
+</html>

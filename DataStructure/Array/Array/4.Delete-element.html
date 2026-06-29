@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Delete element in array JS</title>
+  </head>
+  <body>
+    <script>
+
+      /*----------------- Delete element in array JS  ----------------*/
+
+      function deleteAtIndex(arr, index) {
+        if (index < 0 || index >= arr.length) {
+          return "Index out of bounds"; // Handle invalid index
+        }
+
+        // Shift all elements to the left, starting from the index
+        //  of the element to delete
+        for (let i = index; i < arr.length - 1; i++) {
+          arr[i] = arr[i + 1];
+        }
+
+        // Remove the last element (after shifting)
+        arr.length = arr.length - 1; // This effectively removes the last element
+        return arr;
+      }
+
+      let array = [10, 20, 30, 40, 50];
+      let indexToDelete = 2;
+
+      console.log(deleteAtIndex(array, indexToDelete)); 
+      // Output: [10, 20, 40, 50]
+
+    </script>
+  </body>
+</html>

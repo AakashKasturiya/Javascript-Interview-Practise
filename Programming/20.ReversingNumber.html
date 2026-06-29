@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reverse Number</title>
+  </head>
+  <body>
+    <h3></h3>
+    <p>
+      To reverse a number in JavaScript, you can convert it to a string, reverse
+      the string, and then convert it back to a number. However, if you want to
+      avoid using built-in methods, here's an approach to reverse the number
+      manually: Without Built-in Methods (No split(), reverse(), or join()):
+    </p>
+    <script>
+      function reverseNumber(num) {
+        let reversed = 0;
+
+        // Handle negative numbers
+        let isNegative = num < 0;
+        if (isNegative) {
+          num = -num; // Make the number positive for now
+        }
+
+        // Reverse the number
+        while (num > 0) {
+          let lastDigit = num % 10; // Get the last digit
+          reversed = reversed * 10 + lastDigit; // Add the digit to the reversed number
+          num = Math.floor(num / 10); // Remove the last digit from the original number
+        }
+
+        // If the number was negative, make the reversed number negative
+        if (isNegative) {
+          reversed = -reversed;
+        }
+
+        return reversed;
+      }
+
+      // Example usage:
+      let number = 12345;
+      let reversedNumber = reverseNumber(number);
+      console.log(reversedNumber); // Output: 54321
+    </script>
+  </body>
+</html>

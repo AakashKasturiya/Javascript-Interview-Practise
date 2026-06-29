@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>how to find vowels from string in javascript</title>
+</head>
+
+<body>
+    <h1>how to find vowels from string in javascript</h1>
+    <script>
+
+        const findVowels = (str) => {
+            let vowels = 'aeiouAEIOU';
+            let result = [];
+
+            for (let i = 0; i < str.length; i++) { // Corrected this line
+                if (vowels.includes(str[i])) {
+                    result.push(str[i]);
+                }
+            }
+            return result; // Return the array of vowels found
+        }
+
+        // Example usage:
+        const myString = "Hello World!";
+        const vowelsInString = findVowels(myString);
+        console.log(vowelsInString); // Output: ['e', 'o', 'o']
+
+    </script>
+</body>
+
+</html>

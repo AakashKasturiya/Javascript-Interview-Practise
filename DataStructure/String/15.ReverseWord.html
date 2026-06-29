@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reverse Words in String</title>
+  </head>
+  <body>
+    <h3>Reversing the order of words</h3>
+    <p>
+      If you want to reverse the order of words in a sentence without using
+      built-in methods like split(), reverse(), or join(), you can manually
+      process the string. Here's an approach to do that:
+    </p>
+    <script>
+      function reverseWords(sentence) {
+        // Split the sentence into an array of words
+        let words = sentence.split(" ");
+
+        // Reverse the array of words
+        words.reverse();
+
+        // Join the words back into a sentence
+        return words.join(" ");
+      }
+
+      // Example usage:
+      let sentence2 = "Hello world from JavaScript";
+      let reversedSentence2 = reverseWords(sentence2);
+      console.log(reversedSentence2); // Output: "JavaScript from world Hello"
+
+      /*Munally Program*/
+      function reverseWords(sentence) {
+        let start = 0;
+        let words = [];
+        let end = sentence.length;
+
+        // Traverse through the sentence
+        for (let i = 0; i <= end; i++) {
+          // If we reach a space or the end of the string, we extract the word
+
+          if (i === end || sentence[i] === " ") {
+            let word = "";
+            for (let j = start; j < i; j++) {
+              word += sentence[j]; // Build the word
+            }
+
+            words.push(word); // Store the word in the array
+            start = i + 1; // Move the start to the next word
+          }
+        }
+
+        // Now reverse the order of the words manually
+        let reversedSentence = "";
+        for (let i = words.length - 1; i >= 0; i--) {
+          reversedSentence += words[i]; // Add each word in reverse order
+          if (i !== 0) {
+            reversedSentence += " "; // Add a space between words, except after the last word
+          }
+        }
+
+        return reversedSentence;
+      }
+
+      // Example usage:
+      let sentence = "Hello world from JavaScript";
+      let reversedSentence = reverseWords(sentence);
+      console.log(reversedSentence); // Output: "JavaScript from world Hello"
+    </script>
+  </body>
+</html>

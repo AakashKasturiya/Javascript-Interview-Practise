@@ -1,0 +1,48 @@
+<html>
+
+<head>
+    <title>Object Data Structure</title>
+    <script>
+        /*1. Create the Object */
+        let data = {
+
+            //object properties
+            name: 'anil',
+            age: 28,
+            mail: "abc@test.com",
+
+            //object method
+            getName: function () {
+                return this.name;
+            }
+        }
+
+        /*2. Object Insert the property */
+        data.contact = 12345;
+
+        /*3. Object Update the property */
+        data.name = "peter"
+
+        /*4. Apply Loops on the Object*/
+        for (x in data) {
+            console.warn(data[x])
+        }
+
+        /*5. delete the propery*/
+        delete data.age;
+
+
+        /*6. Improtant methods for the Object*/
+        console.warn(Object.keys(data))  //get the keys of the object.
+        console.warn(Object.values(data)) //get the values of the object.
+        console.warn(Object.entries(data)) //get the keys and values fo the object.
+
+
+    </script>
+</head>
+
+<body>
+    <h1>Object Data Structure</h1>
+</body>
+
+</html>

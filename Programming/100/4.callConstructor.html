@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>How can you call the constructor of a parent class?</h1>
+    <p>In JavaScript, to call the constructor of a parent class from a child class, you use the super() keyword. The
+        super() method is used to call the parent class's constructor and initialize properties that are inherited from
+        the parent class.</p>
+    <p>Key Points:</p>
+    <p><strong>super():</strong> Calls the parent class constructor.</p>
+
+    <p>Must be called in the child class constructor: If the child class constructor needs to inherit properties or
+        methods from the parent class, super() must be called before you can use this in the child class.</p>
+
+    <pre>
+        <code>class ChildClass extends ParentClass {
+            constructor(...args) {
+                super(...args);  // Calling parent class constructor
+                // Additional initialization for the child class
+            }
+        }</code>
+    </pre>
+    <h4>Example:</h4>
+    <p>Let's break down an example where we have a Person class (parent) and an Employee class (child) that extends
+        Person.</p>
+    <pre>
+        <code>
+            class Person {
+                constructor(name, age) {
+                    this.name = name;  // Property: name
+                    this.age = age;    // Property: age
+                }
+            
+                getFullName() {
+                    return `Full Name: ${this.name}`;
+                }
+            
+                getAge() {
+                    return `Age: ${this.age}`;
+                }
+            }
+            
+            class Employee extends Person {
+                constructor(name, age, department, location) {
+                    // Calling the parent class constructor to initialize name and age
+                    super(name, age);
+                    
+                    // Initialize additional properties for Employee
+                    this.department = department;
+                    this.location = location;
+                }
+            
+                // Method to display employee details
+                getEmployeeDetails() {
+                    return `${this.getFullName()} and works in the ${this.department} department located in ${this.location}.`;
+                }
+            }
+            
+            // Creating an instance of the Employee class
+            let employee1 = new Employee('John Doe', 30, 'Tech', 'Noida');
+            
+            // Using methods from both Person and Employee
+            console.log(employee1.getFullName());         // Output: Full Name: John Doe
+            console.log(employee1.getAge());              // Output: Age: 30
+            console.log(employee1.getEmployeeDetails());  // Output: Full Name: John Doe and works in the Tech department located in Noida.
+            
+        </code>
+    </pre>
+
+
+    <h3>Important Notes:</h3>
+
+    <p><strong>super()</strong> must be called before this in the child class constructor: If you don't call super()
+        before trying to use this, JavaScript will throw an error.</br>
+        This is because super() is required to initialize the properties that belong to the parent class before any
+        child-specific logic can be executed.</p>
+
+    <p><strong>super() for methods:</strong> You can also use super.methodName() to call a method from the parent class
+        inside the child class</p>
+    <script>
+        class Person {
+            constructor(name, age) {
+                this.name = name;  // Property: name
+                this.age = age;    // Property: age
+            }
+
+            getFullName() {
+                return `Full Name: ${this.name}`;
+            }
+
+            getAge() {
+                return `Age: ${this.age}`;
+            }
+        }
+
+        class Employee extends Person {
+            constructor(name, age, department, location) {
+                // Calling the parent class constructor to initialize name and age
+                super(name, age);
+
+                // Initialize additional properties for Employee
+                this.department = department;
+                this.location = location;
+            }
+
+            // Method to display employee details
+            getEmployeeDetails() {
+                return `${this.getFullName()} and works in the ${this.department} department located in ${this.location}.`;
+            }
+        }
+
+        // Creating an instance of the Employee class
+        let employee1 = new Employee('John Doe', 30, 'Tech', 'Noida');
+
+        // Using methods from both Person and Employee
+        console.log(employee1.getFullName());         // Output: Full Name: John Doe
+        console.log(employee1.getAge());              // Output: Age: 30
+        console.log(employee1.getEmployeeDetails());  // Output: Full Name: John Doe and works in the Tech department located in Noida.
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>How to implement class inheritance in JavaScript?</h1>
+    <p>
+        To implement class inheritance in JavaScript, you can use the extends keyword to create a child 
+        class that inherits from a parent class. 
+        This allows the child class to access all the properties and methods of the parent class, and
+        you can also override or extend those methods in the child class.
+
+        Here’s a step-by-step explanation of how to implement class inheritance in JavaScript:</p>
+        
+        <h3>Steps for Class Inheritance:</h3>
+        <p><strong>Create a Parent Class: </strong> This is the base class that contains common properties and methods.</p>
+        
+        <p><strong>Create a Child Class:</strong> This class extends the parent class using the extends keyword.</p>
+        
+        <p><strong>Use super(): </strong>The super() keyword is used to call the constructor of the parent class from the child class and also to call 
+        parent methods from the child class.</p>
+    </pre>
+    <script>
+        class Person {
+            // Constructor to initialize properties
+            constructor(name, age) {
+                this.name = name;  // Property: name
+                this.age = age;    // Property: age
+            }
+
+            // Method to display full name
+            getFullName() {
+                return `Full Name: ${this.name}`;
+            }
+
+            // Method to display age
+            getAge() {
+                return `Age: ${this.age}`;
+            }
+
+            // Method to display person details
+            getDetails() {
+                return `${this.getFullName()} and is ${this.getAge()}`;
+            }
+        }
+
+        class Employee extends Person {
+            constructor(person, department, location) {
+                // Call the parent class constructor with name and age from person object
+                super(person.name, person.age); // Pass name and age to the parent class
+
+                // Initialize additional properties for Employee
+                this.department = department;
+                this.location = location;
+            }
+
+            // Overriding getDetails to include department and location
+            getDetails() {
+                return `${super.getDetails()} and works in ${this.department} department located in ${this.location}.`;
+            }
+        }
+
+        // Creating an instance of the Person class
+        let person1 = new Person('John Doe', 30);
+
+        // Using methods of the Person class
+        console.log(person1.getFullName());  // Output: Full Name: John Doe
+        console.log(person1.getAge());       // Output: Age: 30
+        console.log(person1.getDetails());   // Output: Full Name: John Doe and is Age: 30
+
+        // Creating an instance of the Employee class
+        let employee1 = new Employee(person1, "Tech", "Noida");
+        console.warn(employee1.getDetails()); // Output: Full Name: John Doe and is Age: 30 and works in Tech department located in Noida.
+
+
+    </script>
+</body>
+
+</html>

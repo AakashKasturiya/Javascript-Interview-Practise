@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fibonacci Series</title>
+    <style>
+      body{
+         font-size:24px;
+         color:red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Fibonacci Series</h1>
+
+    <div id="display">
+
+    </div>
+    <script>
+     
+     function fibonacciSeries(num) {
+        let x = 0;
+        let y = 1;
+
+        // Print the first Fibonacci number (0) 
+        // if the num is greater than 0
+        if (num >= 0) console.log(x);
+
+        // Print the second Fibonacci number (1) 
+        // if the num is greater than 1
+        if (num > 1) console.log(y);
+
+        // Now generate the rest of the sequence
+        let fb = x + y;
+
+        while (fb <= num) {
+          console.log(fb);
+          x = y;
+          y = fb;
+          fb = x + y;2
+        }
+      }
+
+      let number = Number(prompt("Enter the fibonacci Series Number:"));
+      fibonacciSeries(number);
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Rating Widget</title>
+    <style>
+        .star_widget-blk{
+            border: 1px solid #333333;
+            border-radius: 8px;
+            width: 15%;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap:10px;
+        }
+        .star{
+            font-size: 21px;
+            color:#333333;
+            cursor: pointer;
+        }
+
+        .star:hover,
+        .star.selected,
+        .star.hover{
+            color:gold;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h2>Star Rating Widget </h2>
+        <form action="/" method="post">
+            <div class="star_widget-blk"></div>
+            <div class="star_widget-blk"></div>
+            <button type="submit">Get Star Value</button>
+        </form>
+    </section>
+
+    <script>
+        /* Node List Array */
+        const starRatingWidget = document.querySelectorAll('.star_widget-blk');
+
+        starRatingWidget.forEach((widget, index) => {
+            const generateStars = (num) => {
+                const fragment = document.createDocumentFragment();
+
+                for (let i = 0; i < num; i++) {
+                    const span = document.createElement('span');
+                    span.textContent = '★';
+                    span.classList.add('star');
+                    span.dataset.value = i;
+                    span.addEventListener('click', handleStarClick);
+                    span.addEventListener('mouseenter', handleStarMouseEnter);
+                    span.addEventListener('mouseout', handleStarMouseOut);
+
+                    fragment.append(span);
+                }
+
+                return fragment;
+            }
+
+            const stars = generateStars(5);
+            const input = document.createElement('input');
+            input.type = "hidden";
+            input.name = `star_user_${index}`;  // Name the input for each star rating widget
+
+            widget.append(stars);
+            widget.append(input);
+
+            function handleStarClick(e) {
+                const value = e.target.dataset.value;
+                const stars = widget.querySelectorAll('.star');
+                input.value = parseInt(value) + 1;  // Add 1 to make it 1-based (for ratings of 1 to 5)
+
+                stars.forEach((star, index) => {
+                    if (index <= value) {
+                        star.classList.add('selected');
+                    } else {
+                        star.classList.remove('selected');
+                    }
+                });
+            }
+
+            function handleStarMouseEnter(e) {
+                const value = e.target.dataset.value;
+                const stars = widget.querySelectorAll('.star');
+
+                stars.forEach((star, index) => {
+                    if (index <= value) {
+                        star.classList.add('hover');
+                    } else {
+                        star.classList.remove('hover');
+                    }
+                });
+            }
+
+            function handleStarMouseOut() {
+                const stars = widget.querySelectorAll('.star');
+
+                stars.forEach((star) => {
+                    star.classList.remove("hover");
+                });
+            }
+        });
+    </script>
+</body>
+</html>

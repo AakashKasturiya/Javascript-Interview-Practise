@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Given an array of strings, reverse each word in the sentence?</h1>
+    <p>To reverse each word in an array of strings (treating the array as a sentence), you can use the map() function to
+        reverse each word individually and then join them back into a sentence.</p>
+    <pre>
+    <code>
+        const words = ["hello", "world", "this", "is", "javascript"];
+        // Reverse each word in the array
+        const reversedWords = words.map(word => word.split('').reverse().join(''));
+        
+        // Join the reversed words into a sentence
+        const sentence = reversedWords.join(" ");
+        
+        console.log(sentence); // Output: "olleh dlrow siht si tpircsavaj"
+
+    </code>
+</pre>
+    <script>
+        const words = ["hello", "world", "this", "is", "javascript"];
+
+        // Reverse each word in the array
+        const reversedWords = words.map(word => word.split('').reverse().join(''));
+
+        // Join the reversed words into a sentence
+        const sentence = reversedWords.join(" ");
+
+        console.log(sentence); // Output: "olleh dlrow siht si tpircsavaj"
+
+    </script>
+</body>
+
+</html>

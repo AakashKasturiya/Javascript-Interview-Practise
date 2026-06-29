@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>What is the main difference between Object.values and Object.entries method?</h1>
+
+    <h3>🔑Object.values and Object.entries</h3>
+    <p>🔍 Both Object.values() and Object.entries() are used to access an object's enumerable own properties, but they
+        return different formats of data.</p>
+
+
+    <h3>👉 Use Object.values() when you only care about the values</h3>
+
+    <pre>
+        <code>
+            const user = { name: "Alice", age: 25 };
+            console.log(Object.values(user)); 
+        </code>
+    </pre>
+
+    <hr>
+    <h3>👉 Object.entries(user):</h3>
+    <pre>
+        <code>
+            const user = { name: "Alice", age: 25 };
+            console.log(Object.entries(user));
+            // Output: [["name", "Alice"], ["age", 25]]
+
+        </code>
+    </pre>
+    <hr>
+    <h3>👉Use Object.entries() when you need both key and value — e.g. in loops or mapping</h3>
+    <pre>
+        <code>
+            Object.entries(user).forEach(([key, value]) => {
+                console.log(`${key}: ${value}`);
+              });
+        </code>
+    </pre>
+    <hr>
+
+
+    <h3>✅ To get the list of keys (property names) of an object:</h3>
+    <pre>
+        <code>
+            const person = {
+                name: "Alice",
+                age: 30
+              };
+              
+              const keys = Object.keys(person);
+              console.log(keys); // ['name', 'age']
+        </code>
+    </pre>
+
+    <script>
+        /*1. Example: Object.entries(user)*/
+
+        const user = { name: "Alice", age: 25 };
+        console.log(Object.entries(user));
+
+        /*2. Example: Object.values(user):*/
+
+        console.log(Object.values(user));
+
+
+        /* 3. Use Object.entries() when you need both key and value — e.g. in loops or mapping */
+        Object.entries(user).forEach(([key, value]) => {
+            console.log(`${key}: ${value}`);
+        });
+
+        /* 4. keys (property names) of an object:*/
+        const person = {
+                name: "Alice",
+                age: 30
+              };
+              
+              const keys = Object.keys(person);
+              console.log(keys); // ['name', 'age']
+    </script>
+</body>
+
+</html>

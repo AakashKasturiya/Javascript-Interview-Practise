@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>How to find unique values in an array?</h1>
+    <h3>✅ 1. Using Set (Recommended - Fast & Clean)</h3>
+    <pre>
+        <code>
+            const numbers = [1, 2, 2, 3, 4, 4, 5];
+            const uniqueNumbers = [...new Set(numbers)];
+    
+            console.log(uniqueNumbers); // [1, 2, 3, 4, 5]
+        </code>
+    </pre>
+    <ul>
+        <li>Set automatically removes duplicates.</li>
+        <li>Spread operator (...) converts the Set back to an array.</li>
+    </ul>
+
+    <h3>✅ 2. Using filter() and indexOf()</h3>
+    <pre>
+        <code>
+            const numbers = [1, 2, 2, 3, 4, 4, 5];
+            const uniqueNumbers = numbers.filter((value, index, self) => {
+              return self.indexOf(value) === index;
+            });
+
+            console.log(uniqueNumbers); // [1, 2, 3, 4, 5]
+
+        </code>
+    </pre>
+
+    <h3>✅ 3. Using reduce()</h3>
+    <pre>
+        <code>
+            const numbers = [1, 2, 2, 3, 4, 4, 5];
+            const uniqueNumbers = numbers.reduce((acc, curr) => {
+              if (!acc.includes(curr)) {
+                acc.push(curr);
+              }
+              return acc;
+            }, []);
+            
+            console.log(uniqueNumbers); // [1, 2, 3, 4, 5]
+        </code>
+    </pre>
+    <script>
+        /*✅ 1. Using Set (Recommended - Fast & Clean)*/
+
+        const numbers = [1, 2, 2, 3, 4, 4, 5];
+        const uniqueNumbers = [...new Set(numbers)];
+
+        console.log(uniqueNumbers); // [1, 2, 3, 4, 5]
+
+        /*✅ 2. Using filter() and indexOf()*/
+
+        const numbers1 = [1, 2, 2, 3, 4, 4, 5];
+        const uniqueNumbers1 = numbers1.filter((value, index, self) => {
+            return self.indexOf(value) === index;
+        });
+
+        console.log(uniqueNumbers1); // [1, 2, 3, 4, 5]
+
+        /*✅ 3. Using reduce()*/
+
+        const numbers2 = [1, 2, 2, 3, 4, 4, 5];
+        const uniqueNumbers2 = numbers2.reduce((acc, curr) => {
+            if (!acc.includes(curr)) {
+                acc.push(curr);
+            }
+            return acc;
+        }, []);
+
+        console.log(uniqueNumbers2); // [1, 2, 3, 4, 5]
+    </script>
+</body>
+
+</html>

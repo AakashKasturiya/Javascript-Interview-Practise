@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>How to find the count of duplicates in an array? in javascript</h1>
+    <script>
+        function countDuplicates(arr) {
+            const freqMap = {};
+            let duplicateCount = 0;
+
+            // Count occurrences
+            for (const item of arr) {
+                freqMap[item] = (freqMap[item] || 0) + 1;
+            }
+
+            console.log(freqMap);
+            // Count how many elements appeared more than once
+            for (const key in freqMap) {
+                if (freqMap[key] > 1) {
+                    duplicateCount++;
+                }
+            }
+
+            return duplicateCount;
+        }
+
+        // Example
+        const arr = [1, 2, 3, 2, 3, 4, 5, 1];
+        console.log(countDuplicates(arr)); // Output: 3
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Code to Find the Length of a Linked List:</title>
+    <style>
+      pre {
+        font-family: monospace;
+        font-size: 14px;
+        background-color: rgb(241 241 241);
+        border: 2px solid #ececec;
+        text-align: left;
+        cursor: text;
+        padding: 10px 20px;
+        width: 80%;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        border-radius: 8px;
+      }
+      section.main-content {
+        padding: 10px 70px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="main-content">
+     <h1>JavaScript Code to Find the Length of a Linked List:</h1>
+     <p>To find the length of a linked list in JavaScript, you can iterate through the list while counting the nodes. Here's how you can implement this:</p>
+    <h3>Explanation:</h3>
+    <li>
+      Node class: Represents a node in the linked list with a value and next
+      pointer.
+    </li>
+    <li>
+      LinkedList class:
+      <ul>
+        <li>append(): Adds a new node to the end of the list.</li>
+        <li>display(): Displays the list in a readable format.</li>
+        <li>length():
+          <ul>
+            <li>This function iterates through the linked list.</li>
+            <li>
+              It starts with the head node and moves through the list, counting
+              each node until the end (null).
+            </li>
+            <li>
+              Finally, it returns the count, which represents the length of the
+              linked list.
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <pre>
+        <code>
+            // Define a Node class to represent each node in the linked list
+            class Node {
+                constructor(value) {
+                    this.value = value;
+                    this.next = null; // Points to the next node
+                }
+            }
+
+            // Define a LinkedList class
+            class LinkedList {
+                constructor() {
+                    this.head = null; // The head node of the linked list
+                }
+               
+                // Function to add a node at the end of the list
+                append(value) {
+                    const newNode = new Node(value);
+                    if (this.head === null) {
+                        this.head = newNode;
+                        return;
+                    }
+                   
+                    let current = this.head;
+                    while (current.next) {
+                        current = current.next;
+                    }
+                    current.next = newNode;
+                }
+               
+                // Function to display the linked list
+                display() {
+                    let current = this.head;
+                    let result = '';
+                    while (current) {
+                        result += current.value + ' -> ';
+                        current = current.next;
+                    }
+                    result += 'null';
+                    console.log(result);
+                }
+               
+                // Function to find the length of the linked list
+                length() {
+                    let current = this.head;
+                    let count = 0;
+                
+                    // Traverse the list and count the nodes
+                    while (current !== null) {
+                        count++;
+                        current = current.next;
+                    }
+                   
+                    return count; // Return the length of the list
+                }
+            }
+            
+            // Example usage
+            const list = new LinkedList();
+            list.append(1);
+            list.append(2);
+            list.append(3);
+            list.append(4);
+            list.append(5);
+            
+            console.log("Original list:");
+            list.display();
+            
+            const len = list.length();
+            console.log("Length of the list:", len);
+
+        </code>
+    </pre>
+  
+  </section>  
+      <script>
+        // Define a Node class to represent each node in the linked list
+        class Node {
+          constructor(value) {
+            this.value = value;
+            this.next = null; // Points to the next node
+          }
+        }
+
+        // Define a LinkedList class
+        class LinkedList {
+          constructor() {
+            this.head = null; // The head node of the linked list
+          }
+
+          // Function to add a node at the end of the list
+          append(value) {
+            const newNode = new Node(value);
+            if (this.head === null) {
+              this.head = newNode;
+              return;
+            }
+
+            let current = this.head;
+            while (current.next) {
+              current = current.next;
+            }
+            current.next = newNode;
+          }
+
+          // Function to display the linked list
+          display() {
+            let current = this.head;
+            let result = "";
+            while (current) {
+              result += current.value + " -> ";
+              current = current.next;
+            }
+            result += "null";
+            console.log(result);
+          }
+
+          // Function to find the length of the linked list
+          length() {
+            let current = this.head;
+            let count = 0;
+
+            // Traverse the list and count the nodes
+            while (current !== null) {
+              count++;
+              current = current.next;
+            }
+
+            return count; // Return the length of the list
+          }
+        }
+
+        // Example usage
+        const list = new LinkedList();
+        list.append(1);
+        list.append(2);
+        list.append(3);
+        list.append(4);
+        list.append(5);
+
+        console.log("Original list:");
+        list.display();
+
+        const len = list.length();
+        console.log("Length of the list:", len);
+      </script>
+    </li>
+  </body>
+</html>

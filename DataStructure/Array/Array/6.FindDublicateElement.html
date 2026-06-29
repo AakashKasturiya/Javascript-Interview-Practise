@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How To find duplicate elements in array in javascript</title>
+</head>
+<body>
+    <h1>How To find duplicate elements in array in javascript </h1>
+
+    <script>
+        const myArray = [11,2,3,4,25,4,3];
+
+        let duplicates = myArray.filter((elements,index,array)=> array.indexOf(elements)!== index);
+
+        console.log(duplicates);
+
+        /*get the count of the duplicates*/
+        console.log(duplicates.length);
+    </script>
+</body>
+</html>

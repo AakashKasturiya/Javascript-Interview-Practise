@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>What is the easiest way to convert an array to an object?</h1>
+
+    <h3>1. Using Object.fromEntries()</h3>
+    <p>If you have an array of key-value pairs, Object.fromEntries() is the most straightforward and modern way to
+        convert it into an object.</p>
+
+    <pre>
+        <code>
+            const arr = [['name', 'Alice'], ['age', 25]];
+
+            const obj = Object.fromEntries(arr);
+            console.log(obj); 
+            // Output: { name: 'Alice', age: 25 }
+            
+        </code>
+    </pre>
+
+    <p>This method works best when the array is an array of pairs (arrays with two elements: [key, value]).</p>
+
+    <hr>
+    <h3>2. Using reduce()</h3>
+    <p>If you have an array of values and you want to convert it to an object (e.g., assigning keys), you can use
+        reduce().</p>
+    <pre>
+        <code>
+            const arr = ['name', 'age'];
+            const obj = arr.reduce((acc, cur, index) => {
+              acc[`key${index + 1}`] = cur;
+              return acc;
+            }, {});
+            
+            console.log(obj);
+            // Output: { key1: 'name', key2: 'age' }
+        </code>
+    </pre>
+    <p>This is useful if you want to dynamically assign keys or transform the values.</p>
+    <hr>
+    <h3>3. Using map() with Object.assign() (for key-value from array of arrays)</h3>
+    <p>If you have an array and need to convert it to an object, you can use map() and Object.assign(). This is not as
+        modern as Object.fromEntries(), but it works just as well.
+
+    </p>
+    <pre>
+        <code>
+            const arr = [['name', 'Alice'], ['age', 25]];
+
+            const obj = Object.assign({}, ...arr.map(([key, value]) => ({ [key]: value })));
+            
+            console.log(obj);
+            // Output: { name: 'Alice', age: 25 }
+        </code>
+    </pre>
+    <hr>
+
+    <h3>4. Using forEach()</h3>
+    <p>You can also loop through the array and manually add each key-value pair to an empty object.</p>
+    <pre>
+        <code>
+            const arr = [['name', 'Alice'], ['age', 25]];
+
+            const obj = {};
+            arr.forEach(([key, value]) => {
+              obj[key] = value;
+            });
+            
+            console.log(obj);
+            // Output: { name: 'Alice', age: 25 }
+        </code>
+    </pre>
+    <hr>
+    <ul>
+        <li><strong>Object.fromEntries()</strong> is the easiest and most modern method, especially for converting an array of key-value
+            pairs.</li>
+        <li><strong>reduce()</strong> is more flexible and powerful, especially if you need to do some transformation on the keys or
+            values.</li>
+        <li><strong>map() + Object.assign()</strong> and forEach() are useful, but they are less concise than the other methods.</li>
+    </ul>
+
+
+    <script>
+
+        /*1. Example . Using Object.fromEntries() */
+
+        const arr = [['name', 'Alice'], ['age', 25]];
+
+        const obj = Object.fromEntries(arr);
+        console.log(obj);
+        // Output: { name: 'Alice', age: 25 }
+
+        /* 2. Using reduce()*/
+        const arr1 = ['name', 'age'];
+        const obj1 = arr1.reduce((acc, cur, index) => {
+            acc[`key${index + 1}`] = cur;
+            return acc;
+        }, {});
+
+        console.log(obj1);
+        // Output: { key1: 'name', key2: 'age' }
+
+        /*3. Using map() with Object.assign()*/
+        const arr2 = [['name', 'Alice'], ['age', 25]];
+
+        const obj2 = Object.assign({}, ...arr.map(([key, value]) => ({ [key]: value })));
+
+        console.log(obj2);
+        // Output: { name: 'Alice', age: 25 }
+
+        /*4. Using forEach()*/
+
+        const arr3 = [['name', 'Alice'], ['age', 25]];
+
+        const obj3 = {};
+        arr.forEach(([key, value]) => {
+            obj3[key] = value;
+        });
+
+        console.log(obj3);
+        // Output: { name: 'Alice', age: 25 }
+    </script>
+</body>
+
+</html>

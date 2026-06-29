@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+
+        let data = [10, 19, 6, 18, 45, 68, 90, 35, 100];
+
+        function operation(arr) {
+            let evenNumber = [];
+            let doubleNumbers = [];
+
+            // Loop through the array
+            for (let num of arr) {
+                if (num % 2 === 0) {
+                    evenNumber.push(num);
+                } else {
+                    doubleNumbers.push(num * 2);
+                }
+            }
+
+            console.log(`My Array: ${arr}`);
+            console.log(`Even Numbers: ${evenNumber}`);
+            console.log(`Doubled Numbers: ${doubleNumbers}`);
+            console.log(`Length: ${arr.length}`);
+        }
+
+        operation(data);
+    </script>
+</body>
+
+</html>

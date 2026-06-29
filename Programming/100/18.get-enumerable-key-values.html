@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>How do you get an enumerable key and value pairs?</h1>
+
+    <h3>🔑 What does enumerable mean?</h3>
+    <p>An enumerable property is one that will show up when you're iterating over an object using loops like for...in,
+        or methods like Object.keys(), etc.</p>
+
+
+    <h3>✅ To get enumerable key-value pairs:</h3>
+    <p>You can use:</p>
+    <pre>
+        <code>
+            Object.entries(obj)
+        </code>
+    </pre>
+    <p>It returns an array of [key, value] pairs for all own enumerable properties of the object.</p>
+    <hr>
+    <h3>✅ Example:</h3>
+    <pre>
+        <code>
+            const user = {
+                name: "Alice",
+                age: 25
+              };
+              
+              console.log(Object.entries(user));
+              // Output: [['name', 'Alice'], ['age', 25']]
+        </code>
+    </pre>
+    <p>You can loop over it:</p>
+    <pre>
+        <code>
+            for (const [key, value] of Object.entries(user)) {
+                console.log(`${key}: ${value}`);
+              }
+              // name: Alice
+              // age: 25
+        </code>
+    </pre>
+    <hr>
+
+    <h3>📌 Bonus: Other related methods</h3>
+
+    <table id="customers">
+        <tr>
+            <th>Method</th>
+            <th>What it returns</th>
+        </tr>
+        <tr>
+            <td>Object.keys(obj)</td>
+            <td>Array of enumerable property names</td>
+        </tr>
+        <tr>
+            <td>Object.values(obj)</td>
+            <td>Array of enumerable values</td>
+        </tr>
+        <tr>
+            <td>Object.entries(obj)</td>
+            <td>Array of [key, value] pairs</td>
+        </tr>
+    </table>
+
+
+
+    <script>
+        /*1. Example: sealed example*/
+
+        const user = {
+            name: "Alice",
+            age: 25
+        };
+
+        console.log(Object.entries(user));
+        // Output: [['name', 'Alice'], ['age', 25']]
+
+        /*You can loop over it:*/
+
+        for (const [key, value] of Object.entries(user)) {
+            console.log(`${key}: ${value}`);
+        }
+        // name: Alice
+        // age: 25
+
+    </script>
+</body>
+
+</html>

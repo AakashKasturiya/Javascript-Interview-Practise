@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Sort a given array of strings</h1>
+
+    <pre>
+        ⚠️ Note:
+By default, .sort() sorts strings alphabetically and in place, meaning it changes the original array.
+    </pre>
+    <script>
+        const fruits = ["banana", "apple", "mango", "cherry"];
+        fruits.sort();
+
+        console.log(fruits); // Output: ["apple", "banana", "cherry", "mango"]
+
+
+        /* 🔁 If you want a new sorted array without changing the original:*/
+
+        const fruits1 = ["banana", "apple", "mango", "cherry"];
+        const sortedFruits = [...fruits1].sort();
+
+        console.log(sortedFruits); // ["apple", "banana", "cherry", "mango"]
+        console.log(fruits1);       // ["banana", "apple", "mango", "cherry"]
+
+
+        /*🔄 For descending order: */
+
+        const fruits3 = ["banana", "apple", "mango", "cherry"];
+        fruits3.sort().reverse();
+
+        console.log(fruits3); // ["mango", "cherry", "banana", "apple"]
+
+
+
+    </script>
+</body>
+
+</html>

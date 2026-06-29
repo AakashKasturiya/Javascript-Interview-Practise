@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Tooltip</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Basic reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      /* Container for positioning */
+      .tooltip-container {
+        position: relative;
+        display: inline-block;
+        margin-top: 50px;
+      }
+
+      /* Tooltip button style */
+      .tooltip-btn {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        border-radius: 5px;
+      }
+
+      .tooltip-btn:hover {
+        background-color: #45a049;
+      }
+
+      /* Tooltip content (popover) hidden by default */
+      .tooltip-content {
+        visibility: hidden;
+        width: 200px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 10px;
+        position: absolute;
+        bottom: 125%; /* Position the tooltip above the button */
+        left: 50%;
+        margin-left: -100px; /* Center the tooltip */
+        opacity: 0;
+        transition: opacity 0.3s;
+        z-index: 1;
+      }
+
+      /* Tooltip triangle (Arrow) */
+      .tooltip-content::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #555 transparent transparent transparent;
+      }
+
+      /* Show tooltip when hovering over the button */
+      .tooltip-container:hover .tooltip-content {
+        visibility: visible;
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tooltip-container">
+      <button class="tooltip-btn">Hover over me!</button>
+      <div class="tooltip-content">
+        This is a simple tooltip with a popover effect.
+      </div>
+    </div>
+  </body>
+</html>

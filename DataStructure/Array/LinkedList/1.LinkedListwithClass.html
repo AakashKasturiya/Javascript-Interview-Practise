@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Node {
+        constructor(data) {
+          this.data = data;
+          this.next = null;
+        }
+      }
+
+      class LinkedList {
+        constructor() {
+          this.head = null; // The list starts empty
+          this.size = 0; // The size of the list
+        }
+
+        // Add a node to the end of the list
+        append(data) {
+          const newNode = new Node(data);
+
+          if (!this.head) {
+            // If the list is empty, make the new node the head
+            this.head = newNode;
+          } else {
+            let current = this.head;
+            // Traverse to the last node
+            while (current.next) {
+              current = current.next;
+            }
+            // Set the next of the last node to the new node
+            current.next = newNode;
+          }
+          this.size++;
+        }
+
+        // Remove the first node with the given value
+        remove(data) {
+          if (!this.head) return null; // Empty list
+
+          // Special case if the head is the one to be removed
+          if (this.head.data === data) {
+            this.head = this.head.next;
+            this.size--;
+            return;
+          }
+
+          let current = this.head;
+          let previous = null;
+
+          // Traverse the list to find the node to remove
+          while (current && current.data !== data) {
+            previous = current;
+            current = current.next;
+          }
+
+          if (current) {
+            previous.next = current.next; // Remove the node
+            this.size--;
+          } else {
+            console.log("Node not found!");
+          }
+        }
+
+        // Print all elements of the list
+        printList() {
+          let current = this.head;
+          let elements = [];
+          while (current) {
+            elements.push(current.data);
+            current = current.next;
+          }
+          console.log(elements.join(" -> "));
+        }
+
+        // Find a node with a given value
+        find(data) {
+          let current = this.head;
+          while (current) {
+            if (current.data === data) {
+              return current;
+            }
+            current = current.next;
+          }
+          return null; // If the node was not found
+        }
+      }
+
+      // Create a new linked list
+      let list = new LinkedList();
+
+      // Add nodes
+      list.append(10);
+      list.append(20);
+      list.append(30);
+      list.append(40);
+
+      // Print the list
+      list.printList(); // Output: 10 -> 20 -> 30 -> 40
+
+      // Find a node
+      let node = list.find(20);
+      console.log(node); // Output: Node { data: 20, next: Node { data: 30, next: [Node] } }
+
+      // Remove a node
+      list.remove(20);
+
+      // Print the list again
+      list.printList(); // Output: 10 -> 30 -> 40
+
+      // Remove a node that doesn't exist
+      list.remove(100); // Output: Node not found!
+    </script>
+  </body>
+</html>

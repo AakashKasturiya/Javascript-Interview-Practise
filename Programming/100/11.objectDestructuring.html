@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>Explain what is Object Destructuring with an example?</h1>
+    <p>Object Destructuring in JavaScript is a syntax feature that allows you to extract properties from an object and
+        assign them to variables in a more concise way. It makes it easier to work with object properties, especially
+        when you only need a subset of the properties or when the properties are deeply nested.</p>
+
+    <h3>Basic Syntax:</h3>
+    <p>The basic syntax of object destructuring looks like this:</p>
+    <pre>
+        <code>
+            const { property1, property2 } = object;
+        </code>
+    </pre>
+    <h3>Example 1: Basic Object Destructuring</h3>
+    <pre>
+        <code>
+            const person = {
+                name: "John",
+                age: 30,
+                occupation: "Engineer"
+              };
+              
+              const { name, age, occupation } = person; // Destructuring the properties from the object
+              
+              console.log(name); // "John"
+              console.log(age); // 30
+              console.log(occupation); // "Engineer"
+              
+        </code>
+    </pre>
+    <p>In this example, we're extracting the name, age, and occupation properties from the person object and assigning
+        them to new variables with the same names.</p>
+    <hr>
+    <h3>Example 2: Destructuring with Renaming</h3>
+    <p>You can rename the variables when destructuring by using a colon (:) to specify the new variable name.</p>
+    <pre>
+        <code>
+            const person = {
+                name: "John",
+                age: 30,
+                occupation: "Engineer"
+              };
+              
+              const { name: personName, age: personAge } = person; // Renaming properties during destructuring
+              
+              console.log(personName); // "John"
+              console.log(personAge); // 30
+                    
+        </code>
+    </pre>
+
+    <hr>
+
+    <h3>Example 3: Destructuring with Default Values</h3>
+    <p>If a property is missing from the object, you can assign it a default value during destructuring. </p>
+    <pre>
+        <code>
+            const person = {
+                name: "John",
+                age: 30
+              };
+              
+              const { name, age, occupation = "Unemployed" } = person; // 'occupation' has a default value
+              
+              console.log(name); // "John"
+              console.log(age); // 30
+              console.log(occupation); // "Unemployed" (because it's not in the object)
+              
+        </code>
+    </pre>
+
+    <hr>
+
+    <h3>Example 4: Nested Object Destructuring</h3>
+    <p>You can destructure nested objects by referencing the property path.</p>
+    <pre>
+        <code>
+            const person = {
+                name: "John",
+                age: 30,
+                address: {
+                  city: "New York",
+                  zipCode: "10001"
+                }
+              };
+              
+              const { name, address: { city, zipCode } } = person; // Destructuring nested object 'address'
+              
+              console.log(name); // "John"
+              console.log(city); // "New York"
+              console.log(zipCode); // "10001"
+            
+        </code>
+    </pre>
+
+    <hr>
+    <h3>Example 5: Destructuring in Function Parameters</h3>
+    <p>Object destructuring can also be used directly in function parameters to extract values from an object passed as
+        an argument.</p>
+    <pre>
+        <code>
+            function displayPerson({ name, age, occupation }) {
+                console.log(name); // "John"
+                console.log(age); // 30
+                console.log(occupation); // "Engineer"
+              }
+              
+              const person = {
+                name: "John",
+                age: 30,
+                occupation: "Engineer"
+              };
+              
+              displayPerson(person); // Passing 'person' object to the function
+             
+        </code>
+    </pre>
+
+    <script>
+        /*Example 1: Basic Object Destructuring*/
+        const person = {
+            name: "John",
+            age: 30,
+            occupation: "Engineer"
+        };
+
+        const { name, age, occupation } = person; // Destructuring the properties from the object
+
+        console.log(name); // "John"
+        console.log(age); // 30
+        console.log(occupation); // "Engineer"
+
+
+
+        /*Example 2: Destructuring with Renaming*/
+        const person1 = {
+            name: "John",
+            age: 30,
+            occupation: "Engineer"
+        };
+
+        const { name: personName, age: personAge } = person1; // Renaming properties during destructuring
+
+        console.log(personName); // "John"
+        console.log(personAge); // 30
+
+
+        /*Example 3: Destructuring with Default Values*/
+        const person2 = {
+            name1: "John",
+            age1: 30
+        };
+
+        const { name1, age1, occupation1 = "Unemployed" } = person2; // 'occupation' has a default value
+
+        console.log(name1); // "John"
+        console.log(age1); // 30
+        console.log(occupation1); // "Unemployed" (because it's not in the object)
+
+
+
+        /*Example 4: Nested Object Destructuring*/
+        const person3 = {
+            name2: "John",
+            age2: 30,
+            address2: {
+                city: "New York",
+                zipCode: "10001"
+            }
+        };
+
+        const { name2, address2: { city, zipCode } } = person3; // Destructuring nested object 'address'
+
+        console.log(name2); // "John"
+        console.log(city); // "New York"
+        console.log(zipCode); // "10001"
+
+
+        /* Example 5: Destructuring in Function Parameters*/
+        function displayPerson({ name, age, occupation }) {
+            console.log(name); // "John"
+            console.log(age); // 30
+            console.log(occupation); // "Engineer"
+        }
+
+        const person4 = {
+            name: "John",
+            age: 30,
+            occupation: "Engineer"
+        };
+
+        displayPerson(person4); // Passing 'person' object to the function
+
+
+    </script>
+</body>
+
+</html>

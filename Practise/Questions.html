@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let date = new Date();
+
+        console.log(date.getFullYear());
+
+        let firstName = "Aakash";
+        let lastName = "Kasturiya";
+
+        console.log(firstName+ " "+ lastName)
+
+        let a = 32;
+
+        console.log(a);
+        a=64;
+        console.log(a);
+
+        console.error("sometimes errors");
+
+        let x = true;
+
+        console.log(typeof x);
+
+        let age = 2;
+
+        console.log(age> 18? true: false)
+
+        let result = 100/0;
+        console.log(result)
+
+        let str = "Aakash Kasturiya";
+
+        // for(let i = 0; i < str.length; i++){
+        //     console.log(str[i]);
+        // }
+
+        for(let ele of str){
+            console.log(ele);
+        }
+
+        for(let i = 0 ; i <= 20; i++){
+            if(i%2!==0){
+                  console.log(i);
+            }
+            
+        }
+
+        let ax = 5;
+        do {
+            console.log(ax);
+            ax--;
+        } while (ax >= 1);
+
+        function fact(num){
+
+            let fac = 1;
+            for(let i = num; i > 0; i--){
+                  fac = fac * i;
+            }
+
+            return fac;
+
+        }
+
+        console.log(fact(5));
+
+        function grid3(){
+            for(let i = 0; i <= 3; i++){
+                for(let j = 1; j <= 3; j++){
+                    document.write(j);
+                }
+                document.write("<br>");
+            }
+        }
+        grid3();
+
+            let hold = 1;
+            for(let i = 1; i < 4; i++){
+                let str22 = "";
+                for(let j = 1; j < 4; j++){
+                    str22 += `${hold} `;
+                    hold++;
+                }
+               console.log(str22);
+            }
+    
+            let array = [1,2,3,4,5];
+       
+            for(let i = array.length-1; i >=0; i--){
+                console.log(array[i])
+            }
+
+            for(let i = 1; i<=100; i++){
+                if(i%5==0){
+                    console.log(i);
+                }
+            }
+
+            const obj = {
+                name:"Aakash",
+                lastName:"Kasturiya",
+                age:24,
+                qualification:"MCA"
+            }
+
+            for(let key in obj){
+                console.log(obj[key]);
+            }
+
+            const obj1 = [
+  {key:"sample 1", data:"Data 1"},
+  {key:"sample 1", data:"Data 1"},
+  {key:"sample 2", data:"Data 2"},
+  {key:"sample 1", data:"Data 1"},
+  {key:"sample 3", data:"Data 3"},
+  {key:"sample 4", data:"Data 4"}
+];
+
+
+//let output = {}
+
+// obj1.forEach((item)=>{
+//     if(output[item.key]){
+//      //Available   
+//      output[item.key].push(item);
+//     }else{
+//         output[item.key] = [item];
+//     }
+// })
+
+// console.log(output)
+
+
+let output = obj1.reduce((acc, item) => {
+  if (acc[item.key]) {
+    // If the key exists, push the item to the array
+    acc[item.key].push(item);
+  } else {
+    // If the key does not exist, initialize an array with the item
+    acc[item.key] = [item];
+  }
+  return acc; // Return the accumulator
+}, {}); // Initialize the accumulator as an empty object
+
+console.log(output);
+
+ 
+    </script>
+
+</body>
+</html>

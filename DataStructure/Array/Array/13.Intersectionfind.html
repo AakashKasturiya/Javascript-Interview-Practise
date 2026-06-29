@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>intersection</title>
+</head>
+<body>
+    <h1>how to find intersection of two arrays in javascript</h1>
+    <p>The intersection of two sets is a set containing only the common elements that exist in both sets.</p>
+    <script>
+        const arr1 = [2, 9, 6, 8, 4, 4, 4];
+        const arr2 = [4, 8, 6, 9, 12];
+
+        const intersection = arr1.filter((elements,index)=> arr2.includes(elements));
+
+        console.log([... new Set(intersection)]);
+
+    </script>
+</body>
+
+</html>

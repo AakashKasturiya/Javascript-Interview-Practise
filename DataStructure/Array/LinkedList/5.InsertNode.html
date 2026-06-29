@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Insert node Linked List</title>
+    <style>
+      pre {
+        font-family: monospace;
+        font-size: 14px;
+        background-color: rgb(241 241 241);
+        border: 2px solid #ececec;
+        text-align: left;
+        cursor: text;
+        padding: 10px 20px;
+        width: 80%;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        border-radius: 8px;
+      }
+      section.main-content {
+        padding: 10px 70px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="main-content">
+      <p>
+        To insert a node at any point in the linked list, we need to insert a
+        new node at a specific position rather than always at the end (like in
+        the append method). This insertion can be at the beginning, middle, or
+        end of the list.<br />
+        Here's how we can do it:
+      </p>
+      <h1>Insertion at Any Point in the Linked List:</h1>
+      <p>
+        <strong>1. Inserting at the beginning:</strong> If the position is 0 (or
+        if we want to insert at the beginning), we simply make the new node the
+        head of the list.
+      </p>
+      <p>
+        <strong>2. Inserting at a specific position:</strong> If the position is
+        in the middle or end, we need to traverse the list to find the node just
+        before the insertion point, and then update the next references
+        accordingly.
+      </p>
+
+      <h3>Steps:</h3>
+      <ul type="number">
+        <li>
+          Check if the list is empty: If the list is empty, there’s nothing to
+          remove.
+        </li>
+        <li>
+          Find the node to remove:
+          <ul>
+            <li>Create the new node with the data you want to insert.</li>
+            <li>
+              Check if the position is valid (e.g., non-negative position).
+            </li>
+            <li>
+              Traverse the list to find the correct spot
+              <ul>
+                <li>If the position is 0, insert at the beginning.</li>
+                <li>
+                  Otherwise, traverse to the node just before the specified
+                  position.
+                </li>
+              </ul>
+            </li>
+            <li>
+              Update the next references to insert the new node at the right
+              place.
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <h3>Code with insertAt Method:</h3>
+      <pre>
+        <code>
+            class Node {
+                constructor(data) {
+                  this.data = data; // Store the data
+                  this.next = null; // Reference to the next node (initially null)
+                }
+              }
+              
+              class LinkedList {
+                constructor() {
+                  this.head = null; // The head (first node) of the list is initially null
+                }
+              
+                // Method to add a node at the end of the list
+                append(data) {
+                  const newNode = new Node(data); // Create a new node with the given data
+              
+                  // If the list is empty, make the new node the head of the list
+                  if (this.head === null) {
+                    this.head = newNode;
+                  } else {
+                    let current = this.head;
+                    // Traverse to the last node
+                    while (current.next !== null) {
+                      current = current.next;
+                    }
+                    // Make the last node's next reference point to the new node
+                    current.next = newNode;
+                  }
+                }
+              
+                // Method to insert a node at a specific position
+                insertAt(data, position) {
+                  const newNode = new Node(data); // Create a new node
+              
+                  // If the position is invalid (negative position)
+                  if (position < 0) {
+                    console.log("Invalid position.");
+                    return;
+                  }
+              
+                  // If inserting at the beginning (position 0)
+                  if (position === 0) {
+                    newNode.next = this.head; // Make the new node point to the current head
+                    this.head = newNode; // Update the head to the new node
+                    console.log(`Node with value ${data} inserted at position 0.`);
+                    return;
+                  }
+              
+                  let current = this.head;
+                  let index = 0;
+              
+                  // Traverse the list to find the node just before the desired position
+                  while (current !== null && index < position - 1) {
+                    current = current.next;
+                    index++;
+                  }
+              
+                  // If we reached the end of the list and the position is out of bounds
+                  if (current === null) {
+                    console.log("Position out of bounds.");
+                    return;
+                  }
+              
+                  // Insert the new node at the desired position
+                  newNode.next = current.next; // Make the new node point to the next node
+                  current.next = newNode; // Make the previous node point to the new node
+                  console.log(`Node with value ${data} inserted at position ${position}.`);
+                }
+              
+                // Method to traverse (display) the entire linked list
+                traverse() {
+                  let current = this.head;
+              
+                  if (current === null) {
+                    console.log("The list is empty.");
+                    return;
+                  }
+              
+                  while (current !== null) {
+                    console.log(current.data);
+                    current = current.next;
+                  }
+                }
+              }
+              
+              
+        </code>
+    </pre>
+
+      <h3>Explanation of the insertAt Method:</h3>
+      <ul>
+        <li>
+          1. Input Parameters:
+          <ul>
+            <li>data: The data that will be stored in the new node.</li>
+            <li>
+              position: The index where the new node will be inserted (0-based).
+            </li>
+          </ul>
+        </li>
+        <li>
+          2. Creating the New Node:
+          <ul>
+            <li>
+              We create a new node with the given data: const newNode = new
+              Node(data).
+            </li>
+          </ul>
+        </li>
+        <li>
+          3. Checking for Invalid Position:
+          <ul>
+            <li>
+              If the position is negative (position < 0), we print an error
+              message because positions must be non-negative.
+            </li>
+          </ul>
+        </li>
+        <li>
+          4. Inserting at the Beginning:
+          <ul>
+            <li>
+              If the position is 0, we insert the new node at the beginning of
+              the list.
+            </li>
+            <li>
+              We make the new node's next reference point to the current head of
+              the list, and then we update the head to the new node.
+            </li>
+          </ul>
+        </li>
+        <li>
+          5. Inserting at Other Positions: We traverse the list until we reach
+          the node just before the desired position (position - 1). Once we
+          reach that node, we set: newNode.next = current.next: This makes the
+          new node point to the next node (the one currently at the specified
+          position). current.next = newNode: This links the previous node to the
+          new node, effectively inserting it in the list.
+        </li>
+        <li>
+          6. Edge Case: Position Out of Bounds:
+          <ul>
+            <li>
+              If we reach the end of the list (current === null) and haven’t
+              found the specified position, it means the position is out of
+              bounds, and we print an error message.
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <h3>Example Usage:</h3>
+      <pre>
+         <code>
+            const list = new LinkedList();
+
+            // Append nodes
+            list.append(10);
+            list.append(20);
+            list.append(30);
+            list.append(40);
+            
+            // Traverse and print the list before insertion
+            console.log("Before insertion:");
+            list.traverse();
+            
+            // Insert a node at position 2
+            list.insertAt(25, 2);
+            
+            // Traverse and print the list after insertion
+            console.log("After insertion at position 2:");
+            list.traverse();
+            
+            // Insert a node at position 0 (beginning)
+            list.insertAt(5, 0);
+            
+            // Traverse and print the list after inserting at the beginning
+            console.log("After insertion at position 0:");
+            list.traverse();
+            
+            // Attempt to insert at an out-of-bounds position
+            list.insertAt(50, 10);  // This should give an error
+            
+            
+         </code>
+      </pre>
+
+      <h3>Output</h3>
+      <pre>
+         <code>
+            Before insertion:
+            10
+            20
+            30
+            40
+            Node with value 25 inserted at position 2.
+            After insertion at position 2:
+            10
+            20
+            25
+            30
+            40
+            Node with value 5 inserted at position 0.
+            After insertion at position 0:
+            5
+            10
+            20
+            25
+            30
+            40
+            Position out of bounds.
+            
+         </code>
+      </pre>
+      <h3>Key Points:</h3>
+      <p>
+        <strong>Inserting at the beginning:</strong> If position is 0, the new
+        node becomes the head of the list.
+      </p>
+      <p>
+        <strong>Inserting at the middle or end: </strong> We find the correct
+        position by traversing the list, then adjust the pointers to insert the
+        new node.
+      </p>
+      <p>
+        <strong>Edge cases: </strong>We handle invalid positions (negative or
+        out of bounds).
+      </p>
+    </section>
+    <script>
+      class Node {
+        constructor(data) {
+          this.data = data; // Store the data
+          this.next = null; // Reference to the next node (initially null)
+        }
+      }
+
+      class LinkedList {
+        constructor() {
+          this.head = null; // The head (first node) of the list is initially null
+        }
+
+        // Method to add a node at the end of the list
+        append(data) {
+          const newNode = new Node(data); // Create a new node with the given data
+
+          // If the list is empty, make the new node the head of the list
+          if (this.head === null) {
+            this.head = newNode;
+          } else {
+            let current = this.head;
+            // Traverse to the last node
+            while (current.next !== null) {
+              current = current.next;
+            }
+            // Make the last node's next reference point to the new node
+            current.next = newNode;
+          }
+        }
+
+        // Method to insert a node at a specific position
+        insertAt(data, position) {
+          const newNode = new Node(data); // Create a new node
+
+          // If the position is invalid (negative position)
+          if (position < 0) {
+            console.log("Invalid position.");
+            return;
+          }
+
+          // If inserting at the beginning (position 0)
+          if (position === 0) {
+            newNode.next = this.head; // Make the new node point to the current head
+            this.head = newNode; // Update the head to the new node
+            console.log(`Node with value ${data} inserted at position 0.`);
+            return;
+          }
+
+          let current = this.head;
+          let index = 0;
+
+          // Traverse the list to find the node just before the desired position
+          while (current !== null && index < position - 1) {
+            current = current.next;
+            index++;
+          }
+
+          // If we reached the end of the list and the position is out of bounds
+          if (current === null) {
+            console.log("Position out of bounds.");
+            return;
+          }
+
+          // Insert the new node at the desired position
+          newNode.next = current.next; // Make the new node point to the next node
+          current.next = newNode; // Make the previous node point to the new node
+          console.log(
+            `Node with value ${data} inserted at position ${position}.`
+          );
+        }
+
+        // Method to traverse (display) the entire linked list
+        traverse() {
+          let current = this.head;
+
+          if (current === null) {
+            console.log("The list is empty.");
+            return;
+          }
+
+          while (current !== null) {
+            console.log(current.data);
+            current = current.next;
+          }
+        }
+      }
+
+      const list = new LinkedList();
+
+      // Append nodes
+      list.append(10);
+      list.append(20);
+      list.append(30);
+      list.append(40);
+
+      // Traverse and print the list before insertion
+      console.log("Before insertion:");
+      list.traverse();
+
+      // Insert a node at position 2
+      list.insertAt(25, 2);
+
+      // Traverse and print the list after insertion
+      console.log("After insertion at position 2:");
+      list.traverse();
+
+      // Insert a node at position 0 (beginning)
+      list.insertAt(5, 0);
+
+      // Traverse and print the list after inserting at the beginning
+      console.log("After insertion at position 0:");
+      list.traverse();
+
+      // Attempt to insert at an out-of-bounds position
+      list.insertAt(50, 10); // This should give an error
+    </script>
+  </body>
+</html>

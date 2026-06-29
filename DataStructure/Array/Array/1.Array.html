@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>1. Array Traversing in JavaScript</h3>
+
+    <input type="text" id="element" />
+    <button onclick="getElement();">Get Element</button>
+    <script>
+      /*--------------1. Array Traversing in JavaScript --------------------*/
+
+      /*a) Using a for loop*/
+      let arr = [10, 20, 30, 40, 50];
+
+      for (let i = 0; i < arr.length; i++) {
+        console.log(arr[i]); // Accessing and printing each element
+      }
+
+      /*b) Using forEach Method*/
+
+      arr.forEach(function (element) {
+        console.log(element); // Accessing each element
+      });
+
+      /* Or with an arrow function: */
+
+      arr.forEach((element) => console.log(element));
+
+      /*c) Using for...of Loop */
+
+      for (let element of arr) {
+        console.log(element); // Accessing each element
+      }
+
+      /*--------------2. Array Accessing in JavaScript --------------------*/
+
+      /* a) Accessing Elements by Index */
+
+      console.log(arr[0]); // Access the first element (10)
+      console.log(arr[2]); // Access the third element (30)
+      console.log(arr[4]); // Access the fifth element (50)
+
+      /* b) Modifying Elements by Index */
+
+      arr[2] = 100; // Change the third element (30) to 100
+      console.log(arr); // [10, 20, 100, 40, 50]
+
+      /* 3. Accessing Array Length */
+
+      console.log(arr.length); // Output: 5 (since there are 5 elements in the array)
+
+      //-------------- 3. Accessing Element with text input and button with validation --------------------
+
+      let arr1 = [10, 20, 30, 40, 50];
+
+      function getElement() {
+        let num = document.getElementById("element").value;
+
+        // Check if the input is a valid number
+        if (isNaN(num) || num === "") {
+          alert("Please enter a valid number!");
+        }
+        // Convert the input to an integer
+
+        // Check if the number is non-negative and within the array bounds
+        else if (parseInt(num) >= 0 && parseInt(num) < arr1.length) {
+          alert(arr1[num]);
+        }
+        // Check if the number is negative
+        else if (parseInt(num) < 0) {
+          alert("Please enter a positive number only!");
+        }
+        // If the number is out of bounds
+        else {
+          alert("Please enter a valid index (within the array range)!");
+        }
+      }
+    </script>
+  </body>
+</html>

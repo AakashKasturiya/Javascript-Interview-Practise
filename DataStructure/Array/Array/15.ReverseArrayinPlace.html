@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Reversing an array in place</h2>
+    <p>
+      To reverse an array in place in JavaScript, you can use a simple approach
+      by swapping elements. Here's how you can do it:
+    </p>
+    <code>
+        function reverseArray(arr) {
+            let start = 0;
+            let end = arr.length - 1;
+            
+            while (start < end) {
+                // Swap the elements
+                let temp = arr[start];
+                arr[start] = arr[end];
+                arr[end] = temp;
+                
+                // Move the pointers
+                start++;
+                end--;
+            }
+        }
+        
+        // Example usage:
+        let myArray = [1, 2, 3, 4, 5];
+        reverseArray(myArray);
+        console.log(myArray);  // Output: [5, 4, 3, 2, 1]
+        
+    </code>
+    <script>
+      function reverseArray(arr) {
+        let start = 0;
+        let end = arr.length - 1;
+
+        while (start < end) {
+          // Swap the elements
+          let temp = arr[start];
+          arr[start] = arr[end];
+          arr[end] = temp;
+
+          // Move the pointers
+          start++;
+          end--;
+        }
+      }
+
+      // Example usage:
+      let myArray = [1, 2, 3, 4, 5];
+      reverseArray(myArray);
+      console.log(myArray); // Output: [5, 4, 3, 2, 1]
+    </script>
+  </body>
+</html>

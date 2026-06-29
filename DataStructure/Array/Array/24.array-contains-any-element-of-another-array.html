@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>How to check if an array contains any element of another array?</h1>
+    <p>To check if an array contains any element of another array, you can use JavaScript's some() method combined with
+        includes().</p>
+    <pre>
+        <code>
+            const array1 = [1, 2, 3, 4, 5];
+            const array2 = [3, 6, 7];
+            
+            // Check if any element in array2 exists in array1
+            const containsAny = array2.some(element => array1.includes(element));
+            
+            console.log(containsAny); // Output: true (since 3 is in both arrays)
+
+        </code>
+    </pre>
+Explanation:
+<ul>    
+    <li>array2.some(): Loops over array2 and checks if any element satisfies the condition.</li>
+    <li>array1.includes(element): Checks if the current element from array2 exists in array1.</li>
+</ul>
+
+    <script>
+        const array1 = [1, 2, 3, 4, 5];
+        const array2 = [3, 6, 7];
+
+        // Check if any element in array2 exists in array1
+        const containsAny = array2.some(element => array1.includes(element));
+
+        console.log(containsAny); // Output: true (since 3 is in both arrays)
+
+    </script>
+</body>
+
+</html>

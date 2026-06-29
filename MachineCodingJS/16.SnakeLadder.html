@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake Ladder Game</title>
+    <style>
+      .snake-game-section {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+      }
+
+      .snake-game-layout {
+        width: 620px;
+        background-color: #eee;
+        background-image: url("./images/snake-ladder.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+      }
+      .row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .col {
+        width: 60px;
+        height: 60px;
+        border: 1px solid #444;
+        cursor: pointer;
+      }
+      h3.current-player {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        margin-top: 0;
+        text-align: center;
+      }
+      .rolling-dies {
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        margin-top: 0;
+        text-align: center;
+      }
+      button.rolling-dies-btn {
+        display: flex;
+        border: 0;
+        outline: 0;
+        padding: 8px 16px;
+        background-color: red;
+        color: #fff;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="snake-game-section">
+      <div class="player-details">
+        <h3 class="current-player">A</h3>
+        <h2 class="rolling-dies">2</h2>
+        <button class="rolling-dies-btn">Rolling Dies</button>
+      </div>
+      <div class="snake-game-layout">
+        <div class="row"></div>
+      </div>
+    </section>
+    <script>
+      function handlerClick(e) {
+        alert(e.id);
+      }
+      let row = document.querySelector(".row");
+
+      for (let i = 100; i >= 1; i--) {
+        let col = document.createElement("div");
+        col.classList.add("col");
+        col.id = i;
+        // Add the click event listener for each column
+        col.addEventListener("click", function () {
+          handlerClick(col); // Pass the clicked column to the handler function
+        });
+
+        row.appendChild(col);
+      }
+    </script>
+  </body>
+</html>

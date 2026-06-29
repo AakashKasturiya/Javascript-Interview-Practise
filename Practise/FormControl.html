@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dummy Form for JavaScript Events</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Dummy Form for JavaScript Events</h2>
+
+    <form id="dummyForm">
+        <!-- Text Input -->
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        </div>
+
+        <!-- Checkbox -->
+        <div class="form-group">
+            <label for="subscribe">
+                <input type="checkbox" id="subscribe" name="subscribe">
+                Subscribe to newsletter
+            </label>
+        </div>
+
+        <!-- Radio Buttons -->
+        <div class="form-group">
+            <label>Gender:</label>
+            <label>
+                <input type="radio" name="gender" value="male"> Male
+            </label>
+            <label>
+                <input type="radio" name="gender" value="female"> Female
+            </label>
+        </div>
+
+        <!-- Textarea -->
+        <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" placeholder="Enter your message"></textarea>
+        </div>
+
+        <!-- Select Dropdown -->
+        <div class="form-group">
+            <label for="country">Country:</label>
+            <select id="country" name="country">
+                <option value="us">United States</option>
+                <option value="ca">Canada</option>
+                <option value="in">India</option>
+                <option value="au">Australia</option>
+            </select>
+        </div>
+
+        <!-- Date Input -->
+        <div class="form-group">
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob">
+        </div>
+
+        <!-- Number Input -->
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" min="1" max="100">
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- JavaScript to handle form events -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // Handle form submission
+            document.getElementById('dummyForm').addEventListener('submit', function (e) {
+                e.preventDefault();  // Prevent form from submitting the traditional way
+                let formElements = e.target.elements;
+                for (let ele of formElements) {
+                    if (ele.name) {
+                        console.log(ele.name + "" + ele.value);
+                    }
+
+                }
+                alert('Form submitted successfully!');
+            });
+
+            // Handle input change (for text input)
+            document.getElementById('name').addEventListener('input', function () {
+                console.log('Name input changed: ' + this.value);
+            });
+
+            // Handle checkbox change
+            document.getElementById('subscribe').addEventListener('change', function () {
+                if (this.checked) {
+                    console.log('User subscribed to the newsletter');
+                } else {
+                    console.log('User unsubscribed from the newsletter');
+                }
+            });
+
+            // Handle radio button change
+            document.querySelectorAll('input[name="gender"]').forEach(radio => {
+                radio.addEventListener('change', function () {
+                    console.log('Gender selected: ' + this.value);
+                });
+            });
+
+            // Handle textarea input change
+            document.getElementById('message').addEventListener('input', function () {
+                console.log('Message input changed: ' + this.value);
+            });
+
+            // Handle select dropdown change
+            document.getElementById('country').addEventListener('change', function () {
+                console.log('Country selected: ' + this.value);
+            });
+
+            // Handle date input change
+            document.getElementById('dob').addEventListener('change', function () {
+                console.log('Date of Birth selected: ' + this.value);
+            });
+
+            // Handle number input change
+            document.getElementById('age').addEventListener('input', function () {
+                console.log('Age selected: ' + this.value);
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>

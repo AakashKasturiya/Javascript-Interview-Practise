@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h3>1. Array Traversing in JavaScript</h3>
+  <input type="text" placeholder="enter the index of the array" />
+  <button onclick="accessElement()">Search</button>
+  <script>
+
+
+    /*--------------1. Array Traversing in JavaScript --------------------*/
+
+    /*a) Using a for loop*/
+    let arr = [10, 20, 30, 40, 50];
+
+    for (let i = 0; i < arr.length; i++) {
+      console.log(arr[i]); // Accessing and printing each element
+    }
+
+    /*b) Using forEach Method*/
+
+    arr.forEach((element, index) => {
+      console.log(`${index} = ${element}`); // Accessing each element
+    })
+
+    /*c) Using for...of Loop */
+
+    for (let element of arr) {
+      console.warn(element);
+    }
+
+
+    /*--------------2. Array Accessing in JavaScript --------------------*/
+
+    /* a) Accessing Elements by Index */
+
+    console.log(arr[0]); // Access the first element (10)
+    console.log(arr[2]); // Access the third element (30)
+
+    /* b) Modifying Elements by Index */
+    arr[0] = 100;
+
+    console.log(arr);
+
+    /* 3. Accessing Array Length */
+
+    console.log(arr.length); // Output: 5 (since there are 5 elements in the array)
+
+    //-------------- 3. Accessing Element with text input and button with validation --------------------
+
+    let arr1 = [10, 20, 30, 40, 50];
+
+    const accessElement = () => {
+      const inputValue = parseInt(document.querySelector('input').value);
+
+      if (isNaN(inputValue) || inputValue === '') {
+
+        alert("Please enter a valid number!");
+
+      } else if (inputValue >= 0 && inputValue <= arr.length) {
+        alert(arr[inputValue]);
+      } else {
+        alert("Invalid Index");
+      }
+    }
+
+
+    /*--------------4. Insert element in array in JavaScript --------------------*/
+
+    const array4 = [10, 20, 30, 40, 50];
+    const newElement = 200;
+    const position = 5;
+
+
+    if (position >= 0 && position <= array4.length) {
+      for (let i = array4.length - 1; i >= position; i--) {
+        array4[i + 1] = array4[i]
+      }
+
+
+      // Insert the new element at the specified position
+      array4[position] = newElement;
+    }
+
+    console.log(array4)
+
+
+    /*--------------5. Insert element in array using splice() --------------------*/
+
+    //Purpose: Adds or removes elements from anywhere in the array.
+
+    let arr51 = [1, 2, 3];
+    let arr52 = [1, 2, 3];
+
+    arr51.splice(1, 0, 4); // arr becomes [1, 4, 2, 3] (4 inserted at index 1) '0' indicate no element delete
+
+    arr52.splice(1, 1, 4); // arr becomes [1, 4, 3] (4 inserted at index 1) '1' indicate element delete
+
+    console.warn(arr51);
+    console.warn(arr52);
+
+
+    /*--------------6. Search element in array  --------------------*/
+
+    /*(a.) Basic Search */
+    const linearSearch = (arr, target) => {
+
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === target) {
+          return i;
+        }
+      }
+      return -1;
+    }
+
+
+    let arr53 = [10, 20, 30, 40, 50];
+    console.log(linearSearch(arr53, 30)); // 2 (index of 30)
+
+
+    /*(b.) Using Built-in Methods (indexOf, includes) */
+
+    console.log(arr53.indexOf(30)); //2
+
+
+    console.log(arr53.includes(30)); //ture
+
+
+    /* ✅ 3. Searching in Array of Objects */
+
+    /*Common in React apps when mapping UI lists. */
+
+    const users = [{
+        id: 1,
+        name: "Aakash"
+      },
+      {
+        id: 2,
+        name: "Rahul"
+      }
+    ];
+
+    const result = users.find((user) => user.id === 2);
+    console.log(result); //{id: 2, name: 'Rahul'}
+
+    //To get index:
+    const getIndex = users.findIndex((user)=>user.id === 2);
+    console.log(getIndex);//1
+
+
+  /* ✅ 4. Search in Sorted Array (Binary Search) */
+
+ //Time: O(log n)
+//Interviewers LOVE this.  
+
+const BinarySearch = (arr, target) => {
+   let left = 0, right = arr.length - 1;
+
+   while (left <= right) {
+    const mid = Math.floor((left + right) / 2);
+
+    if (arr[mid] === target) return mid;
+
+    if (arr[mid] < target) left = mid + 1;
+    else right = mid - 1;
+  }
+
+  return -1;
+
+}
+
+
+console.log(BinarySearch([10, 20, 30, 40, 50], 40)); // 3
+
+
+/*✅ 5. Search Duplicate Occurrences */
+
+/*Find all indexes where value appears. */  
+
+function searchAll(arr, target) {
+  const result = [];
+  arr.forEach((v, i) => {
+    if (v === target) result.push(i);
+  });
+  return result;
+}
+
+console.log(searchAll([1,2,3,2,4,2], 2)); 
+// [1, 3, 5]
+
+
+/*✅ 6. React State Search Example */
+
+/*Searching a value inside array state: */
+
+// const [items, setItems] = useState([10, 20, 30, 40]);
+
+// const exists = items.includes(30); // true
+
+// console.log(exists)
+
+
+/*🔥 7. Technical Interview Trick Question */
+
+//Search object by key in nested array (Amazon, Meta ask this).
+
+const data = [
+  { id: 1, children: [{ id: 2 }, { id: 3 }] },
+  { id: 4 }
+];
+
+const searchNested = (data, targetId) =>{
+  for(let item of data){
+      if (item.id === targetId) return item;
+
+      if (item.children) {
+          const found = searchNested(item.children, targetId);
+          if (found) return found;
+      }
+  }
+     return null;
+}
+
+
+console.log(searchNested(data, 3));
+// { id: 3 }
+
+/*
+function searchNested(arr, targetId) { ... }
+
+is a classic example of:
+✅ 1. Recursion
+
+A function that calls itself to solve a smaller part of the problem.
+✅ 2. Depth-First Search (DFS)
+
+Used to search inside tree or nested structures.
+
+*/
+
+
+/* 8.1 Delete by Value*/
+
+//✅ 1. Delete by Value (remove a specific element)
+//Using filter() (most preferred in React)
+
+  const arr81 = [10, 20, 30, 40];
+  const removeElement = arr81.filter((item)=> item !== 30);
+  
+  console.log(removeElement);  // [10, 20, 40]
+ 
+  //Immutably removes the value → perfect for React state updates.
+
+//✅ 2. Delete by Index
+//Using splice() (mutates array)
+    const arr82 = [10, 20, 30, 40];
+    arr82.splice(2,1)  // remove index 2
+
+    console.log(arr82) // [10, 20, 40]
+
+    //Using filter() (immutable)
+
+    const result82 = arr82.filter((_, index) => index !== 2);
+
+
+    console.log(result82);
+
+  // ✅ 3. Delete Last Element
+  //pop()
+
+  const arr83 = [10, 20, 30];
+  arr83.pop();
+
+  console.log(arr83); // [10, 20]
+
+
+ // ✅ 4. Delete First Element
+//shift()
+
+
+ const arr84 = [10, 20, 30];
+  arr84.shift();
+
+  console.log(arr84); // [ 20, 30]
+
+  //✅ 5. Delete Multiple Elements
+  //splice(start, count)
+
+const arr85 = [1, 2, 3, 4, 5];
+arr85.splice(1, 3); // delete 2,3,4
+
+console.log(arr85); // [1, 5]
+
+//✅ 6. Delete Object from Array of Objects (React State scenario)
+const users86 = [
+  { id: 1, name: "Aakash" },
+  { id: 2, name: "Rahul" }
+];
+
+const result86 = users86.filter((item)=> item.id !== 2);
+
+console.log(result86);
+
+// [{ id: 1, name: "Aakash" }]
+
+
+//✅ 7. Delete using delete keyword (NOT recommended)
+
+//It creates a hole in the array.
+
+const arr87 = [10, 20, 30];
+delete arr87[1];
+
+console.log(arr87); // [10, empty, 30]
+
+//⭐ Bonus: Delete inside React State
+
+//setItems(prev => prev.filter(item => item !== value));
+
+
+
+const mergeArrays = (arr1, arr2)=>{
+
+  const merageArray = [];
+
+  for(let i = 0; i < arr1.length; i++){
+    merageArray.push(arr1[i]); 
+  }
+
+    for(let i = 0; i < arr2.length; i++){
+    merageArray.push(arr2[i]); 
+  }
+   
+  return merageArray;
+}
+
+      // Example usage:
+      let array1 = [1, 2, 3];
+      let array2 = [4, 5, 6];
+
+      let result87 = mergeArrays(array1, array2);
+      console.log(result87); // Output: [1, 2, 3, 4, 5, 6]
+ </script>
+ </body>
+</html>

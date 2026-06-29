@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Popover</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        /* overflow: hidden; */
+      }
+      body {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .Popover-container {
+        width: 500px;
+        border: 1px solid #eeeeee;
+        border-radius: 8px;
+        padding: 10px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      }
+      .popover-element {
+        position: relative;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      .popover-card {
+        width: 250px;
+        border: 1px solid #ffffff;
+        background-color: purple;
+        color: #ffffff;
+        border-radius: 8px;
+        padding: 5px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        position: absolute;
+        top: 10px;
+        left: -100px;
+        z-index: 9;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.5s;
+      }
+      .popover-card:before {
+        position: absolute;
+        content: "";
+        width: 25px;
+        height: 25px;
+        background: purple;
+        top: -5px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        transform: rotate(45deg);
+        z-index: -1;
+      }
+      .popover-card img {
+        width: 100%;
+        object-fit: cover;
+        overflow: hidden;
+      }
+
+      .popover-element:hover .popover-card {
+        visibility: visible;
+        opacity: 1;
+        transform: translate3d(0, 20px, 0);
+        z-index: 1;
+        transition: 0.5s;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="Popover-container">
+      <p>
+        Lorem Ipsum is simply dummy text of the
+        <span class="popover-element"
+          >printing
+          <span class="popover-card">
+            <img src="./images/printing.jpeg" />
+            <span class="title"
+              >Lorem Ipsum is simply dummy text of the and typesetting industry.
+              Lorem Ipsum has been the industry's standard dummy text ever since
+              the 1500s, when an unknown printer took.</span
+            >
+          </span>
+        </span>
+        and typesetting industry. Lorem Ipsum has been the industry's standard
+        dummy text ever since the 1500s, when an unknown printer took a
+        <span class="popover-element">galley <span class="popover-card">
+            <img src="./images/gallery.jpeg" />
+            <span class="title"
+              >Lorem Ipsum is simply dummy text of the and typesetting industry.
+              Lorem Ipsum has been the industry's standard dummy text ever since
+              the 1500s, when an unknown printer took.</span
+            >
+          </span></span> of type and scrambled it to
+        make a type specimen book.
+      </p>
+    </div>
+  </body>
+</html>

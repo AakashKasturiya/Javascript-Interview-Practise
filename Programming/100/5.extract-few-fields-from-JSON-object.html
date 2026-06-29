@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>How can you extract a few fields from the given JSON object and form a new array?</h1>
+    <p>To extract specific fields from a given JSON object and form a new array in JavaScript,
+        you can use the map() function to iterate over an array of objects (if the JSON object is an array), or directly
+        access properties if you're working with a single object.
+        Below is a simple example:</p>
+
+    <h3>Example 1: When JSON is an array of objects</h3>
+    <pre>
+        <code>
+        const jsonArray = [
+  { "id": 1, "name": "John", "age": 30, "city": "New York" },
+  { "id": 2, "name": "Jane", "age": 25, "city": "London" },
+  { "id": 3, "name": "Sam", "age": 35, "city": "Sydney" }
+];
+const newArray = jsonArray.map(person => {
+    return {
+      id: person.id,
+      name: person.name
+    };
+  });
+  
+  console.log(newArray);
+</code>
+    </pre>
+    <script>
+        const jsonArray = [
+            { "id": 1, "name": "John", "age": 30, "city": "New York" },
+            { "id": 2, "name": "Jane", "age": 25, "city": "London" },
+            { "id": 3, "name": "Sam", "age": 35, "city": "Sydney" }
+        ];
+
+        const newArray = jsonArray.map((person,index)=>({
+            id:person.id,
+            person:person.name
+        }))
+
+        console.log(newArray)
+    </script>
+</body>
+
+</html>

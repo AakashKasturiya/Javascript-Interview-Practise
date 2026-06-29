@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Depth First Search Traversal</title>
+</head>
+
+<body>
+    <h1>Depth First Search Traversal</h1>
+    <script>
+        // Node class to represent each node in the tree
+        class Node {
+            constructor(data) {
+                this.data = data;
+                this.left = null;
+                this.right = null;
+            }
+        }
+
+        // Binary Search Tree class
+        class BinarySearchTree {
+            constructor() {
+                this.root = null;
+            }
+
+            // Insert method to add nodes to the tree
+            insert(data) {
+                const newNode = new Node(data);
+                if (!this.root) {
+                    this.root = newNode;
+                } else {
+                    this.insertNode(this.root, newNode);
+                }
+            }
+
+            // Helper method to insert nodes in the correct position
+            insertNode(node, newNode) {
+                if (newNode.data < node.data) {
+                    if (!node.left) {
+                        node.left = newNode;
+                    } else {
+                        this.insertNode(node.left, newNode);
+                    }
+                } else {
+                    if (!node.right) {
+                        node.right = newNode;
+                    } else {
+                        this.insertNode(node.right, newNode);
+                    }
+                }
+            }
+
+            // Pre-order DFS Traversal (Root → Left → Right)
+            preOrderTraversal(node = this.root) {
+                if (node) {
+                    console.log(node.data); // Visit node
+                    this.preOrderTraversal(node.left); // Traverse left
+                    this.preOrderTraversal(node.right); // Traverse right
+                }
+            }
+
+            // In-order DFS Traversal (Left → Root → Right)
+            inOrderTraversal(node = this.root) {
+                if (node) {
+                    this.inOrderTraversal(node.left); // Traverse left
+                    console.log(node.data); // Visit node
+                    this.inOrderTraversal(node.right); // Traverse right
+                }
+            }
+
+            // Post-order DFS Traversal (Left → Right → Root)
+            postOrderTraversal(node = this.root) {
+                if (node) {
+                    this.postOrderTraversal(node.left); // Traverse left
+                    this.postOrderTraversal(node.right); // Traverse right
+                    console.log(node.data); // Visit node
+                }
+            }
+        }
+
+        // Example Usage
+        const bst = new BinarySearchTree();
+        bst.insert(10);
+        bst.insert(5);
+        bst.insert(20);
+        bst.insert(8);
+
+        // Pre-order Traversal
+        console.log("Pre-order Traversal:");
+        bst.preOrderTraversal();  // Output: 10, 5, 8, 20
+
+        // In-order Traversal
+        console.log("In-order Traversal:");
+        bst.inOrderTraversal();   // Output: 5, 8, 10, 20
+
+        // Post-order Traversal
+        console.log("Post-order Traversal:");
+        bst.postOrderTraversal(); // Output: 8, 5, 20, 10
+
+    </script>
+</body>
+
+</html>

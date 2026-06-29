@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Carousel</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f1f1f1;
+      }
+
+      .carousel-container {
+        position: relative;
+        width: 80%;
+        max-width: 990px;
+        overflow: hidden;
+      }
+
+      .carousel {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .carousel img {
+        width: 33.33%; /* Adjust width to account for the gap */
+        height: 330px;
+        display: block;
+      }
+
+      button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 18px;
+      }
+
+      .prev {
+        left: 0;
+      }
+
+      .next {
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="carousel-container">
+      <div class="carousel">
+        <img src="./images/carousel/img-1.jpg" alt="Image 1" />
+        <img src="./images/carousel/img-2.jpg" alt="Image 2" />
+        <img src="./images/carousel/img-3.jpg" alt="Image 3" />
+        <img src="./images/carousel/img-4.jpg" alt="Image 4" />
+        <img src="./images/carousel/img-5.jpg" alt="Image 5" />
+        <img src="./images/carousel/img-6.jpg" alt="Image 6" />
+      </div>
+      <button class="prev">&#10094;</button>
+      <button class="next">&#10095;</button>
+    </div>
+
+    <script>
+      // Get the elements we need
+      const carousel = document.querySelector('.carousel');
+      const prevButton = document.querySelector('.prev');
+      const nextButton = document.querySelector('.next');
+
+      const totalImages = document.querySelectorAll('.carousel img').length;
+
+      let currentIndex = 0;
+
+      // Number of images to show at a time
+      const imagesToShow = 3;
+
+      // Function to update the carousel
+      function updateCarousel() {
+        // Calculate the offset based on current index
+        const offset = -currentIndex * (100 / imagesToShow);
+        carousel.style.transform = `translateX(${offset}%)`;
+
+        // Enable/Disable buttons based on current index
+        if (currentIndex === 0) {
+          prevButton.disabled = true;
+        } else {
+          prevButton.disabled = false;
+        }
+
+        if (currentIndex >= totalImages - imagesToShow) {
+          nextButton.disabled = true;
+        } else {
+          nextButton.disabled = false;
+        }
+      }
+
+      // Function to go to the next set of images
+      function goToNext() {
+        if (currentIndex < totalImages - imagesToShow) {
+          currentIndex++;
+          updateCarousel();
+        }
+      }
+
+      // Function to go to the previous set of images
+      function goToPrev() {
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateCarousel();
+        }
+      }
+
+      // Event listeners for the buttons
+      nextButton.addEventListener('click', goToNext);
+      prevButton.addEventListener('click', goToPrev);
+
+      // Initialize carousel
+      updateCarousel();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>How can we parse a given JSON object?</h1>
+    <p>In JavaScript, parsing a JSON object generally refers to converting a JSON string into a JavaScript object. This
+        is done using the built-in JSON.parse() method.</p>
+
+    <h3>The JSON.parse() Method</h3>
+    <p>JSON.parse() takes a JSON string as input and returns the corresponding JavaScript object.</p>
+    <pre>
+        <code>
+            JSON.parse(jsonString);
+        </code>
+    </pre>
+    <h3>Example 1: Parsing a JSON String into a JavaScript Object</h3>
+    <pre>
+        <code>
+            // A JSON string
+            const jsonString = '{"name": "John", "age": 30, "city": "New York"}';
+            
+            // Parsing the JSON string into a JavaScript object
+            const obj = JSON.parse(jsonString);
+            
+            console.log(obj); // { name: "John", age: 30, city: "New York" }
+            console.log(obj.name); // "John"
+            console.log(obj.age); // 30
+            
+              
+        </code>
+    </pre>
+
+    <hr>
+    <h3>Example 2: Parsing a JSON Array</h3>
+
+    <pre>
+        <code>
+            // A JSON array string
+            const jsonArrayString = '[{"name": "John", "age": 30}, {"name": "Jane", "age": 25}]';
+            
+            // Parsing the JSON string into a JavaScript array
+            const arr = JSON.parse(jsonArrayString);
+            
+            console.log(arr); 
+            // [{ name: "John", age: 30 }, { name: "Jane", age: 25 }]
+            console.log(arr[0].name); // "John"
+                    
+        </code>
+    </pre>
+
+    <hr>
+
+    <h3>Example 3: Parsing JSON with a Reviver Function</h3>
+    <p>You can optionally provide a reviver function as a second argument to JSON.parse(). The reviver function allows
+        you to modify or transform the parsed data before it is returned.</p>
+    <pre>
+        <code>
+            const jsonString = '{"name": "John", "age": 30, "birthYear": "1991"}';
+
+            // Parsing with a reviver to modify the data
+            const obj = JSON.parse(jsonString, (key, value) => {
+              if (key === 'birthYear') {
+                return new Date().getFullYear() - value;  // Calculate age based on birth year
+              }
+              return value;
+            });
+            
+            console.log(obj); // { name: "John", age: 30, birthYear: 34 }
+            
+              
+        </code>
+    </pre>
+
+    <script>
+        /*Example 1: Parsing a JSON String into a JavaScript Object*/
+        // A JSON string
+        const jsonString = '{"name": "John", "age": 30, "city": "New York"}';
+
+        // Parsing the JSON string into a JavaScript object
+        const obj = JSON.parse(jsonString);
+
+        console.log(obj); // { name: "John", age: 30, city: "New York" }
+        console.log(obj.name); // "John"
+        console.log(obj.age); // 30
+
+
+
+        /*Example 2: Parsing a JSON Array*/
+        // A JSON array string
+        const jsonArrayString = '[{"name": "John", "age": 30}, {"name": "Jane", "age": 25}]';
+
+        // Parsing the JSON string into a JavaScript array
+        const arr = JSON.parse(jsonArrayString);
+
+        console.log(arr);
+        // [{ name: "John", age: 30 }, { name: "Jane", age: 25 }]
+        console.log(arr[0].name); // "John"
+
+
+        /*Example 3: Parsing JSON with a Reviver Function*/
+        const jsonString1 = '{"name": "John", "age": 30, "birthYear": "1991"}';
+
+        // Parsing with a reviver to modify the data
+        const obj1 = JSON.parse(jsonString1, (key, value) => {
+            if (key === 'birthYear') {
+                return new Date().getFullYear() - value;  // Calculate age based on birth year
+            }
+            return value;
+        });
+
+        console.log(obj1); // { name: "John", age: 30, birthYear: 34 }
+
+    </script>
+</body>
+</html>

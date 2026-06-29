@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Remove Node Linked List method</title>
+    <style>
+      pre {
+        font-family: monospace;
+        font-size: 14px;
+        background-color: rgb(241 241 241);
+        border: 2px solid #ececec;
+        text-align: left;
+        cursor: text;
+        padding: 10px 20px;
+        width: 80%;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        border-radius: 8px;
+      }
+      section.main-content {
+        padding: 10px 70px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="main-content">
+      <h1>Remove Node Linked List method</h1>
+      <p>
+        let's implement the <strong>remove</strong> method for the linked list.
+        This method will allow us to remove a node based on its value from the
+        linked list.
+      </p>
+      <h3>Steps to Remove a Node:</h3>
+      <ul type="number">
+        <li>
+          Check if the list is empty: If the list is empty, there’s nothing to
+          remove.
+        </li>
+        <li>
+          Find the node to remove:
+          <ul>
+            <li>
+              If the node to remove is the head (the first node), we just need
+              to update the head to the next node.
+            </li>
+            <li>
+              If the node is not the head, we need to traverse the list and find
+              the node just before the one we want to remove. Once we find it,
+              we update the next reference of the previous node to skip the node
+              we want to remove.
+            </li>
+          </ul>
+        </li>
+        <li>
+          Edge cases:
+          <ul>
+            <li>Removing a node that doesn't exist in the list.</li>
+            <li>Removing the last node.</li>
+          </ul>
+        </li>
+      </ul>
+      <h3>Code with the remove Method:</h3>
+      <pre>
+        <code>
+            class Node {
+                constructor(data) {
+                  this.data = data; // Store the data
+                  this.next = null; // Reference to the next node (initially null)
+                }
+              }
+              
+              class LinkedList {
+                constructor() {
+                  this.head = null; // The head (first node) of the list is initially null
+                }
+              
+                // Method to add a node at the end of the list
+                append(data) {
+                  const newNode = new Node(data); // Create a new node with the given data
+              
+                  // If the list is empty, make the new node the head of the list
+                  if (this.head === null) {
+                    this.head = newNode;
+                  } else {
+                    let current = this.head;
+                    // Traverse to the last node
+                    while (current.next !== null) {
+                      current = current.next;
+                    }
+                    // Make the last node's next reference point to the new node
+                    current.next = newNode;
+                  }
+                }
+              
+                // Method to remove a node by its value
+                remove(value) {
+                  if (this.head === null) {
+                    console.log("The list is empty.");
+                    return;
+                  }
+              
+                  // If the node to be removed is the head node
+                  if (this.head.data === value) {
+                    this.head = this.head.next; // Move the head to the next node
+                    console.log(`Node with value ${value} removed.`);
+                    return;
+                  }
+              
+                  let current = this.head;
+                  let previous = null;
+              
+                  // Traverse the list to find the node to remove
+                  while (current !== null && current.data !== value) {
+                    previous = current;  // Keep track of the previous node
+                    current = current.next; // Move to the next node
+                  }
+              
+                  // If we reach the end of the list without finding the value
+                  if (current === null) {
+                    console.log(`Node with value ${value} not found.`);
+                    return;
+                  }
+              
+                  // Remove the node by skipping it
+                  previous.next = current.next;
+                  console.log(`Node with value ${value} removed.`);
+                }
+              
+                // Method to traverse (display) the entire linked list
+                traverse() {
+                  let current = this.head;
+              
+                  if (current === null) {
+                    console.log("The list is empty.");
+                    return;
+                  }
+              
+                  while (current !== null) {
+                    console.log(current.data);
+                    current = current.next;
+                  }
+                }
+              }
+              
+        </code>
+    </pre>
+
+      <h3>Explanation of the remove Method:</h3>
+      <ul>
+        <li>
+          1. Check if the list is empty:
+          <pre>
+                <code>
+                    if (this.head === null) {
+                        console.log("The list is empty.");
+                        return;
+                      }
+                      
+                </code>
+            </pre>
+          If the list is empty, we simply log a message and return because
+          there’s nothing to remove.
+        </li>
+        <li>
+          Removing the head node:
+          <pre>
+                <code>
+                    if (this.head.data === value) {
+                        this.head = this.head.next; // Update the head to the next node
+                        console.log(`Node with value ${value} removed.`);
+                        return;
+                      }
+                      
+                </code>
+            </pre>
+          If the node to be removed is the head node, we update the head to
+          point to the next node in the list.
+        </li>
+        <li>
+          Traverse to find the node:
+          <pre>
+                <code>
+                    let current = this.head;
+                    let previous = null;
+                    
+                    while (current !== null && current.data !== value) {
+                      previous = current;  // Keep track of the previous node
+                      current = current.next; // Move to the next node
+                    }
+
+                </code>
+            </pre>
+          We start at the head and move through the list, keeping track of the
+          previous node. If we find the node with the specified value, we can
+          remove it.
+        </li>
+
+        <li>
+          If the node is found, remove it:
+          <pre>
+                <code>
+                    if (current === null) {
+                        console.log(`Node with value ${value} not found.`);
+                        return;
+                      }
+                      
+                      previous.next = current.next; // Skip the current node to remove it
+                      
+                </code>
+            </pre>
+          If the node is found, we update the next reference of the previous
+          node to point to the node after the one we want to remove. This
+          effectively removes the node from the list.
+        </li>
+      </ul>
+      <h3>Example Usage:</h3>
+      <pre>
+         <code>
+            const list = new LinkedList();
+
+            // Append nodes
+            list.append(10);
+            list.append(20);
+            list.append(30);
+            list.append(40);
+            
+            // Traverse and print the list before removal
+            console.log("Before removal:");
+            list.traverse();
+            
+            // Remove a node
+            list.remove(20); // Remove node with value 20
+            
+            // Traverse and print the list after removal
+            console.log("After removal:");
+            list.traverse();
+            
+            // Attempt to remove a node that doesn't exist
+            list.remove(50);
+            
+         </code>
+      </pre>
+
+      <h3>Output</h3>
+      <pre>
+         <code>
+            Before removal:
+            10
+            20
+            30
+            40
+            Node with value 20 removed.
+            After removal:
+            10
+            30
+            40
+            Node with value 50 not found.
+            
+
+         </code>
+      </pre>
+      <h3>Key Points:</h3>
+      <p>
+        <strong>Removing the head:</strong>If the node to be removed is the
+        head, we just update the head pointer to the next node.
+      </p>
+      <p>
+        <strong>Removing other nodes:</strong> If the node to be removed is the
+        head, we just update the head pointer to the next node.
+      </p>
+      <p>
+        <strong>Edge cases: </strong>We handle scenarios where the node isn't
+        found or the list is empty.
+      </p>
+    </section>
+    <script>
+      class Node {
+        constructor(data) {
+          this.data = data; // Store the data
+          this.next = null; // Reference to the next node (initially null)
+        }
+      }
+
+      class LinkedList {
+        constructor() {
+          this.head = null; // The head (first node) of the list is initially null
+        }
+
+        // Method to add a node at the end of the list
+        append(data) {
+          const newNode = new Node(data); // Create a new node with the given data
+
+          // If the list is empty, make the new node the head of the list
+          if (this.head === null) {
+            this.head = newNode;
+          } else {
+            let current = this.head;
+            // Traverse to the last node
+            while (current.next !== null) {
+              current = current.next;
+            }
+            // Make the last node's next reference point to the new node
+            current.next = newNode;
+          }
+        }
+
+        // Method to remove a node by its value
+        remove(value) {
+          if (this.head === null) {
+            console.log("The list is empty.");
+            return;
+          }
+
+          // If the node to be removed is the head node
+          if (this.head.data === value) {
+            this.head = this.head.next; // Move the head to the next node
+            console.log(`Node with value ${value} removed.`);
+            return;
+          }
+
+          let current = this.head;
+          let previous = null;
+
+          // Traverse the list to find the node to remove
+          while (current !== null && current.data !== value) {
+            previous = current; // Keep track of the previous node
+            current = current.next; // Move to the next node
+          }
+
+          // If we reach the end of the list without finding the value
+          if (current === null) {
+            console.log(`Node with value ${value} not found.`);
+            return;
+          }
+
+          // Remove the node by skipping it
+          previous.next = current.next;
+          console.log(`Node with value ${value} removed.`);
+        }
+
+        // Method to traverse (display) the entire linked list
+        traverse() {
+          let current = this.head;
+
+          if (current === null) {
+            console.log("The list is empty.");
+            return;
+          }
+
+          while (current !== null) {
+            console.log(current.data);
+            current = current.next;
+          }
+        }
+      }
+      const list = new LinkedList();
+
+      // Append nodes
+      list.append(10);
+      list.append(20);
+      list.append(30);
+      list.append(40);
+
+      // Traverse and print the list before removal
+      console.log("Before removal:");
+      list.traverse();
+
+      // Remove a node
+      list.remove(20); // Remove node with value 20
+
+      // Traverse and print the list after removal
+      console.log("After removal:");
+      list.traverse();
+
+      // Attempt to remove a node that doesn't exist
+      list.remove(50);
+    </script>
+  </body>
+</html>

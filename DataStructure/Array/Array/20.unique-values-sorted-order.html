@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>How to find unique values from an Array in sorted order?</h1>
+    <h3>✅ Method: Using Set and sort()</h3>
+    <pre>
+        <code>
+            const numbers = [5, 3, 2, 2, 4, 1, 5, 3];
+            const uniqueSortedNumbers = [...new Set(numbers)].sort((a, b) => a - b);
+            console.log(uniqueSortedNumbers); // [1, 2, 3, 4, 5]
+        </code>
+    </pre>
+
+    <h3>🔄 For Descending Order:</h3>
+    <pre>
+        <code>
+            const numbers = [5, 3, 2, 2, 4, 1, 5, 3];
+            const uniqueSortedNumbers = [...new Set(numbers)].sort((a, b) => b - a);
+            console.log(uniqueSortedNumbers); // [1, 2, 3, 4, 5]
+        </code>
+    </pre>
+    <script>
+        /* ✅ Method: Using Set and sort() */
+        const numbers = [5, 3, 2, 2, 4, 1, 5, 3];
+        const uniqueSortedNumbers = [...new Set(numbers)].sort((a, b) => a - b);
+        console.log(uniqueSortedNumbers); // [1, 2, 3, 4, 5]
+
+
+        /*🔄 For Descending Order:*/
+        const numbers1 = [5, 3, 2, 2, 4, 1, 5, 3];
+        const uniqueSortedNumbers1 = [...new Set(numbers1)].sort((a, b) => b - a);
+        console.log(uniqueSortedNumbers1); // [1, 2, 3, 4, 5]
+    </script>
+</body>
+</html>

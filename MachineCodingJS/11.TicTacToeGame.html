@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Tac Toe Game</title>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        background-color: #dd33dd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+      }
+
+      section.game__blk {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .player {
+        font-size: 32px;
+        text-align: center;
+        font-weight: 600;
+      }
+
+      .currentPlayer {
+        font-size: 24px;
+        text-align: center;
+        color: #fff;
+        font-weight: 600;
+      }
+
+      .col {
+        padding: 16px 34px;
+        font-size: 32px;
+        font-weight: bold;
+        color: #fff;
+        border: 1px solid #fff;
+        cursor: pointer;
+        height: 40px;
+        width: 40px;
+      }
+
+      button {
+        border: 0;
+        padding: 18px 24px;
+        border-radius: 8px;
+        background-color: #000;
+        color: #fff;
+        font-size: 21px;
+        cursor: pointer;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="game__blk">
+      <div class="currentPlayer">❌ 's Player Turn</div>
+      <div class="player"></div>
+      <div class="game-layout">
+        <div class="row">
+          <div class="col" id="0" onclick="handlerClick(this);"></div>
+          <div class="col" id="1" onclick="handlerClick(this);"></div>
+          <div class="col" id="2" onclick="handlerClick(this);"></div>
+        </div>
+        <div class="row">
+          <div class="col" id="3" onclick="handlerClick(this);"></div>
+          <div class="col" id="4" onclick="handlerClick(this);"></div>
+          <div class="col" id="5" onclick="handlerClick(this);"></div>
+        </div>
+        <div class="row">
+          <div class="col" id="6" onclick="handlerClick(this);"></div>
+          <div class="col" id="7" onclick="handlerClick(this);"></div>
+          <div class="col" id="8" onclick="handlerClick(this);"></div>
+        </div>
+      </div>
+      <button type="button" onclick="restartGame()">Restart Game</button>
+    </section>
+
+    <script>
+      let player = "❌";
+      let arrGrid = new Array(9).fill(null);
+
+      // Refactor checkWinner function
+      function checkWinner() {
+        const winPatterns = [
+          [0, 1, 2],
+          [3, 4, 5],
+          [6, 7, 8], // horizontal wins
+          [0, 3, 6],
+          [1, 4, 7],
+          [2, 5, 8], // vertical wins
+          [0, 4, 8],
+          [2, 4, 6], // diagonal wins
+        ];
+
+        for (let pattern of winPatterns) {
+          const [a, b, c] = pattern;
+          if (
+            arrGrid[a] !== null &&
+            arrGrid[a] === arrGrid[b] &&
+            arrGrid[b] === arrGrid[c]
+          ) {
+            document.querySelector(".currentPlayer").style.display = "none";
+            document.querySelector(
+              ".player"
+            ).innerHTML = `${player} is winner 🎉 🎉`;
+            return true;
+          }
+        }
+        return false;
+      }
+
+      function handlerClick(e) {
+        let id = e.id;
+        if (arrGrid[id] !== null) return; // Prevent overwrite if already clicked
+
+        arrGrid[id] = player;
+        e.innerText = player;
+
+        if (!checkWinner()) {
+          player = player === "❌" ? "🇴" : "❌";
+          document.querySelector(
+            ".currentPlayer"
+          ).innerHTML = `${player} 's Player Turn`;
+        }
+      }
+
+      // Restart the game
+      function restartGame() {
+        arrGrid.fill(null); // Reset the grid array
+        player = "❌"; // Reset to starting player
+
+        // Clear the board visually
+        const cols = document.querySelectorAll(".col");
+        cols.forEach((col) => {
+          col.innerText = ""; // Clear the text
+          col.style.backgroundColor = ""; // Reset background color if you want
+        });
+
+        // Reset player turn display
+        document.querySelector(".currentPlayer").style.display = "block";
+        document.querySelector(
+          ".currentPlayer"
+        ).innerHTML = `${player} 's Player Turn`;
+        document.querySelector(".player").innerHTML = ""; // Clear winner message
+      }
+
+    </script>
+  </body>
+</html>

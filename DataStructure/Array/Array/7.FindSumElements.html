@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to find the sum of all elements in array in Javascript</title>
+</head>
+
+<body>
+    <h1>How to find the sum of all elements in array in Javascript</h1>
+    <pre>Explanation:
+
+        Accumulator: The first argument in the reduce() function, which keeps the running total.
+    
+        currentValue: The current element being processed in the array.
+    
+        Initial Value: 0 is passed</pre>
+    <script>
+        const myArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        const totalNumberofSum = myArray.reduce((accumulator, currentValue) => {
+            return accumulator + currentValue;
+        }, 0);
+
+        console.log(totalNumberofSum); // Output: 55
+
+    </script>
+</body>
+
+</html>

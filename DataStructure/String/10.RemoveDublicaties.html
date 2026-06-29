@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Duplicates</title>
+</head>
+<body>
+    <h1>Remove Duplicates from a String</h1>
+    <script>
+        /* Remove Duplicates from a String */
+
+        const removeDuplicates = (str)=>{
+
+            let result = "";
+            let seen = {};
+
+            for(let char of str){
+               if(!seen[char]){
+                result += char;
+                seen[char] = true;
+               }
+            }
+            return result;
+        }
+
+
+        let string = "Aakash Kasturiya";
+
+        console.log(removeDuplicates(string));
+    </script>
+</body>
+</html>

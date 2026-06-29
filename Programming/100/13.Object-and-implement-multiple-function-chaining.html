@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>How to write an Object and implement multiple function chaining?</h1>
+    <p>To write an object in JavaScript and implement multiple function chaining, you typically need to structure the
+        methods in a way that each method returns the object itself (this). This allows you to call multiple methods on
+        the same object in a chain without needing to re-reference the object each time.
+
+    </p>
+
+    <h3>Key Concept:</h3>
+    <p>Method Chaining works by having each method return this, which refers to the current instance of the object. This
+        way, you can call another method on the same object in a single line.</p>
+
+    <h3>Example: Object with Method Chaining</h3>
+    <p>Here’s how you can implement an object with multiple functions that can be chained together:</p>
+    <pre>
+        <code>
+            // Define an object with methods that return 'this' for chaining
+            const person = {
+              name: '',
+              age: 0,
+            
+              setName(name) {
+                this.name = name;
+                return this;  // Returning the object itself to allow chaining
+              },
+            
+              setAge(age) {
+                this.age = age;
+                return this;  // Returning the object itself for chaining
+              },
+            
+              greet() {
+                    console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+                    return this;  // Allow chaining after greet method
+                },
+                
+                updateProfile(name, age) {
+                    this.setName(name).setAge(age);  // Calling setName and setAge in a chain
+                    return this;  // Allow further chaining
+                }
+                };
+                
+                // Example of function chaining
+                person
+                .setName('John')
+                .setAge(30)
+                .greet()      // Output: Hello, my name is John and I am 30 years old.
+                .updateProfile('Alice', 25)
+                .greet();     // Output: Hello, my name is Alice and I am 25 years old.
+            
+              
+        </code>
+    </pre>
+    <h3>Explanation:</h3>
+    <p><strong>Object Definition: </strong>The person object has properties name and age, and methods like setName(), setAge(), and greet().</p>
+    <p><strong>Chaining: </strong>Each method that modifies the object (e.g., setName, setAge, updateProfile) returns this, which refers to the current instance of the person object.</p>
+    <p><strong>Calling Methods in Sequence:</strong> By returning this, you can call multiple methods in a single statement, creating a chain of method calls (e.g., .setName().setAge().greet()).</p>
+    
+    <hr>
+ 
+
+    <script>
+        /*Example: Object with Method Chaining*/
+        // Define an object with methods that return 'this' for chaining
+        const person = {
+            name: '',
+            age: 0,
+
+            setName(name) {
+                this.name = name;
+                return this;  // Returning the object itself to allow chaining
+            },
+
+            setAge(age) {
+                this.age = age;
+                return this;  // Returning the object itself for chaining
+            },
+
+            greet() {
+                console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+                return this;  // Allow chaining after greet method
+            },
+
+            updateProfile(name, age) {
+                this.setName(name).setAge(age);  // Calling setName and setAge in a chain
+                return this;  // Allow further chaining
+            }
+        };
+
+        // Example of function chaining
+        person.setName('John')
+            .setAge(30)
+            .greet()      // Output: Hello, my name is John and I am 30 years old.
+            .updateProfile('Alice', 25)
+            .greet();     // Output: Hello, my name is Alice and I am 25 years old.
+
+    </script>
+</body>
+
+</html>

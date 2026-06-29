@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Filter the given object based on certain conditions and return the corresponding object?</h1>
+<script>
+    const people = [
+  { id: 1, name: "John", age: 30, city: "New York" },
+  { id: 2, name: "Jane", age: 25, city: "London" },
+  { id: 3, name: "Sam", age: 35, city: "Sydney" },
+  { id: 4, name: "Alice", age: 28, city: "Paris" }
+];
+
+const filteredPeople = people.filter((person)=> person.age > 30)
+
+console.log(filteredPeople)
+</script>
+</body>
+</html>

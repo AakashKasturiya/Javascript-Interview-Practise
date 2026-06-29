@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Matrices Addition</title>
+  </head>
+  <body>
+    <h3>Matrices Addition</h3>
+    <script>
+      function addMatrices(matrixA, matrixB) {
+        // Check if matrices have the same dimensions
+        if (
+          matrixA.length !== matrixB.length ||
+          matrixA[0].length !== matrixB[0].length
+        ) {
+          throw new Error("Matrices must have the same dimensions");
+        }
+
+        // Create a result matrix with the same dimensions
+        let result = [];
+
+        // Loop through each element to perform addition
+        for (let i = 0; i < matrixA.length; i++) {
+          let row = []; // This will hold the elements of a row of the result matrix
+          for (let j = 0; j < matrixA[i].length; j++) {
+            row.push(matrixA[i][j] + matrixB[i][j]); // Add corresponding elements
+          }
+          result.push(row); // Add the row to the result matrix
+        }
+
+        return result;
+      }
+
+      // Example matrices
+      let matrixA = [
+        [1, 2],
+        [3, 4],
+      ];
+
+      let matrixB = [
+        [5, 6],
+        [7, 8],
+      ];
+
+      // Add matrices
+      let result = addMatrices(matrixA, matrixB);
+
+      // Output the result
+      console.log(result);
+    </script>
+  </body>
+</html>

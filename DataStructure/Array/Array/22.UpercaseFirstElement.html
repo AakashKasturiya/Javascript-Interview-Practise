@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>How can you uppercase the first character in a string array?</h1>
+    <p>To uppercase the first character of each string in an array,
+        you can use the map() function along with charAt(0).toUpperCase() 
+        to target the first character of each string, then concatenate it with the rest of the string (from the second character onward).</p>
+   <pre>
+       <code>
+        const words = ["hello", "world", "javascript", "array"];    
+        // Uppercase the first character of each string
+        const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+        
+        console.log(capitalizedWords); // Output: ["Hello", "World", "Javascript", "Array"]
+
+       </code>
+   </pre>
+   <script>
+        const words = ["hello", "world", "javascript", "array"];    
+        // Uppercase the first character of each string
+        const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+        
+        console.log(capitalizedWords); // Output: ["Hello", "World", "Javascript", "Array"]
+   </script>
+</body>
+</html>

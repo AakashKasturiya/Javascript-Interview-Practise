@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Checking for anagrams</title>
+  </head>
+  <body>
+    <h3>Checking for anagrams</h3>
+    <script>
+      /*build-in Methods*/
+
+      function areAnagrams(str1, str2) {
+        // Normalize case and remove spaces
+        str1 = str1.replace(/\s+/g, "").toLowerCase();
+        str2 = str2.replace(/\s+/g, "").toLowerCase();
+
+        // If lengths are different, they are not anagrams
+        if (str1.length !== str2.length) {
+          return false;
+        }
+
+        // Sort the characters of both strings and compare
+        const sortedStr1 = str1.split("").sort().join("");
+        const sortedStr2 = str2.split("").sort().join("");
+
+        return sortedStr1 === sortedStr2;
+      }
+
+      // Example usage:
+      const string1 = "Listen";
+      const string2 = "Silent";
+
+      if (areAnagrams(string1, string2)) {
+        console.log(`${string1} and ${string2} are anagrams.`);
+      } else {
+        console.log(`${string1} and ${string2} are not anagrams.`);
+      }
+
+      /*Manually Program */
+      function areAnagrams(str1, str2) {
+        // If lengths are different, return false immediately
+        if (str1.length !== str2.length) {
+          return false;
+        }
+
+        // Create a character count object for str1
+        let charCount = {};
+
+        // Count the frequency of characters in str1
+        for (let char of str1) {
+          charCount[char] = (charCount[char] || 0) + 1;
+        }
+
+        // Decrease the character count for each character in str2
+        for (let char of str2) {
+          if (!charCount[char]) {
+            return false; // If the character is not in str1 or frequency is less, return false
+          }
+          charCount[char]--;
+        }
+
+        // If we went through both strings, it's an anagram
+        return true;
+      }
+
+      // Example usage
+      console.log(areAnagrams("listen", "silent")); // true
+      console.log(areAnagrams("hello", "world")); // false
+
+      // Example usage:
+      const string11 = "Listen";
+      const string22 = "Silent";
+
+      if (areAnagrams(string11, string22)) {
+        console.log(`${string11} and ${string22} are anagrams.`);
+      } else {
+        console.log(`${string11} and ${string22} are not anagrams.`);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Find the Middle Element</title>
+    <style>
+      pre {
+        font-family: monospace;
+        font-size: 14px;
+        background-color: rgb(241 241 241);
+        border: 2px solid #ececec;
+        text-align: left;
+        cursor: text;
+        padding: 10px 20px;
+        width: 80%;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        border-radius: 8px;
+      }
+      section.main-content {
+        padding: 10px 70px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="main-content">
+    <p>
+      To find the middle element of a linked list in JavaScript, you can use the
+      two-pointer approach. In this method, you use two pointers:
+    </p>
+    <ul>
+      <li>One pointer (slow) moves one step at a time.</li>
+      <li>The other pointer (fast) moves two steps at a time.</li>
+    </ul>
+
+    <p>
+      When the fast pointer reaches the end of the list, the slow pointer will
+      be at the middle of the list.
+    </p>
+
+    <p>Here’s how you can implement this:</p>
+
+    <h3>JavaScript Code to Find the Middle Element of a Linked List:</h3>
+    <pre>
+        <code>
+            // Define a Node class to represent each node in the linked list
+            class Node {
+              constructor(value) {
+                this.value = value;
+                this.next = null; // Points to the next node
+              }
+            }
+      
+            // Define a LinkedList class
+            class LinkedList {
+              constructor() {
+                this.head = null; // The head node of the linked list
+              }
+      
+              // Function to add a node at the end of the list
+              append(value) {
+                const newNode = new Node(value);
+                if (this.head === null) {
+                  this.head = newNode;
+                  return;
+                }
+      
+                let current = this.head;
+                while (current.next) {
+                  current = current.next;
+                }
+                current.next = newNode;
+              }
+      
+              // Function to display the linked list
+              display() {
+                let current = this.head;
+                let result = "";
+                while (current) {
+                  result += current.value + " -> ";
+                  current = current.next;
+                }
+                result += "null";
+                console.log(result);
+              }
+      
+              // Function to find the middle element of the linked list
+              findMiddle() {
+                let slow = this.head;
+                let fast = this.head;
+      
+                // Traverse the list with fast moving 2 steps and slow moving 1 step
+                while (fast !== null && fast.next !== null) {
+                  slow = slow.next; // Move slow by 1 step
+                  fast = fast.next.next; // Move fast by 2 steps
+                }
+      
+                return slow ? slow.value : null; // Return the value of the middle node
+              }
+            }
+      
+            // Example usage
+            const list = new LinkedList();
+            list.append(1);
+            list.append(2);
+            list.append(3);
+            list.append(4);
+            list.append(5);
+      
+            console.log("Original list:");
+            list.display();
+      
+            const middle = list.findMiddle();
+            console.log("Middle element:", middle);
+        </code>
+    </pre>
+  </section>
+    <script>
+      // Define a Node class to represent each node in the linked list
+      class Node {
+        constructor(value) {
+          this.value = value;
+          this.next = null; // Points to the next node
+        }
+      }
+
+      // Define a LinkedList class
+      class LinkedList {
+        constructor() {
+          this.head = null; // The head node of the linked list
+        }
+
+        // Function to add a node at the end of the list
+        append(value) {
+          const newNode = new Node(value);
+          if (this.head === null) {
+            this.head = newNode;
+            return;
+          }
+
+          let current = this.head;
+          while (current.next) {
+            current = current.next;
+          }
+          current.next = newNode;
+        }
+
+        // Function to display the linked list
+        display() {
+          let current = this.head;
+          let result = "";
+          while (current) {
+            result += current.value + " -> ";
+            current = current.next;
+          }
+          result += "null";
+          console.log(result);
+        }
+
+        // Function to find the middle element of the linked list
+        findMiddle() {
+          let slow = this.head;
+          let fast = this.head;
+
+          // Traverse the list with fast moving 2 steps and slow moving 1 step
+          while (fast !== null && fast.next !== null) {
+            slow = slow.next; // Move slow by 1 step
+            fast = fast.next.next; // Move fast by 2 steps
+          }
+
+          return slow ? slow.value : null; // Return the value of the middle node
+        }
+      }
+
+      // Example usage
+      const list = new LinkedList();
+      list.append(1);
+      list.append(2);
+      list.append(3);
+      list.append(4);
+      list.append(5);
+
+      console.log("Original list:");
+      list.display();
+
+      const middle = list.findMiddle();
+      console.log("Middle element:", middle);
+    </script>
+  </body>
+</html>

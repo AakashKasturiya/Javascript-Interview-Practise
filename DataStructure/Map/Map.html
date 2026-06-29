@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <title>Map DSA with JavaScript</title>
+    <script>
+        /* 1. Create the Map */
+        let data = new Map([
+            ['name', 'Anil'],
+            [true, 'bool key'],
+            [100, 'hundred']
+        ]);
+
+        /* 2. Insert Property in the Map */
+        data.set('color', 'green');
+
+        /* 3. Get the size of the Map */
+        console.warn('Size of Map:', data.size);
+        
+        /* 4. Check if property exists in the Map */ 
+        console.warn('Has key 100:', data.has(100));
+        
+        /* 5. Get the property from the Map */
+        console.warn('Value for key 100:', data.get(100));
+        
+        /* 6. Clear all the properties from the Map */
+        // Uncomment to clear the entire map
+        // data.clear();
+
+        /* 7. Get all the properties in the Map */
+        console.warn('All properties in the Map:', [...data]);
+
+        /* 8. Deleting a property from the Map */
+        data.delete(100); // Delete the property with key 100
+        console.warn('After deletion, all properties in the Map:', [...data]);
+
+        /* 9. Loops on the map */
+        console.warn('Using for...of loop:');
+        for (let [key, value] of data) {
+            console.warn(`Key: ${key}, Value: ${value}`);
+        }
+
+        console.warn('Using forEach method:');
+        data.forEach((value, key) => {
+            console.warn(`Key: ${key}, Value: ${value}`);
+        });
+
+    </script>
+  </head>
+  <body>
+    <h1>Map DSA with JavaScript</h1>
+  </body>
+</html>

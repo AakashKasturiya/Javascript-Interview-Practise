@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Traversing Linked List method</title>
+    <style>
+      pre {
+        font-family: monospace;
+        font-size: 14px;
+        background-color: rgb(241 241 241);
+        border: 2px solid #ececec;
+        text-align: left;
+        cursor: text;
+        padding: 10px 20px;
+        width: 80%;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        border-radius: 8px;
+      }
+      section.main-content {
+        padding: 10px 70px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="main-content">
+      <h1>Traversing Linked List method</h1>
+      <p>
+        The <strong>Traverse</strong> method to the linked list. This method
+        will allow you to go through each node in the list and print out or
+        return the values.
+      </p>
+      <h3><strong>Method:</strong> traverse</h3>
+      <p>
+        The goal of this method is to visit each node in the list, starting from
+        the head, and print or collect the node values.
+      </p>
+      <h3>Code Example with traverse Method:</h3>
+      <pre>
+        <code>
+          class Node {
+            constructor(data) {
+              this.data = data; // Store the data
+              this.next = null; // Reference to the next node (initially null)
+            }
+          }
+          
+          class LinkedList {
+            constructor() {
+              this.head = null; // The head (first node) of the list is initially null
+            }
+          
+            // Method to add a node at the end of the list
+            append(data) {
+              const newNode = new Node(data); // Create a new node with the given data
+          
+              // If the list is empty, make the new node the head of the list
+              if (this.head === null) {
+                this.head = newNode;
+              } else {
+                let current = this.head;
+                // Traverse to the last node
+                while (current.next !== null) {
+                  current = current.next;
+                }
+                // Make the last node's next reference point to the new node
+                current.next = newNode;
+              }
+            }
+
+            // Method to traverse (display) the entire linked list
+            traverse() {
+              let current = this.head;
+              
+              // Check if the list is empty
+              if (current === null) {
+                console.log("The list is empty.");
+                return;
+              }
+              
+              // Traverse and print each node's data
+              while (current !== null) {
+                console.log(current.data); // Print the current node's data
+                current = current.next; // Move to the next node
+              }
+            }
+          }
+          
+              
+        </code>
+    </pre>
+ 
+
+      <h3>Explanation of the traverse Method:</h3>
+      <ul>
+        <li>
+          let current = this.head;: We start by assigning current to the head of
+          the list (the first node).
+        </li>
+        <li>
+          Check for empty list: If the list is empty (current === null), we
+          print a message and return because there’s nothing to traverse.
+        </li>
+        <li>
+          Traverse the list:
+          <ul>
+            <li>
+              We use a while loop to go through the list. As long as current is
+              not null, we print the value of current.data and then update
+              current to point to the next node (current = current.next).
+            </li>
+            <li>
+              This loop continues until current becomes null, which happens when
+              we reach the last node in the list (whose next is null).
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <h3>Example Usage:</h3>
+      <pre>
+         <code>
+          const list = new LinkedList();
+
+          // Append nodes
+          list.append(10);
+          list.append(20);
+          list.append(30);
+          list.append(40);
+          
+          // Traverse and print the list
+          list.traverse();
+         </code>
+      </pre>
+
+      <h3>Output</h3>
+      <pre>
+         <code>
+          10
+          20
+          30
+          40
+
+         </code>
+      </pre>
+      <h3>How it Works:</h3>
+      <p><strong>Traversing the list:</strong>The traverse method starts from the head and moves through each node, printing the data property of each node in the list.</p>
+      <p><strong>When the list is empty:</strong> If the list is empty (i.e., head is null), it will print "The list is empty."</p>
+    </section>
+    <script>
+      class Node {
+        constructor(data) {
+          this.data = data; // Store the data
+          this.next = null; // Reference to the next node (initially null)
+        }
+      }
+
+      class LinkedList {
+        constructor() {
+          this.head = null; // The head (first node) of the list is initially null
+        }
+
+        // Method to add a node at the end of the list
+        append(data) {
+          const newNode = new Node(data); // Create a new node with the given data
+
+          // If the list is empty, make the new node the head of the list
+          if (this.head === null) {
+            this.head = newNode;
+          } else {
+            let current = this.head;
+            // Traverse to the last node
+            while (current.next !== null) {
+              current = current.next;
+            }
+            // Make the last node's next reference point to the new node
+            current.next = newNode;
+          }
+        }
+
+        // Method to traverse (display) the entire linked list
+        traverse() {
+          let current = this.head;
+
+          // Check if the list is empty
+          if (current === null) {
+            console.log("The list is empty.");
+            return;
+          }
+
+          // Traverse and print each node's data
+          while (current !== null) {
+            console.log(current.data); // Print the current node's data
+            current = current.next; // Move to the next node
+          }
+        }
+      }
+
+      const list = new LinkedList();
+
+      // Append nodes
+      list.append(10);
+      list.append(20);
+      list.append(30);
+      list.append(40);
+
+      // Traverse and print the list
+      list.traverse();
+    </script>
+  </body>
+</html>

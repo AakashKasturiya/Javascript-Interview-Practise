@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Check if two strings are anagrams ?</h1>
+    <script>
+        /* Check if two strings are anagrams ? */
+        function areAnagrams(str1, str2) {
+            // Clean strings: remove spaces, convert to lowercase (optional)
+            str1 = str1.replace(/\s/g, '').toLowerCase();
+            str2 = str2.replace(/\s/g, '').toLowerCase();
+
+            // Early check: lengths must match
+            if (str1.length !== str2.length) return false;
+
+            // Sort and compare
+            const sorted1 = str1.split('').sort().join('');
+            const sorted2 = str2.split('').sort().join('');
+
+            return sorted1 === sorted2;
+        }
+
+        // 🔍 Test cases
+        console.log(areAnagrams("listen", "silent"));  // true
+        console.log(areAnagrams("Triangle", "Integral")); // true
+        console.log(areAnagrams("hello", "world"));    // false
+
+    </script>
+</body>
+</html>

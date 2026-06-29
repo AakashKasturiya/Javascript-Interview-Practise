@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Square Root</title>
+  </head>
+  <body>
+    <script>
+      function findSquareRootUsingNewton(number) {
+        if (number < 0) return NaN; // Square root of negative numbers is NaN
+
+        let guess = number / 2; // Initial guess
+
+        // Iterate until the guess converges
+        while (Math.abs(guess * guess - number) > Number.EPSILON) {
+          console.log(Number.EPSILON)
+          guess = (guess + number / guess) / 2;
+        }
+
+        return guess;
+      }
+
+      // Test Cases
+      console.log("Square root of 25:", findSquareRootUsingNewton(25)); // Output: 5
+      console.log("Square root of -120:", findSquareRootUsingNewton(-120)); // Output: NaN
+      console.log("Square root of 'Geeks':", findSquareRootUsingNewton("Geeks")); // Output: NaN
+    </script>
+  </body>
+</html>

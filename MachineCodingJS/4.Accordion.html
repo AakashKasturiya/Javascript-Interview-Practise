@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accordion Example</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        overflow: hidden;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      .accordion-container {
+        width: 500px;
+        margin: 20px auto;
+      }
+
+      .accordion {
+        background-color: #f1f1f1;
+        color: #444;
+        cursor: pointer;
+        padding: 10px;
+        width: 100%;
+        text-align: left;
+        border: 1px solid #ccc;
+        margin-bottom: 5px;
+        font-size: 16px;
+      }
+
+      .accordion-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 8px;
+        border-bottom: 1px solid #333333;
+        cursor: pointer;
+        background-color: #d3d1d1;
+      }
+
+      .accordion.active,
+      .accordion:hover {
+        background-color: #ccc;
+      }
+
+      .content {
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        margin-bottom: 5px;
+        font-size: 16px;
+
+        height: 0; /* Initially collapsed */
+        overflow: hidden; /* Prevents content from spilling out */
+        transition: height 0.3s linear; /* Smooth transition */
+        padding: 0 12px;
+      }
+
+      .content p{
+        padding: 5px 0;
+      }
+      .content.show {
+        height: 100px; /* Set a high enough value to cover the content */
+       /* Padding for the expanded content */
+      }
+
+      .rotate {
+        transform: rotate(180deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="accordion-container">
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="title">What is JavaScript?</div>
+          <div class="icon">⬇️</div>
+        </div>
+        <div class="content">
+          <p>
+            JavaScript is a programming language used to create interactive
+            effects within web browsers.
+          </p>
+        </div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="title">What is closure in JavaScript?</div>
+          <div class="icon">⬇️</div>
+        </div>
+        <div class="content">
+          <p>
+            A closure is a feature in JavaScript where an inner function gets
+            access to the outer function's variables.
+          </p>
+        </div>
+      </div>
+      <div class="accordion">
+        <div class="accordion-header">
+          <div class="title">
+            What is the difference between var, let, and const?
+          </div>
+          <div class="icon">⬇️</div>
+        </div>
+        <div class="content">
+          <p>
+            var is function-scoped, let and const are block-scoped. const is
+            immutable, while let and var are mutable.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+// Get all accordion buttons and contents
+const accordions = document.querySelectorAll(".accordion-header");
+
+// Loop through all accordion buttons
+accordions.forEach((accordion) => {
+  // Add click event listener for each accordion button
+  accordion.addEventListener("click", function () {
+    // Get the associated content panel for the clicked accordion
+    const content = this.nextElementSibling;
+
+    // Close all accordion contents first
+    const allContents = document.querySelectorAll(".content");
+ 
+    allContents.forEach((otherContent) => {
+      if (otherContent !== content) {
+        otherContent.classList.remove("show");
+        // Reset rotation of other icons
+        const otherIcon = otherContent.previousElementSibling.querySelector(".icon");
+        otherIcon.classList.remove("rotate");
+      }
+    });
+
+    // Toggle the clicked content
+    content.classList.toggle("show");
+
+    // Get the icon inside the clicked accordion header
+    const icon = accordion.querySelector('.icon');
+    icon.classList.toggle('rotate');
+  });
+});
+    </script>
+  </body>
+</html>

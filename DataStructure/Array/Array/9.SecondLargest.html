@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How To find second Largest value in array</title>
+</head>
+
+<body>
+    <h1>How To find second Largest value in array</h1>
+    <script>
+        function secondLargest(arr) {
+            let [first, second] = [-Infinity, -Infinity];
+
+            arr.forEach(num => {
+                if (num > first) {
+                    second = first;
+                    first = num;
+                } else if (num > second && num < first) {
+                    second = num;
+                }
+            });
+
+            return second === -Infinity ? null : second;
+        }
+
+        console.log(secondLargest([10, 20, 4, 45, 99, 99])); // Output: 45
+
+    </script>
+</body>
+
+</html>

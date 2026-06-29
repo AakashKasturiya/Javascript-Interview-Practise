@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How To find max/min in a given array in javascrip</title>
+</head>
+<body>
+    <h1>How To find max/min in a given array in javascrip</h1>
+    <script>
+        let myArray = [1,55,2,88,100,-6,200];
+
+        /*Max Function */
+
+        const getMaxElement = (arr)=>{
+            return arr.reduce((pre,cur)=>{
+                return pre > cur ? pre : cur;
+            })
+        }
+
+          /*Min Function */
+
+          const getMinElement = (arr)=>{
+            return arr.reduce((pre,cur)=>{
+                return pre < cur ? pre : cur;
+            })
+        }
+
+
+        console.log("Max Element of the Array:" + getMaxElement(myArray));
+        console.log("Min Element of the Array:" + getMinElement(myArray));
+    </script>
+</body>
+</html>

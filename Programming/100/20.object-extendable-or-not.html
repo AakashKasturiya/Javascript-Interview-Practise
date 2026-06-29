@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>What is the main difference between Object.values and Object.entries method?</h1>
+    <p>🔍 This dives into object mutability and extensibility, which is often used when dealing with security or strict
+        object control in JavaScript.</p>
+
+    <h3>✅ To check if an object can be extended (i.e., you can add new properties to it):</h3>
+
+    <pre>
+        <code>
+            Object.isExtensible(obj);
+        </code>
+    </pre>
+
+    <p>It returns:</p>
+    <ul>
+        <li>true → you can add new properties</li>
+        <li>false → the object is not extensible</li>
+    </ul>
+    <h4>🧪 Example:</h4>
+    <pre>
+        <code>
+            onst obj = { name: "Alice" };
+
+            console.log(Object.isExtensible(obj)); // true
+            
+            obj.age = 30; // ✅ Allowed
+
+        </code>
+    </pre>
+    <hr>
+    <h3>❌ Preventing extensibility:</h3>
+    <pre>
+        <code>
+            Object.preventExtensions(obj);
+            console.log(Object.isExtensible(obj)); // false
+            
+            obj.city = "NY"; // ❌ Won’t be added
+            console.log(obj.city); // undefined
+        </code>
+    </pre>
+    <hr>
+
+    <script>
+
+        /*1. Example: an object can be extended */
+        
+        const obj = { name: "Alice" };
+
+        console.log(Object.isExtensible(obj)); // true
+        
+        obj.age = 30; // ✅ Allowed
+
+        /* 2.❌ Preventing extensibility:*/
+        Object.preventExtensions(obj);
+        console.log(Object.isExtensible(obj)); // false
+        
+        obj.city = "NY"; // ❌ Won’t be added
+        console.log(obj.city); // undefined
+
+    </script>
+</body>
+
+</html>

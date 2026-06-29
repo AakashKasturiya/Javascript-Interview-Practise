@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reversing a String in Place</title>
+  </head>
+  <body>
+    <h3>Reversing a String in Place</h3>
+    <script>
+      function reverseString(str) {
+        let arr = [...str]; // Convert string to an array of characters
+        let start = 0;
+        let end = arr.length - 1;
+
+        // Swap characters from start and end moving towards the center
+        while (start < end) {
+          // Swap characters at start and end
+          let temp = arr[start];
+          arr[start] = arr[end];
+          arr[end] = temp;
+
+          start++;
+          end--;
+        }
+
+        // Convert the array back to a string
+        return arr.join("");
+      }
+
+      let str = "Hello World!";
+      let reversedStr = reverseString(str);
+      console.log(reversedStr); // Output: "!dlroW olleH"
+    </script>
+  </body>
+</html>

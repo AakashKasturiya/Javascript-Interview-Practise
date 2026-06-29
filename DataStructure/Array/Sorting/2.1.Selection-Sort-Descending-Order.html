@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Descending Order</title>
+</head>
+
+<body>
+    <h1>Selection Sort | Descending Order</h1>
+    <script> 
+        function selectionSortDescending(arr) {
+            let n = arr.length;
+
+            // Loop over the entire array
+            for (let i = 0; i < n - 1; i++) {
+                let maxIndex = i;
+
+                // Find the maximum element in the unsorted part
+                for (let j = i + 1; j < n; j++) {
+                    if (arr[j] > arr[maxIndex]) {  /*same program both  Asescending |  Descending Order 
+                        {only > operator change} */
+                        maxIndex = j; // Update the index of the maximum element
+                    }
+                }
+
+                // If maxIndex is not the index of i, swap the elements
+                if (maxIndex !== i) {
+                    let temp = arr[i];
+                    arr[i] = arr[maxIndex];
+                    arr[maxIndex] = temp;
+                }
+            }
+            return arr;
+        }
+
+        // Test the selection sort function for descending order
+        let numbers = [5, 2, 8, 3, 1];
+        console.log("Sorted array (Descending Order):", selectionSortDescending(numbers));
+        // Output: [8, 5, 3, 2, 1]
+
+
+    </script>
+</body>
+</html>

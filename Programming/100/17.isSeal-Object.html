@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>How do you determine if an object is sealed or not?</h1>
+
+    <h3>🧊 What does “sealed” mean in JavaScript?</h3>
+    <p>A sealed object:</p>
+    <ul>
+        <li>❌ You can’t add or delete properties</li>
+        <li>✅ You can still modify existing property values</li>
+        <li>✅ Property descriptors like writable still apply</li>
+    </ul>
+
+    <h3>🔍 How to check if an object is sealed</h3>
+    <pre>
+        <code>
+            Object.isSealed(obj)
+        </code>
+    </pre>
+    <p>Returns true if the object is sealed, false otherwise.</p>
+    <hr>
+    <h3>✅ Example:</h3>
+    <pre>
+        <code>
+            const person = { name: "Alice" };
+            Object.seal(person);
+            
+            console.log(Object.isSealed(person)); // true
+            
+            person.name = "Bob";     // ✅ allowed
+            delete person.name;      // ❌ not allowed
+            person.age = 30;         // ❌ not allowed
+        </code>
+    </pre>
+    <hr>
+    <h3>❌ Not sealed example:</h3>
+    <pre>
+        <code>
+            const openObj = { x: 1 };
+            console.log(Object.isSealed(openObj)); // false
+            
+            openObj.y = 2;         // ✅ allowed
+            delete openObj.x;      // ✅ allowed
+
+        </code>
+    </pre>
+    <hr>
+    <h3>Bonus: Freeze vs Seal vs PreventExtensions</h3>
+
+    <table id="customers">
+        <tr>
+            <th>Method</th>
+            <th>Add Props</th>
+            <th>Delete Props</th>
+            <th>Modify Props</th>
+        </tr>
+        <tr>
+            <td>Object.preventExtensions()</td>
+            <td>❌</td>
+            <td>✅</td>
+            <td>✅</td>
+        </tr>
+        <tr>
+            <td>Object.seal()</td>
+            <td>❌</td>
+            <td>❌</td>
+            <td>✅</td>
+        </tr>
+        <tr>
+            <td>Object.freeze()</td>
+            <td>❌</td>
+            <td>❌</td>
+            <td>❌</td>
+        </tr>
+    </table>
+
+
+   
+    <script>
+        /*1. Example: sealed example*/
+
+        const person = { name: "Alice" };
+        Object.seal(person);
+
+        console.log(Object.isSealed(person)); // true
+
+        person.name = "Bob";     // ✅ allowed
+        delete person.name;      // ❌ not allowed
+        person.age = 30;         // ❌ not allowed
+
+        /* 2. ❌ Not sealed example:*/
+        const openObj = { x: 1 };
+        console.log(Object.isSealed(openObj)); // false
+
+        openObj.y = 2;         // ✅ allowed
+        delete openObj.x;      // ✅ allowed
+
+    </script>
+</body>
+
+</html>

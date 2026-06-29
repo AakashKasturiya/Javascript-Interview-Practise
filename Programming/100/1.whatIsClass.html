@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>How to define a class with properties and methods in JavaScript?</h1>
+    
+        <h3>Basic Explanation:</h3>
+        <p>A class in JavaScript is a blueprint for creating objects with specific properties and methods. 
+        The constructor is used to initialize the object when it's created, and methods define actions that the object can perform.</p>
+        
+        <h3>Syntax to Define a Class with Properties and Methods:</h3>
+        <p><strong>Properties:</strong> These are defined inside the constructor method (or directly on the object using this).</p>
+        
+        <p><strong>Methods:</strong> These are defined directly inside the class body, without the function keyword.</p>
+    <script>
+        class Person {
+            // Constructor to initialize properties
+            constructor(name, age) {
+                this.name = name;  // Property: name
+                this.age = age;    // Property: age
+            }
+
+            // Method to display full name
+            getFullName() {
+                return `Full Name: ${this.name}`;
+            }
+
+            // Method to display age
+            getAge() {
+                return `Age: ${this.age}`;
+            }
+
+            // Method to display person details
+            getDetails() {
+                return `${this.getFullName()} and is ${this.getAge()}`;
+            }
+        }
+
+        // Creating an instance of the Person class
+        let person1 = new Person('John Doe', 30);
+
+        // Using methods of the class
+        console.log(person1.getFullName());  // Output: Full Name: John Doe
+        console.log(person1.getAge());       // Output: Age: 30
+        console.log(person1.getDetails());   // Output: Full Name: John Doe and is Age: 30
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>How do you determine whether an object is frozen or not?</h1>
+    <p>In JavaScript, you can determine whether an object is frozen using the built-in Object.isFrozen() method.
+
+    </p>
+
+    <h3>Object.isFrozen() Method</h3>
+    <p>The Object.isFrozen() method checks whether an object is frozen. An object is considered frozen if:</p>
+    <ul>
+        <li>Its properties cannot be added or removed.</li>
+        <li>Its existing properties cannot be modified.</li>
+        <li>Its prototype cannot be modified.</li>
+    </ul>
+
+    <p>If an object is frozen, Object.isFrozen() will return true; otherwise, it will return false.</p>
+    <pre>
+        <code>
+            Object.isFrozen(obj);
+        </code>
+    </pre>
+    <h3>Example: Object with Method Chaining</h3>
+    <p>Here’s how you can implement an object with multiple functions that can be chained together:</p>
+    <pre>
+        <code>
+            const obj1 = { name: 'John', age: 30 };
+
+            // Freezing the object
+            Object.freeze(obj1);
+            
+            console.log(Object.isFrozen(obj1)); // true
+            
+            const obj2 = { name: 'Alice', age: 25 };
+            
+            console.log(Object.isFrozen(obj2)); // false
+            
+              
+        </code>
+    </pre>
+    <h3>Explanation:</h3>
+    <p><strong>Object.freeze()</strong> makes the object immutable by freezing it, meaning you can no longer add,
+        delete, or modify the properties of the object.</p>
+    <p><strong>Object.isFrozen()</strong> checks if an object is frozen and returns true if it is, otherwise it returns
+        false.</p>
+
+
+    <hr>
+    <h3>Freezing an Object:</h3>
+    <p>You can freeze an object using Object.freeze() like so:</p>
+    <pre>
+        <code>
+            const obj = { name: 'John', age: 30 };
+
+            Object.freeze(obj);
+            
+            console.log(Object.isFrozen(obj)); // true
+            
+            // Attempting to modify the object will fail in strict mode
+            obj.name = 'Alice'; // Does not work
+            console.log(obj.name); // "John" (remains unchanged)
+            
+            obj.address = 'New York'; // Does not work, new properties can't be added
+            console.log(obj.address); // undefined
+
+        </code>
+    </pre>
+    <script>
+        /*Example: Object.isFrozen() Method*/
+
+        const obj1 = { name: 'John', age: 30 };
+
+        // Freezing the object
+        Object.freeze(obj1);
+
+        console.log(Object.isFrozen(obj1)); // true
+
+        const obj2 = { name: 'Alice', age: 25 };
+
+        console.log(Object.isFrozen(obj2)); // false
+
+
+
+        /* 2. You can freeze an object using Object.freeze() like so:*/
+        const obj = { name: 'John', age: 30 };
+
+        Object.freeze(obj);
+
+        console.log(Object.isFrozen(obj)); // true
+
+        // Attempting to modify the object will fail in strict mode
+        obj.name = 'Alice'; // Does not work
+        console.log(obj.name); // "John" (remains unchanged)
+
+        obj.address = 'New York'; // Does not work, new properties can't be added
+        console.log(obj.address); // undefined
+
+    </script>
+</body>
+
+</html>

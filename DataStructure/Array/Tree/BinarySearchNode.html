@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Node class to represent each node in the tree
+        class Node {
+            constructor(data) {
+                this.data = data;
+                this.left = null;
+                this.right = null;
+            }
+        }
+
+        // Binary Search Tree class
+        class BinarySearchTree {
+            constructor() {
+                this.root = null;
+            }
+
+            // Insert method to add nodes to the tree
+            insert(data) {
+                const newNode = new Node(data);
+                if (!this.root) {
+                    this.root = newNode;
+                } else {
+                    this.insertNode(this.root, newNode);
+                }
+            }
+
+            // Recursive helper method to insert a node in the correct position
+            insertNode(node, newNode) {
+                if (newNode.data < node.data) {
+                    if (!node.left) {
+                        node.left = newNode;
+                    } else {
+                        this.insertNode(node.left, newNode);
+                    }
+                } else {
+                    if (!node.right) {
+                        node.right = newNode;
+                    } else {
+                        this.insertNode(node.right, newNode);
+                    }
+                }
+            }
+
+            // Search method to find a node in the BST
+            search(value) {
+                return this.searchNode(this.root, value);
+            }
+
+            // Recursive method to search a value in the tree
+            searchNode(node, value) {
+                // Base case: If node is null or the value is found
+                if (node === null) {
+                    return null; // Node not found
+                }
+
+                // If value is equal to node's value, return the node
+                if (value === node.data) {
+                    return node;
+                }
+
+                // If value is less, search in the left subtree
+                if (value < node.data) {
+                    return this.searchNode(node.left, value);
+                }
+
+                // If value is greater, search in the right subtree
+                return this.searchNode(node.right, value);
+            }
+        }
+
+        // Example Usage
+        const bst = new BinarySearchTree();
+        bst.insert(10);
+        bst.insert(5);
+        bst.insert(20);
+        bst.insert(8);
+
+        const result = bst.search(8); // Should return the node with value 8
+        if (result) {
+            console.log(`Node found: ${result.data}`); // Output: Node found: 8
+        } else {
+            console.log("Node not found");
+        }
+
+    </script>
+</body>
+
+</html>

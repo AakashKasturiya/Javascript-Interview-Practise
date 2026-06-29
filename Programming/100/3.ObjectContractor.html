@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>How do you define property on an Object constructor ?</h1>
+    <p>In JavaScript, when defining properties within an Object constructor,
+        you typically define them inside the constructor function by using the this keyword.
+        The this keyword refers to the current instance of the object being created.</p>
+
+    <h3>Here's an example of defining properties on an object constructor:</h3>
+
+    Explanation:
+    <h2>Constructor Function:</h2>
+
+    <p>The Person function is a constructor that initializes the properties name and age using this.</p>
+
+    <p>When you create a new instance of Person (e.g., new Person('John Doe', 30)), JavaScript creates a new object and
+        assigns the values of name and age to that object.</p>
+
+    <h4>this Keyword:</h4>
+
+    <p>Inside the constructor function, the this keyword is used to set the properties (name and age) of the newly
+        created object. This means each object created with the Person constructor will have its own name and age
+        properties.</p>
+
+    <hr>
+
+    <h2>Using Classes (ES6+):</h2>
+    <p>If you are using ES6 or later, you can use the class syntax to define the constructor and properties more
+        cleanly.
+        The behavior is very similar to the function constructor.</p>
+
+    <script>
+
+        /*1. Constructor Function */
+        function Person(name, age) {
+            // Define properties inside the constructor function
+            this.name = name;  // Property: name
+            this.age = age;    // Property: age
+        }
+
+        // Creating a new instance of the Person object
+        let person1 = new Person('John Doe', 30);
+
+        console.log(person1.name);  // Output: John Doe
+        console.log(person1.age);   // Output: 30
+
+
+        /*2. Using Classes (ES6+) */
+        class Person2 {
+            constructor(name, age) {
+                this.name = name;  // Property: name
+                this.age = age;    // Property: age
+
+                // Define a method on the constructor
+                this.greet = function () {
+                    return `Hello, my name is ${this.name} and I am ${this.age} years old.`;
+                };
+            }
+
+        }
+
+        // Creating a new instance of the Person class
+        let person2 = new Person2('John Doe', 30);
+
+        console.log(person2.name);  // Output: John Doe
+        console.log(person2.age);   // Output: 30
+        console.log(person2.greet())
+
+    </script>
+</body>
+
+</html>

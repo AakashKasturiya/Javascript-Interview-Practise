@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>How do you copy properties from one object to another object?</h1>
+
+    <h3>🔁 1. Using Object.assign() (shallow copy)</h3>
+
+    <pre>
+        <code>
+            const target = {};
+            const source = { a: 1, b: 2 };
+            
+            Object.assign(target, source);
+            
+            console.log(target); // { a: 1, b: 2 }
+            
+            
+        </code>
+    </pre>
+    <p>✅ Simple
+        ⚠️ Shallow copy — nested objects are still references</p>
+    <hr>
+    <h3>🧪 2. Using spread operator (shallow copy)</h3>
+    <p>1. Using JSON.stringify (shallowish comparison)</p>
+    <pre>
+        <code>
+            const source = { a: 1, b: 2 };
+            const target = { ...source };
+            
+            console.log(target); // { a: 1, b: 2 }
+        </code>
+    </pre>
+    <p>✅ Cleaner syntax
+        ⚠️ Still shallow copy</p>
+    <hr>
+    <h3>🧠 3. Deep copy (for nested objects)</h3>
+    <p>If your object has nested objects and you want a <stong>deep copy</stong> (not sharing references):
+
+        Option A: Using <strong>structuredClone()</strong> (modern browsers)</p>
+    <pre>
+        <code>
+            const original = { a: 1, b: { c: 2 } };
+const copy = structuredClone(original);
+
+        </code>
+    </pre>
+
+    <ul>
+        <li>✅ Handles nested objects</li>
+        <li>✅ Works regardless of key order</li>
+        <li>⚠️ Slower for large structures</li>
+    </ul>
+    <hr>
+    <h3>Bonus: For interview flex 💪</h3>
+    <p>If they ask you about comparing two objects like:</p>
+    <pre>
+        <code>
+            const obj1 = { a: 1, b: { c: 2 } };
+            const obj2 = { a: 1, b: { c: 2 } };
+
+        </code>
+    </pre>
+    <p>
+        ✅ Deep copy ✅ Preserves structure ⚠️ Not supported in older environments (like some Node.js versions or older
+            browsers)
+    </p>
+
+    <h3>Option B: Using JSON.parse(JSON.stringify(obj))</h3>
+    <pre>
+        <code>
+            const copy = JSON.parse(JSON.stringify(original));
+
+        </code>
+    </pre>
+    <p><strong>⚠️ Doesn’t work with functions, undefined, Date, Map, Set, etc.</strong></p>
+
+    <h3>Bonus: Merge two objects</h3>
+    <pre>
+        <code>const obj1 = { a: 1 };
+            const obj2 = { b: 2 };
+            const merged = { ...obj1, ...obj2 };
+            
+            console.log(merged); // { a: 1, b: 2 }</code>
+    </pre>
+    <hr>
+    <h3>Interview Tip 💡
+        If asked in an interview:</h3>
+    <p>"To copy properties from one object to another, I can use <strong>Object.assign()</strong> or the spread operator
+        for a shallow copy. For deep copies, I’d use <strong>structuredClone()</strong> or a utility like
+        lodash.cloneDeep()."</p>
+    <script>
+        /*1. Example: Using Object.assign() (shallow copy).*/
+
+        const target = {};
+        const source = { a: 1, b: 2 };
+
+        Object.assign(target, source);
+
+        console.log(target); // { a: 1, b: 2 }
+
+
+        /* 2. Using spread operator (shallow copy)*/
+        const source1 = { a: 1, b: 2 };
+        const target1 = { ...source };
+
+        console.log(target1); // { a: 1, b: 2 }
+
+        /* 3. Deep copy (for nested objects)*/
+
+        const original = { a: 1, b: { c: 2 } };
+        const copy = structuredClone(original);
+        console.log(copy)
+
+        /*Option B: Using JSON.parse(JSON.stringify(obj))*/
+        const copy1 = JSON.parse(JSON.stringify(original));
+        console.log(copy1)
+    </script>
+</body>
+
+</html>

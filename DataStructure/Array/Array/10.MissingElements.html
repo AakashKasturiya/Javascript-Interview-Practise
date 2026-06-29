@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Find missing elements in a given Array 1 to 10</title>
+</head>
+
+<body>
+    <h1>How to Find missing elements in a given Array 1 to 10</h1>
+
+    <pre>❌ Why is this slow?
+
+        includes() checks each number in givenArray one by one.
+    
+        If givenArray has N elements, each .includes() call takes O(N) time.
+    
+        Total complexity: O(N²) in worst case.</pre>
+    <pre>
+✅ Why is Set faster?
+
+Set has O(1) lookups:
+
+    arrSet.has(num) checks if a number exists instantly, unlike includes(), which scans the array.
+
+Set avoids repeated searches:
+
+    We preprocess the array into a Set (O(N)) once.
+
+    Then, we check for missing numbers in a loop (O(M), where M is the range size).
+
+Total time complexity:
+
+    Using includes(): O(N²)
+
+    Using Set: O(N) + O(M) ≈ O(N), which is much faster!
+</pre>
+    <script>
+
+
+        function findMissingElements(arr, rangeStart, rangeEnd) {
+            let arrSet = new Set(arr);
+            let missing = [];
+
+            for (let i = rangeStart; i <= rangeEnd; i++) {
+                if (!arrSet.has(i)) {
+                    missing.push(i);
+                }
+            }
+
+            return missing;
+        }
+
+        const givenArray = [1, 2, 4, 6, 7, 9, 10]; // Missing 3, 5, 8
+        console.log(findMissingElements(givenArray, 1, 10)); // Output: [3, 5, 8]
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Insert element</title>
+  </head>
+  <body>
+    <script>
+      /*--------------Insert element in array in JavaScript --------------------*/
+
+      let array = [10, 20, 30, 40, 50];
+      let newElement = 60;
+      let position = 5;
+
+      // Ensure that the position is within the bounds of the array
+      if (position >= 0 && position <= array.length) {
+        // Loop from the end of the array to the position to shift elements
+        for (let i = array.length - 1; i >= position; i--) {
+          array[i + 1] = array[i]; // Shift elements to the right
+        }
+
+        // Insert the new element at the specified position
+        array[position] = newElement;
+      }
+
+      console.log(array); // Output will be [10, 20, 30, 40, 50, 60]
+
+
+
+      /*--------------Insert element in array in JavaScript --------------------*/
+      //3. Using .splice() Method:
+
+      //Purpose: Adds or removes elements from anywhere in the array.
+
+      let arr = [1, 2, 3];
+      let arr1 = [1, 2, 3];
+      
+      arr.splice(1, 0, 4);  // arr becomes [1, 4, 2, 3] (4 inserted at index 1) '0' indicate no element delete
+
+      arr1.splice(1, 1, 4);  // arr becomes [1, 4, 3] (4 inserted at index 1) '1' indicate element delete
+
+      console.log(arr);
+      console.log(arr1);
+
+    </script>
+  </body>
+</html>

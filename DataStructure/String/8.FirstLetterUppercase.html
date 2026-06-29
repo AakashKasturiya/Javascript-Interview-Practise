@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>first letter uppercase</title>
+</head>
+
+<body>
+    <h1>how to convert first letter of string in uppercase</h1>
+    <script>
+        function capitalizeFirstLetter(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
+        console.log(capitalizeFirstLetter("hello")); // Output: "Hello"
+        console.log(capitalizeFirstLetter("javascript")); // Output: "Javascript"
+
+    </script>
+</body>
+
+</html>

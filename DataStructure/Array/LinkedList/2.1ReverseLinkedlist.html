@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reverse a Linkedlist</title>
+    <style>
+      pre {
+        font-family: monospace;
+        font-size: 14px;
+        background-color: rgb(241 241 241);
+        border: 2px solid #ececec;
+        text-align: left;
+        cursor: text;
+        padding: 10px 20px;
+        width: 80%;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        border-radius: 8px;
+      }
+      section.main-content {
+        padding: 10px 70px;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="main-content">
+      <h2>JavaScript Code to Reverse a Linked List:</h2>
+      <h3>Explanation:</h3>
+      <p>
+        Node class: Represents an individual node in the linked list with a
+        value and next pointer.
+      </p>
+      <p>LinkedList class:</p>
+      <p>append(): Adds a new node to the end of the list.</p>
+      <p>display(): Displays the linked list in a readable format.</p>
+      <p>
+        reverse(): Reverses the linked list by iterating through it and
+        adjusting the next pointers.
+      </p>
+      <p>How the reverse() function works:</p>
+      <p>You start with prev as null and current as the head.</p>
+      <p>For each node, you:</p>
+      <p>Save the next node.</p>
+      <p>
+        Point the current.next to prev, reversing the direction of the pointer.
+      </p>
+      <p>Move prev to current and current to the next node.</p>
+      <p>
+        Once the loop finishes, the head is set to the new first node (prev).
+      </p>
+      <pre>
+          <code>
+            class Node {
+              constructor(value) {
+                this.value = value;
+                this.next = null;
+              }
+            }
+      
+            class LinkedList {
+              constructor() {
+                this.head = null; // The head node of the linked list
+              }
+      
+              // Function to add a node at the end of the list
+              append(value) {
+                const newNode = new Node(value);
+                if (this.head === null) {
+                  this.head = newNode;
+                  return;
+                }
+      
+                let current = this.head;
+                while (current.next) {
+                  current = current.next;
+                }
+                current.next = newNode;
+              }
+      
+              // Function to display the linked list
+              display() {
+                let current = this.head;
+                let result = "";
+                while (current) {
+                  result += current.value + " -> ";
+                  current = current.next;
+                }
+                result += "null";
+                console.log(result);
+              }
+      
+              // Function to reverse the linked list
+              reverse() {
+                let prev = null;
+                let current = this.head;
+                let next = null;
+      
+                while (current !== null) {
+                  next = current.next;
+                  current.next = prev;
+                  prev = current;
+                  current = next;
+                }
+                this.head = prev; // Reset head to the new first node
+              }
+            }
+      
+            // Example usage
+            const list = new LinkedList();
+            list.append(1);
+            list.append(2);
+            list.append(3);
+            list.append(4);
+      
+            console.log("Original list:");
+            list.display();
+      
+            list.reverse();
+      
+            console.log("Reversed list:");
+            list.display();
+          </code>
+      </pre>
+    </section>
+    <script>
+      class Node {
+        constructor(value) {
+          this.value = value;
+          this.next = null;
+        }
+      }
+
+      class LinkedList {
+        constructor() {
+          this.head = null; // The head node of the linked list
+        }
+
+        // Function to add a node at the end of the list
+        append(value) {
+          const newNode = new Node(value);
+          if (this.head === null) {
+            this.head = newNode;
+            return;
+          }
+
+          let current = this.head;
+          while (current.next) {
+            current = current.next;
+          }
+          current.next = newNode;
+        }
+
+        // Function to display the linked list
+        display() {
+          let current = this.head;
+          let result = "";
+          while (current) {
+            result += current.value + " -> ";
+            current = current.next;
+          }
+          result += "null";
+          console.log(result);
+        }
+
+        // Function to reverse the linked list
+        reverse() {
+          let prev = null;
+          let current = this.head;
+          let next = null;
+
+          while (current !== null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+          }
+          this.head = prev; // Reset head to the new first node
+        }
+      }
+
+      // Example usage
+      const list = new LinkedList();
+      list.append(1);
+      list.append(2);
+      list.append(3);
+      list.append(4);
+
+      console.log("Original list:");
+      list.display();
+
+      list.reverse();
+
+      console.log("Reversed list:");
+      list.display();
+    </script>
+  </body>
+</html>

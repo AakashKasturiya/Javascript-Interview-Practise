@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Find the first non-repeating character in a string create code</h1>
+    <pre>Input: "javascript"
+         Output: "j"
+         
+         Input: "aabbcc"
+         Output: null
+    </pre>
+    <script>
+         /*Find the first non-repeating character in a string create code*/
+         function firstNonRepeatingChar(str) {
+              const charCount = {};
+            
+              // Step 1: Count occurrences of each character
+              for (let char of str) {
+                charCount[char] = (charCount[char] || 0) + 1;
+              }
+            
+              // Step 2: Find the first character with count === 1
+              for (let char of str) {
+                if (charCount[char] === 1) {
+                  return char;
+                }
+              }
+            
+              return null; // No non-repeating character found
+            }
+            
+            // 🔍 Test cases
+            console.log(firstNonRepeatingChar("javascript")); // Output: "j"
+            console.log(firstNonRepeatingChar("aabbcc"));     // Output: null
+            console.log(firstNonRepeatingChar("swiss"));      // Output: "w"
+
+    </script>
+</body>
+</html>

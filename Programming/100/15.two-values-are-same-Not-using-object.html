@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>How do you determine two values are the same or not using an object?</h1>
+
+    <h3>🔍 The key concept:</h3>
+    <p>In JavaScript, objects are compared by reference, not by value.</p>
+
+    <pre>
+        <code>
+            const a = { name: "Alice" };
+            const b = { name: "Alice" };
+            
+            console.log(a === b); // ❌ false, different references
+            
+        </code>
+    </pre>
+    <p>Even though a and b look the same, they are different objects in memory.</p>
+    <hr>
+    <h3>✅ To determine if two objects have the same values, you need to do a deep comparison.</h3>
+    <p>1. Using JSON.stringify (shallowish comparison)</p>
+    <pre>
+        <code>
+            function isEqual(obj1, obj2) {
+                return JSON.stringify(obj1) === JSON.stringify(obj2);
+              }
+              
+              
+        </code>
+    </pre>
+    <p>✅ Simple and fast ⚠️ Order matters, won't work if keys are in different order or if there are functions/undefined
+        inside the objects</p>
+    <hr>
+    <h3>2. Using a deep comparison function</h3>
+
+    <pre>
+        <code>
+            function deepEqual(a, b) {
+                if (a === b) return true;
+              
+                if (typeof a !== "object" || typeof b !== "object" || a === null || b === null)
+                  return false;
+              
+                const keysA = Object.keys(a);
+                const keysB = Object.keys(b);
+              
+                if (keysA.length !== keysB.length) return false;
+              
+                for (let key of keysA) {
+                  if (!keysB.includes(key) || !deepEqual(a[key], b[key])) {
+                    return false;
+                  }
+                }
+              
+                return true;
+              }
+              
+        </code>
+    </pre>
+
+    <ul>
+        <li>✅ Handles nested objects</li>
+        <li>✅ Works regardless of key order</li>
+        <li>⚠️ Slower for large structures</li>
+    </ul>
+    <hr>
+    <h3>Bonus: For interview flex 💪</h3>
+    <p>If they ask you about comparing two objects like:</p>
+    <pre>
+        <code>
+            const obj1 = { a: 1, b: { c: 2 } };
+            const obj2 = { a: 1, b: { c: 2 } };
+
+        </code>
+    </pre>
+    <p><strong>"Since JavaScript compares objects by reference, obj1 === obj2 is false. To check if they have the same
+            values, I’d use a deep equality function that recursively compares keys and values."</strong></p>
+    <script>
+        /*1. Example:  objects are compared by reference, not by value.*/
+
+        const a = { name: "Alice" };
+        const b = { name: "Alice" };
+
+        console.log(a === b); // ❌ false, different references
+
+
+
+
+        /* 2. Using JSON.stringify (shallowish comparison):*/
+        function isEqual(obj1, obj2) {
+            return JSON.stringify(obj1) === JSON.stringify(obj2);
+        }
+
+        const obj1 = { name: "Alice" };
+        const obj2 = { name: "Alice" };
+
+        console.log(isEqual(obj1, obj2));
+
+        /* 3. Using a deep comparison function:*/
+        function deepEqual(a, b) {
+            if (a === b) return true;
+
+            if (typeof a !== "object" || typeof b !== "object" || a === null || b === null)
+                return false;
+
+            const keysA = Object.keys(a);
+            const keysB = Object.keys(b);
+
+            if (keysA.length !== keysB.length) return false;
+
+            for (let key of keysA) {
+                if (!keysB.includes(key) || !deepEqual(a[key], b[key])) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+       console.log(deepEqual(a, b));
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <h1>How to find duplicate elements in a given array?</h1>
+
+    <h3>✅ 1. Using a Set (Fast and Efficient)</h3>
+
+    <pre>
+        <code>
+            function findDuplicates(arr) {
+                const seen = new Set();
+                const duplicates = new Set();
+              
+                for (const item of arr) {
+                  if (seen.has(item)) {
+                    duplicates.add(item);
+                  } else {
+                    seen.add(item);
+                  }
+                }
+              
+                return Array.from(duplicates);
+              }
+              
+              // Example:
+              console.log(findDuplicates([1, 2, 3, 4, 2, 3, 5])); // [2, 3]
+              
+        </code>
+    </pre>
+
+    <ul>
+        <li>Time complexity: O(n)</li>
+        <li>Space complexity: O(n)</li>
+        <li>Why it's good: Very efficient and readable. Uses built-in structures.</li>
+    </ul>
+    <hr>
+    <h3>✅ 2. Using a Frequency Map (for counts too)</h3>
+
+    <pre>
+        <code>
+            function findDuplicates(arr) {
+                const freqMap = {};
+                const result = [];
+              
+                for (let item of arr) {
+                  freqMap[item] = (freqMap[item] || 0) + 1;
+                }
+              
+                for (let key in freqMap) {
+                  if (freqMap[key] > 1) {
+                    result.push(Number(key)); // convert back to number if needed
+                  }
+                }
+              
+                return result;
+              }
+              
+              // Example:
+              console.log(findDuplicates([1, 2, 3, 4, 2, 3, 5])); // [2, 3]
+              
+        </code>
+    </pre>
+    <p>Bonus: You can return counts too if asked.</p>
+    <hr>
+    <h3>✅ 3. Using filter and indexOf (Less Efficient, More Functional Style)</h3>
+    <pre>
+        <code>
+            function findDuplicates(arr) {
+                return arr.filter((item, index) => arr.indexOf(item) !== index)
+                          .filter((item, index, self) => self.indexOf(item) === index);
+              }
+              
+              // Example:
+              console.log(findDuplicates([1, 2, 3, 4, 2, 3, 5])); // [2, 3]
+
+        </code>
+    </pre>
+
+    <ul>
+        <li>Time complexity: O(n²) in worst case</li>
+        <li>Why use it: Shows understanding of array methods, but not ideal for large arrays.</li>
+    </ul>
+    <hr>
+    <script>
+        /*✅ 1. Using a Set (Fast and Efficient)*/
+
+        function findDuplicates(arr) {
+            const seen = new Set();
+            const duplicates = new Set();
+
+            for (const item of arr) {
+                if (seen.has(item)) {
+                    duplicates.add(item);
+                } else {
+                    seen.add(item);
+                }
+            }
+
+            return Array.from(duplicates);
+        }
+
+        // Example:
+        console.log(findDuplicates([1, 2, 3, 4, 2, 3, 5])); // [2, 3]
+
+
+        /* ✅ 2. Using a Frequency Map (for counts too)*/
+        function findDuplicates(arr) {
+            const freqMap = {};
+            const result = [];
+
+            for (let item of arr) {
+                freqMap[item] = (freqMap[item] || 0) + 1;
+            }
+
+            for (let key in freqMap) {
+                if (freqMap[key] > 1) {
+                    result.push(Number(key)); // convert back to number if needed
+                }
+            }
+
+            return result;
+        }
+
+        // Example:
+        console.log(findDuplicates([1, 2, 3, 4, 2, 3, 5])); // [2, 3]
+
+        /* ✅ 3. Using filter and indexOf (Less Efficient, More Functional Style)*/
+        function findDuplicates(arr) {
+            return arr.filter((item, index) => arr.indexOf(item) !== index)
+                .filter((item, index, self) => self.indexOf(item) === index);
+        }
+
+        // Example:
+        console.log(findDuplicates([1, 2, 3, 4, 2, 3, 5])); // [2, 3]
+    </script>
+</body>
+
+</html>

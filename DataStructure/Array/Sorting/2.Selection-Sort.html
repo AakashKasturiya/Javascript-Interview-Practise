@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selection Sort</title>
+</head>
+
+<body>
+    <h1>Selection Sort | Ascending Order</h1>
+    <script>
+        function selectionSort(arr) {
+            let n = arr.length;
+
+            // Loop over the entire array
+            for (let i = 0; i < n - 1; i++) {
+                let minIndex = i;
+
+                // Find the minimum element in the unsorted part
+                for (let j = i + 1; j < n; j++) {
+                    if (arr[j] < arr[minIndex]) {
+                        minIndex = j; // Update the index of the minimum element
+                    }
+                }
+
+                // If minIndex is not the index of i, swap the elements
+                if (minIndex !== i) {
+                    let temp = arr[i];
+                    arr[i] = arr[minIndex];
+                    arr[minIndex] = temp;
+                }
+            }
+            return arr;
+        }
+
+        // Test the selection sort function
+        let numbers = [5, 2, 8, 3, 1];
+        console.log("Sorted array:", selectionSort(numbers)); // Output: [1, 2, 3, 5, 8]
+
+    </script>
+</body>
+
+</html>
